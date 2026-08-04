@@ -1,0 +1,33 @@
+<div class="app-layout">
+
+  <!-- Vertical Layout -->
+  <div class="app-layout__vcontainer" *ngIf="!layoutMode">
+    <div class="app-layout__left">
+      <app-vertical-sidebar [sidebarWidth]="sidebarWidth" (toggleSidebar)="_doFetchToggleSidebar($event)">
+      </app-vertical-sidebar>
+    </div>
+
+    <div class="app-layout__right">
+      <app-header (toggleLayout)="_doFetchLayoutMode($event)" [layoutMode]="layoutMode" [sidebarWidth]="sidebarWidth">
+      </app-header>
+
+      <main class="app-layout__vcontent" [ngClass]="sidebarWidth">
+        <router-outlet></router-outlet>
+      </main>
+    </div>
+  </div>
+
+  <!-- Horizontal Layout -->
+  <div class="app-layout__hcontainer" *ngIf="layoutMode">
+    <app-header (toggleLayout)="_doFetchLayoutMode($event)" [layoutMode]="layoutMode" [sidebarWidth]="sidebarWidth">
+    </app-header>
+
+    <app-horizontal-sidebar></app-horizontal-sidebar>
+
+    <main class="app-layout__hcontent">
+      <router-outlet></router-outlet>
+    </main>
+
+  </div>
+
+</div>

@@ -1,0 +1,204 @@
+// ======================================================
+// RESPONSIVE BREAKPOINTS
+// ======================================================
+
+$mobile: 576px;
+$tablet: 768px;
+$laptop: 992px;
+$desktop: 1200px;
+$large-desktop: 1400px;
+
+// ======================================================
+// LAYOUT
+// ======================================================
+
+$container-width: 1280px;
+
+$sidebar-width-collapsed: 80px;
+$sidebar-width-expanded: 250px;
+
+// ======================================================
+// SPACING
+// ======================================================
+
+$spacing-xs: .5rem;
+$spacing-sm: 1rem;
+$spacing-md: 1.5rem;
+$spacing-lg: 2rem;
+$spacing-xl: 3rem;
+$spacing-2xl: 4rem;
+$spacing-3xl: 5rem;
+
+// ======================================================
+// BORDER RADIUS
+// ======================================================
+
+$radius-xs: .25rem;
+$radius-sm: .5rem;
+$radius-md: .75rem;
+$radius-lg: 1rem;
+$radius-xl: 1.5rem;
+$radius-2xl: 2rem;
+$radius-round: 999px;
+
+// ======================================================
+// BRAND COLORS
+// ======================================================
+
+$color-primary: #0F5C4E;
+$color-primary-light: #2FA89E;
+$color-primary-dark: #0B4A3E;
+
+$color-accent: #EDA338;
+
+// ======================================================
+// BASE COLORS
+// ======================================================
+
+$color-white: #FFFFFF;
+$color-black: #000000;
+
+$color-success: #28A745;
+$color-warning: #EDA338;
+$color-danger: #DC3545;
+$color-info: #0EA5E9;
+
+// ======================================================
+// TEXT COLORS
+// ======================================================
+
+$text-primary: #17211F;
+$text-secondary: #61706C;
+$text-muted: #8A9692;
+$text-light: #FFFFFF;
+
+// ======================================================
+// BACKGROUND COLORS
+// ======================================================
+
+$background-page: #E4EFEB;
+$background-section: #F6F9F8;
+$background-card: #FFFFFF;
+$background-theme: #2C3E50;
+
+// ======================================================
+// BORDER COLORS
+// ======================================================
+
+$border-color: #E2E7E4;
+$border-dark: #928B8B;
+$border-light: #F0F3F2;
+
+// ======================================================
+// SHADOWS
+// ======================================================
+
+$shadow-sm: 0 2px 8px rgba(0,0,0,.05);
+$shadow-md: 0 8px 20px rgba(0,0,0,.08);
+$shadow-lg: 0 15px 40px rgba(0,0,0,.10);
+
+// ======================================================
+// TYPOGRAPHY
+// ======================================================
+
+// Base Font Size
+
+$font-size-xs: .75rem;
+$font-size-sm: .875rem;
+$font-size-md: 1rem;
+$font-size-lg: 1.125rem;
+$font-size-xl: 1.25rem;
+$font-size-2xl: 1.5rem;
+$font-size-3xl: 2rem;
+$font-size-4xl: 2.5rem;
+$font-size-5xl: 3rem;
+
+// Existing aliases (keep these so you don't need to
+// modify the entire project)
+
+$font-size-caption: $font-size-xs;
+$font-size-menu: $font-size-sm;
+$font-size-subtitle: $font-size-md;
+$font-size-title: $font-size-lg;
+
+// ======================================================
+// Z INDEX
+// ======================================================
+
+$z-dropdown: 100;
+$z-sticky: 500;
+$z-fixed: 1000;
+$z-modal: 1100;
+$z-tooltip: 1200;
+
+// ======================================================
+// TRANSITIONS
+// ======================================================
+
+$transition-fast: .2s ease;
+$transition-normal: .3s ease;
+$transition-slow: .5s ease;
+
+// ======================================================
+// FONT FACES
+// ======================================================
+
+// ---------- Bricolage Grotesque ----------
+
+@font-face {
+    font-family: "Bricolage Grotesque";
+    src: url("../assets/fonts/BricolageGrotesque-Light.ttf") format("truetype");
+    font-weight: 300;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Bricolage Grotesque";
+    src: url("../assets/fonts/BricolageGrotesque-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Bricolage Grotesque";
+    src: url("../assets/fonts/BricolageGrotesque-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Bricolage Grotesque";
+    src: url("../assets/fonts/BricolageGrotesque-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+// ---------- Montserrat ----------
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("../assets/fonts/Montserrat-Regular.ttf") format("truetype");
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("../assets/fonts/Montserrat-Medium.ttf") format("truetype");
+    font-weight: 500;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("../assets/fonts/Montserrat-SemiBold.ttf") format("truetype");
+    font-weight: 600;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "Montserrat";
+    src: url("../assets/fonts/Montserrat-Bold.ttf") format("truetype");
+    font-weight: 700;
+    font-style: normal;
+}

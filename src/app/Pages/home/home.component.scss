@@ -1,0 +1,661 @@
+@import "../../../Styles/variables.scss";
+@import "../../../Styles/mixins.scss";
+
+.app-home {
+    min-height: 100vh;
+    background: rgba($background-page, 0.3);
+
+    // =====================================================
+    // Header
+    // =====================================================
+
+    &__header {
+        @include container;
+        @include flex(space-between);
+
+        padding-block: $spacing-md;
+        border-bottom: 1px solid $border-color;
+
+        &--right {
+            @include flex(space-between, center, row, $spacing-xl);
+        }
+
+        @include respond(tablet) {
+            flex-direction: column;
+            gap: $spacing-md;
+
+            &--right {
+                width: 100%;
+                justify-content: center;
+                flex-wrap: wrap;
+                gap: $spacing-md;
+            }
+        }
+
+        @include respond(mobile) {
+            padding-block: $spacing-sm;
+
+            &--right {
+                flex-direction: column;
+            }
+        }
+    }
+
+    // =====================================================
+    // Brand
+    // =====================================================
+
+    &__brand {
+        @include flex(center, center, row, 0.5rem);
+        text-decoration: none;
+        cursor: pointer;
+        transition: $transition-fast;
+
+        &:hover {
+            transform: scale(1.02);
+        }
+    }
+
+    &__brand-icon {
+        font-size: 2rem;
+        color: $color-warning;
+    }
+
+    &__brand-text {
+        @include bricolage-grotesque(600);
+        font-size: clamp(2rem, 2vw, 2.4rem);
+        color: $color-primary;
+    }
+
+    // =====================================================
+    // Navigation
+    // =====================================================
+
+    &__nav {
+        @include flex(flex-start, center, row, $spacing-lg);
+        flex-wrap: wrap;
+    }
+
+    &__nav-link {
+        @include bricolage-grotesque(500);
+        color: $text-secondary;
+        text-decoration: none;
+        transition: $transition-fast;
+        font-size: $font-size-md;
+
+        &:hover {
+            color: $color-primary;
+        }
+    }
+
+    // =====================================================
+    // Actions
+    // =====================================================
+
+    &__actions {
+        @include flex(center, center, row, $spacing-sm);
+        flex-wrap: wrap;
+    }
+
+    &__btn {
+        @include button(0.6rem, 1.4rem);
+        @include bricolage-grotesque(600);
+        font-size: $font-size-md;
+    }
+
+    &__btn--outline {
+        border: 1px solid $color-primary;
+        color: $color-primary;
+        background: transparent;
+
+        &:hover {
+            background: $color-primary;
+            color: $color-white;
+        }
+    }
+
+    &__btn--primary {
+        background: $color-primary;
+        color: $color-white;
+
+        &:hover {
+            opacity: 0.9;
+        }
+    }
+
+    // =====================================================
+    // Hero
+    // =====================================================
+
+    &__hero {
+        @include container;
+        @include flex(center, center, column);
+        padding-block: $spacing-2xl;
+        text-align: center;
+    }
+
+    &__hero-badge {
+        @include bricolage-grotesque(600);
+        padding: 0.75rem 1.5rem;
+        border-radius: $radius-round;
+        background: rgba($color-primary, 0.08);
+        color: $color-primary;
+        font-size: $font-size-menu;
+    }
+
+    &__hero-title {
+        @include montserrat(600);
+        font-size: clamp(2.2rem, 5vw, 3.4rem);
+        margin: $spacing-md 0;
+        line-height: 1.2;
+        color: $color-black;
+
+        span {
+            color: $color-primary;
+        }
+    }
+
+    &__hero-description {
+        @include bricolage-grotesque();
+        max-width: 720px;
+        margin: 0;
+        color: $text-secondary;
+        font-size: $font-size-lg;
+        line-height: 1.7;
+    }
+
+    // =====================================================
+    // Search
+    // =====================================================
+
+    &__search {
+        @include flex(space-between, center, row, $spacing-sm);
+        width: 100%;
+        max-width: 1100px;
+        margin: $spacing-xl 0;
+        padding: $spacing-sm;
+        background: $color-white;
+        border-radius: $radius-xl;
+        @include shadow(lg);
+    }
+
+    &__search-item {
+        flex: 1;
+        text-align: left;
+    }
+
+    &__search-label {
+        @include bricolage-grotesque(600);
+
+        display: block;
+        margin-bottom: 0.5rem;
+        color: $text-secondary;
+        font-size: $font-size-menu;
+    }
+
+    &__search-field {
+        @include flex(flex-start, center, row, 0.75rem);
+
+        i {
+            color: $color-primary;
+        }
+    }
+
+    &__search-select {
+        @include bricolage-grotesque(500);
+        width: 100%;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-size: $font-size-md;
+        cursor: pointer;
+    }
+
+    &__search-divider {
+        width: 1px;
+        height: 55px;
+        background: $border-color;
+    }
+
+    &__search-btn {
+        @include button(0.75rem, 1.5rem);
+        @include flex(center, center, row, 0.5rem);
+        @include bricolage-grotesque(600);
+        background: $color-primary;
+        color: $color-white;
+        white-space: nowrap;
+    }
+
+    // =====================================================
+    // Highlights
+    // =====================================================
+
+    &__highlights {
+        @include flex(center, center, row, $spacing-xl);
+        flex-wrap: wrap;
+    }
+
+    &__highlight {
+        @include flex(center, center, row, 0.75rem);
+        @include bricolage-grotesque(500);
+        color: $text-secondary;
+
+        i {
+            color: $color-primary;
+        }
+    }
+
+    // =====================================================
+    // Featured Section
+    // =====================================================
+
+    &__featured {
+        @include container;
+        padding-block: $spacing-xl;
+    }
+
+    &__section-header {
+        @include flex(space-between, flex-end);
+        margin-bottom: $spacing-lg;
+    }
+
+    &__section-title {
+        @include bricolage-grotesque(600);
+        font-size: clamp(2rem, 4vw, 2.5rem);
+        margin: 0;
+    }
+
+    &__section-subtitle {
+        @include montserrat();
+        margin-top: 0.5rem;
+        color: $text-secondary;
+    }
+
+    &__section-link {
+        @include flex(center, center, row, 0.5rem);
+        @include bricolage-grotesque(600);
+        color: $color-primary;
+        text-decoration: none;
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    // =====================================================
+    // Responsive
+    // =====================================================
+
+    @include respond(tablet) {
+        &__search {
+            flex-direction: column;
+            align-items: stretch;
+        }
+
+        &__search-divider {
+            display: none;
+        }
+
+        &__search-btn {
+            width: 100%;
+        }
+
+        &__section-header {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: $spacing-sm;
+        }
+    }
+
+    @include respond(mobile) {
+        &__hero {
+            padding-block: $spacing-xl;
+        }
+
+        &__hero-description {
+            font-size: $font-size-md;
+        }
+
+        &__nav {
+            justify-content: center;
+        }
+
+        &__actions {
+            width: 100%;
+
+            .app-home__btn {
+                flex: 1;
+            }
+        }
+    }
+
+
+    // =====================================================
+    // Featured Cards
+    // =====================================================
+
+    &__cards {
+        @include grid(repeat(auto-fit, minmax(320px, 1fr)), $spacing-lg);
+    }
+
+    &__card {
+        background: $background-card;
+        border-radius: $radius-xl;
+        overflow: hidden;
+        @include shadow(md);
+        transition: $transition-normal;
+
+        &:hover {
+            transform: translateY(-6px);
+        }
+    }
+
+    &__card-image {
+        position: relative;
+        height: 200px;
+        background: $color-primary-light;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: $transition-normal;
+        }
+    }
+
+    &__card:hover &__card-image img {
+        transform: scale(1.05);
+    }
+
+    &__card-badge {
+        position: absolute;
+        left: $spacing-sm;
+        bottom: $spacing-sm;
+        padding: 0.45rem 1rem;
+        border-radius: $radius-round;
+        background: $color-warning;
+        @include bricolage-grotesque(600);
+        font-size: $font-size-menu;
+    }
+
+    &__card-favourite {
+        @include flex(center, center);
+        position: absolute;
+        top: $spacing-sm;
+        right: $spacing-sm;
+        width: 2.2rem;
+        height: 2.2rem;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        background: rgba($color-white, 0.9);
+        color: $color-primary;
+        transition: $transition-fast;
+
+        &:hover {
+            background: $color-primary;
+            color: $color-white;
+        }
+    }
+
+    &__card-body {
+        padding: $spacing-md;
+    }
+
+    &__card-title {
+        @include montserrat(600);
+        margin: 0;
+        font-size: $font-size-xl;
+    }
+
+    &__card-location {
+        @include flex(flex-start, center, row, 0.5rem);
+        margin: $spacing-xs 0;
+        color: $text-secondary;
+        @include bricolage-grotesque(500);
+        font-size: $font-size-subtitle;
+
+        i {
+            color: $color-primary;
+        }
+    }
+
+    &__card-tags {
+        @include flex(flex-start, center, row, 0.5rem, wrap);
+        margin: $spacing-md 0;
+
+        span {
+            padding: 0.35rem 0.75rem;
+            border-radius: $radius-sm;
+            background: $background-page;
+            color: $color-primary;
+            @include bricolage-grotesque(500);
+            font-size: $font-size-caption;
+        }
+    }
+
+    &__card-footer {
+        @include flex(space-between);
+        padding-top: $spacing-sm;
+        border-top: 1px solid $border-color;
+    }
+
+    &__card-price {
+        @include bricolage-grotesque(600);
+        font-size: $font-size-lg;
+
+        span {
+            color: $text-secondary;
+            font-size: $font-size-sm;
+        }
+    }
+
+    &__card-amenities {
+        @include flex(center, center, row, $spacing-sm);
+        color: $color-primary;
+    }
+
+    // =====================================================
+    // How It Works
+    // =====================================================
+
+        &__steps {
+            @include container;
+            margin-block: $spacing-xl;
+        }
+    
+        &__steps-wrapper {
+            background: $color-primary;
+            border-radius: $radius-2xl;
+            padding: $spacing-2xl;
+        }
+    
+    &__section-heading {
+        text-align: center;
+    }
+
+    &__section-title {
+        @include montserrat(600);
+        // color: $color-white;
+        font-size: clamp(2rem, 4vw, 2rem);
+    }
+
+    &__section-description {
+        @include montserrat(400);
+        color: rgba($color-white, 0.8);
+        font-size: $font-size-lg;
+    }
+
+    &__step-list {
+        @include grid(repeat(3, 1fr), $spacing-lg);
+        margin-top: $spacing-xl;
+    }
+
+    &__step-card {
+        padding: $spacing-lg;
+        border-radius: $radius-xl;
+        background: rgba($color-white, 0.08);
+        border: 1px solid rgba($color-white, 0.15);
+    }
+
+    &__step-number {
+        @include bricolage-grotesque(600);
+        color: $color-warning;
+    }
+
+    &__step-title {
+        margin: $spacing-md 0 $spacing-sm;
+        color: $color-white;
+        @include bricolage-grotesque(600);
+        font-size: $font-size-lg;
+    }
+
+    &__step-description {
+        @include montserrat(400);
+        margin: 0;
+        color: rgba($color-white, 0.85);
+        line-height: 1.6;
+    }
+
+    // =====================================================
+    // Owner CTA
+    // =====================================================
+
+        &__owner {
+            @include container;
+            margin-block:$spacing-xl;
+        }
+    
+        &__owner-wrapper{
+            @include flex(space-between);
+            padding: $spacing-xl;
+            border: 1px solid $border-color;
+            border-radius: $radius-2xl;
+            background: $background-card;
+        }
+
+    &__owner-title {
+        @include montserrat(600);
+        font-size: clamp(2rem, 3vw, 2rem);
+    }
+
+    &__owner-description {
+        max-width: 600px;
+        margin-top: $spacing-sm;
+        color: $text-secondary;
+    }
+
+    &__owner-btn {
+        @include button();
+        @include montserrat(600);
+        background: $color-warning;
+    }
+
+    // =====================================================
+    // Footer
+    // =====================================================
+
+    &__footer {
+        @include container;
+        @include flex(space-between);
+        margin-top: $spacing-2xl;
+        padding-block: $spacing-xl;
+        border-top: 1px solid $border-color;
+    }
+
+     
+    
+
+    &__footer--brand-info {
+        max-width: 400px;
+        color: $color-primary;
+        @include montserrat(600); 
+        i {
+            color: $color-warning;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+        }
+
+        p {
+            margin-top: $spacing-sm;
+            color: $text-secondary;
+            font-size: $font-size-subtitle;
+        }
+        span{
+            @include bricolage-grotesque(600);
+            color: $color-primary;
+            font-size: clamp(1rem, 3vw, 1.5rem);
+        }
+    }
+
+    &__footer-links {
+        @include grid(repeat(3, 1fr), $spacing-xl);
+  
+        >div {
+            display: flex;
+            flex-direction: column;
+        }
+
+        h4 {
+            @include montserrat(500);
+            margin: 0 0 $spacing-sm;
+            font-size: clamp(1rem, 3vw, 1.2rem);
+        }
+
+        a,
+        p {
+            @include montserrat(400);
+            display: block;
+            margin: 0;
+            text-decoration: none;
+            color: $text-secondary;
+            line-height: 1.6;
+
+            &:hover {
+                color: $color-primary;
+            }
+        }
+    }
+
+    // =====================================================
+    // Responsive
+    // =====================================================
+
+    @include respond(tablet) {
+        &__step-list {
+            grid-template-columns: 1fr;
+        }
+
+        &__owner {
+            flex-direction: column;
+            gap: $spacing-lg;
+            text-align: center;
+        }
+
+        &__owner-description {
+            max-width: 100%;
+        }
+
+        &__footer {
+            flex-direction: column;
+            gap: $spacing-xl;
+        }
+
+        &__footer-links {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    @include respond(mobile) {
+        &__cards {
+            grid-template-columns: 1fr;
+        }
+
+        &_footer {
+            flex-direction: column;
+        }
+
+        &__footer-links {
+            grid-template-columns: 1fr;
+        }
+    }
+}

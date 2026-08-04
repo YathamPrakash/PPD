@@ -1,0 +1,92 @@
+<main class="app-page">
+    <div class="app-page__container">
+
+        <!-- Tenant Stats Cards -->
+        <section class="row app-page__cards-row">
+            <div class="col-12">
+                <section class="app-page__cards-list">
+                    <article class="app-page__card-item" *ngFor="let data of tenantsData">
+                        <div class="app-page__card-left">
+                            <h5>{{ data.value }}</h5>
+                            <span>{{ data.label }}</span>
+                        </div>
+                        <div class="app-page__card-right">
+                            <i class="{{ data.icon }}"></i>
+                        </div>
+                    </article>
+                </section>
+            </div>
+        </section>
+
+        <!-- Payments Cards -->
+        <section class="row app-page__payments-row my-4">
+            <div class="col-12">
+                <div class="app-page__payments-container">
+                    <h6 class="app-page__payments-header">
+                        Payments of {{ currentDate | date:'MMMM yyyy' }}
+                    </h6>
+                    <section class="app-page__cards-list">
+                        <article class="app-page__card-item" *ngFor="let data of paymentsData">
+                            <div class="app-page__card-left">
+                                <h6>{{ data.value | currency:'INR':'symbol' }} ({{ data.count }})</h6>
+                                <span class="{{ data.iconColor }}">{{ data.label }}</span>
+                            </div>
+                            <div class="app-page__card-right">
+                                <i class="{{ data.icon }} {{ data.iconColor }}"></i>
+                            </div>
+                        </article>
+                    </section>
+                </div>
+            </div>
+        </section>
+
+        <!-- Tables & Sidebar -->
+        <section class="row app-page__table-row">
+            
+            <div class="col-md-8">
+                <div class="app-page__table-card card">
+                    <div class="app-page__table-card--header">
+                        <h5 class="app-page__table-card--header-lbl">Recent Joinings</h5>
+                        <button type="button" class="app-page__table-card--header-btn">View all</button>
+                    </div>
+                    <app-table></app-table>
+                </div>
+            </div>
+
+            <div class="col-md-4">
+                <div class="app-page__table-card card">
+
+                    <div class="app-page__table-card--header">
+                        <h5 class="app-page__table-card--header-lbl">Upcoming Joinings</h5>
+                        <button type="button" class="app-page__table-card--header-btn">View all</button>
+                    </div>
+
+                    <table class="app-table table">
+                        <tbody class="app-table__body">
+                            <tr class="app-table__body--row" *ngFor="let data of upcomingJoinings">
+                                <td class="app-table__body--cell">
+                                    <div class="app-table__body--cell--container">
+                                       <img src="{{userImagePath}}" height="35" alt="User" />
+                                        <div class="app-table__body--cell--info">
+                                            <h5>{{data.name}}</h5>
+                                            <p>{{data.country}}</p>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="app-table__body--cell" style="text-align: right;">
+                                    <div class="app-table__body--cell--info">
+                                        <h5>{{data.date}}</h5>
+                                        <p>Room {{data.room}}</p>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+
+        </section>
+
+    </div>
+</main>

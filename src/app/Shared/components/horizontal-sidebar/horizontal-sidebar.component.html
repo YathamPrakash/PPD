@@ -1,0 +1,29 @@
+<div class="app-hsidebar">
+    <div class="app-hsidebar__container">
+        <nav class="app-hsidebar__nav">
+            <ul class="app-hsidebar__menu-list">
+                <li class="app-hsidebar__menu-item" *ngFor="let menu of menuItems">
+                    <div class="app-hsidebar__menu-item--container">
+                        <span>{{menu.label}}</span>
+                    </div>
+                    <ng-container *ngIf="menu?.children?.length > 0">
+                    <ul class="app-hsidebar__submenu-list" >
+                        <li class="app-hsidebar__submenu-item" *ngFor="let submenu of menu?.children">
+                            <div class="app-hsidebar__submenu-item--container">
+                                <span>{{submenu.label}}</span>
+                            </div>
+                            <ul class="app-hsidebar__childmenu-list" *ngIf="submenu.children">
+                                <li class="app-hsidebar__childmenu-item" *ngFor="let childmenu of submenu.children">
+                                    <div class="app-hsidebar__childmenu-item--container">
+                                        <span>{{childmenu.label}}</span>
+                                    </div>
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                    </ng-container>
+                </li>
+            </ul>
+        </nav>
+    </div>
+</div>

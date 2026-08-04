@@ -1,0 +1,478 @@
+@import "./variables.scss";
+@import "./mixins.scss";
+
+// ======================================================
+// Global
+// ======================================================
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  @include bricolage-grotesque();
+  margin: 0;
+  padding: 0;
+  background: $background-page;
+  color: $text-primary;
+}
+
+.row {
+  margin: 0 !important;
+  padding: 0 !important;
+}
+
+// ======================================================
+// Login
+// ======================================================
+.app-login {
+  width: 100vw;
+  min-height: 100vh;
+  background: url("../assets/Images/login.jpg") center/cover no-repeat;
+  @include flex(flex-start, center);
+  padding-left: 12%;
+
+  &__container {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  &__card {
+    width: 100%;
+    padding: 10%;
+    border-radius: $radius-lg;
+    background: rgba($color-white, 0.95);
+    @include shadow(md);
+  }
+
+  &__header {
+    @include flex(space-evenly);
+    margin-bottom: $spacing-md;
+  }
+
+  &__tab {
+    padding: $spacing-xs;
+    border-radius: $radius-xs;
+
+    span {
+      @include bricolage-grotesque(600);
+      font-size: $font-size-title;
+      cursor: pointer;
+      padding-bottom: 0.4rem;
+    }
+
+    &.active {
+      color: $text-primary;
+    }
+  }
+
+  &__body {
+    padding-block: $spacing-md;
+  }
+
+  &__field {
+    position: relative;
+    width: 100%;
+    margin-bottom: $spacing-md;
+  }
+
+  &__label {
+    display: block;
+    margin-bottom: 0.35rem;
+    color: $text-secondary;
+    font-size: $font-size-caption;
+  }
+
+  &__input {
+    width: 100%;
+    padding: 0.7rem 2.5rem 0.7rem 0.9rem;
+    border: 1px solid $border-dark;
+    border-radius: $radius-round;
+    background: #f5f7f7;
+    outline: none;
+    transition: $transition-fast;
+    font-size: $font-size-caption;
+
+    &:focus {
+      border-color: $color-primary;
+      box-shadow: 0 0 0 3px rgba($color-primary, 0.15);
+    }
+  }
+
+  &__input--icon {
+    position: absolute;
+    top: 2.15rem;
+    right: 1rem;
+    cursor: pointer;
+    color: $text-secondary;
+    font-size: $font-size-caption;
+  }
+
+  &__footer {
+    @include flex(space-between);
+    margin-top: $spacing-sm;
+
+    &-forgot-password {
+      text-decoration: none;
+      color: $text-primary;
+      font-size: $font-size-caption;
+      transition: $transition-fast;
+
+      &:hover {
+        color: $color-primary;
+      }
+    }
+
+    &-button {
+      @include button(0.5rem, 1.75rem, $radius-round);
+      @include bricolage-grotesque(600);
+      background: $color-primary;
+      color: $color-white;
+
+      &:hover {
+        background: $color-primary-dark;
+      }
+    }
+  }
+}
+
+// ======================================================
+// Login Responsive
+// ======================================================
+@include respond(laptop) {
+  .app-login {
+    padding-left: 8%;
+  }
+}
+
+@include respond(tablet) {
+  .app-login {
+    justify-content: center;
+    padding-left: 0;
+    padding-inline: $spacing-md;
+
+    &__container {
+      max-width: 360px;
+    }
+  }
+}
+
+@include respond(mobile) {
+  .app-login {
+    padding-inline: $spacing-sm;
+
+    &__container {
+      max-width: 100%;
+    }
+
+    &__card {
+      padding: $spacing-lg;
+    }
+  }
+}
+
+// ======================================================
+// Header
+// ======================================================
+.app-header {
+  position: fixed;
+  top: 0;
+  height: 40px;
+  z-index: $z-fixed;
+  background: $background-theme;
+  color: $color-white;
+  transition:
+    left $transition-normal,
+    width $transition-normal;
+  @include flex(space-between);
+  padding-inline: $spacing-sm;
+
+  &.w0 {
+    left: 0;
+    width: 100%;
+  }
+
+  &.w250 {
+    left: $sidebar-width-expanded;
+    width: calc(100% - #{$sidebar-width-expanded});
+  }
+
+  &.w80 {
+    left: $sidebar-width-collapsed;
+    width: calc(100% - #{$sidebar-width-collapsed});
+  }
+
+  &__left {
+    @include flex;
+
+    span {
+      font-size: $font-size-subtitle;
+    }
+  }
+
+  &__right {
+    @include flex(flex-start, center, row, 0.75rem);
+
+    &--actdpd {
+      padding: $spacing-sm !important;
+    }
+
+    button {
+      border: none;
+      background: transparent;
+      color: $color-white;
+      cursor: pointer;
+    }
+  }
+}
+
+@include respond(tablet) {
+  .app-header {
+    padding-inline: $spacing-sm;
+  }
+}
+
+// ======================================
+//header styles ended
+// ======================================
+// ======================================================
+// Dashboard
+// ======================================================
+.app-page {
+  &__cards-list {
+    @include flex(flex-start, stretch, row, $spacing-lg, wrap);
+    width: 100%;
+  }
+
+  &__card-item {
+    @include flex(space-between);
+    flex: 1 1 200px;
+    max-width: 300px;
+    padding: $spacing-md;
+    background: $background-card;
+    border-radius: $radius-sm;
+    @include shadow(sm);
+  }
+
+  &__card-left {
+    width: 70%;
+
+    h5 {
+      @include bricolage-grotesque(600);
+      font-size: $font-size-title;
+      color: $text-primary;
+      overflow-wrap: break-word;
+      margin: 0;
+    }
+
+    h6 {
+      @include bricolage-grotesque(600);
+      font-size: $font-size-subtitle;
+      overflow-wrap: break-word;
+      margin: 0.35rem 0;
+    }
+
+    span {
+      @include bricolage-grotesque(500);
+      font-size: $font-size-caption;
+      overflow-wrap: break-word;
+
+      &.danger {
+        color: $color-danger;
+      }
+    }
+  }
+
+  &__card-right {
+    i {
+      font-size: 1.5rem;
+
+      &.danger {
+        color: $color-danger;
+      }
+    }
+  }
+
+  &__payments-container {
+    margin-block: $spacing-xl;
+  }
+
+  &__payments-header {
+    @include bricolage-grotesque(700);
+    margin-bottom: $spacing-sm;
+    font-size: $font-size-subtitle;
+  }
+
+  &__table-card {
+    padding: $spacing-md;
+
+    &--header {
+      @include flex(space-between);
+      padding-bottom: $spacing-xs;
+
+      &-lbl {
+        @include bricolage-grotesque(500);
+        color: $text-primary;
+        font-size: $font-size-subtitle;
+      }
+
+      &-btn {
+        @include button(0.2rem, 0.6rem, $radius-xs);
+        @include bricolage-grotesque(500);
+        background: $text-primary;
+        color: $color-white;
+      }
+    }
+  }
+}
+
+// ======================================================
+// Dashboard Responsive
+// ======================================================
+@include respond(tablet) {
+  .app-page {
+    &__cards-list {
+      justify-content: center;
+    }
+
+    &__card-item {
+      max-width: 100%;
+    }
+  }
+}
+
+// ======================================================
+// Table
+// ======================================================
+.app-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: $background-card;
+  border-radius: $radius-sm;
+  @include shadow(sm);
+
+  &__head {
+    &--cell {
+      @include bricolage-grotesque(500);
+      padding: 0.6rem;
+      font-size: $font-size-subtitle;
+    }
+  }
+
+  &__body {
+    &--cell {
+      padding: 0.6rem;
+      font-size: $font-size-caption;
+
+      button {
+        @include button(0.2rem, 0.6rem, $radius-xs);
+        @include bricolage-grotesque(500);
+        color: $color-white;
+
+        &.new {
+          background: $color-warning;
+        }
+
+        &.active {
+          background: $color-success;
+        }
+
+        &.hold {
+          background: $color-danger;
+        }
+      }
+
+      &--container {
+        @include flex(flex-start, center, row, 0.75rem);
+
+        img {
+          width: 35px;
+          height: 35px;
+          border-radius: 50%;
+          border: 1px solid $text-secondary;
+        }
+      }
+
+      &--info {
+        h5 {
+          @include bricolage-grotesque(600);
+          margin: 0 0 0.3rem;
+          font-size: $font-size-caption;
+        }
+
+        p {
+          margin: 0;
+          font-size: $font-size-caption;
+        }
+      }
+    }
+  }
+}
+
+// ======================================================
+// PrimeNG Common Table
+// ======================================================
+.app-commontable {
+  &__headercontainer {
+    @include flex(space-between);
+  }
+
+  &__searchcontainer {
+    @include flex(flex-end);
+    position: relative;
+
+    i {
+      position: absolute;
+      right: 0.75rem;
+      color: $color-black;
+      font-size: $font-size-caption;
+    }
+  }
+
+  &__searchinput {
+    padding: 0.5rem !important;
+    border: 1px solid $text-secondary;
+    border-radius: $radius-sm;
+    font-size: $font-size-caption;
+  }
+}
+
+.app-commontable {
+  .p-datatable-thead {
+    >tr>th {
+      @include bricolage-grotesque(500);
+      padding: 0.6rem 0.5rem !important;
+      color: $color-black;
+      font-size: $font-size-subtitle;
+
+      &.p-datatable-sortable-column:not(.p-datatable-column-sorted):hover {
+        background: $color-white !important;
+      }
+
+      &.p-datatable-column-sorted {
+        background: rgba($color-white, 0.2);
+        color: $color-black;
+      }
+    }
+
+    .p-sortable-column-icon {
+      width: $font-size-caption;
+      height: $font-size-caption;
+      color: $color-black;
+    }
+  }
+
+  .p-datatable-tbody {
+    >tr>td {
+      padding: 0.5rem;
+      color: $color-black;
+      font-size: $font-size-caption;
+    }
+  }
+}

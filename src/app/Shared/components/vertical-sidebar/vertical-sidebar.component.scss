@@ -1,0 +1,263 @@
+@import "../../../../Styles/mixins.scss";
+@import "../../../../Styles/variables.scss";
+
+.app-vsidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100%;
+    overflow: visible;
+    background: $background-theme;
+    color: $color-white;
+    transition: width $transition-normal;
+    z-index: $z-fixed;
+
+    &.w250 {
+        width: $sidebar-width-expanded;
+    }
+
+    &.w80 {
+        width: $sidebar-width-collapsed;
+    }
+
+    // ======================================
+    // Header
+    // ======================================
+    &__header {
+        @include flex(center, center);
+        padding: $spacing-sm;
+
+        .app-vsidebar.w250 & {
+            justify-content: space-between;
+        }
+
+        &--logo {
+            @include bricolage-grotesque(600);
+            font-size: $font-size-title;
+            color: $color-white;
+        }
+
+        &--toggle-btn {
+            @include flex(center, center);
+            width: 2rem;
+            height: 2rem;
+            border: 1px solid rgba($color-white, 0.15);
+            border-radius: $radius-sm;
+            background: rgba($color-white, 0.2);
+            color: $color-white;
+            cursor: pointer;
+            @include shadow(sm);
+            transition: $transition-fast;
+
+            &:hover {
+                background: rgba($color-white, 0.3);
+            }
+        }
+    }
+
+    // ======================================
+    // Navigation
+    // ======================================
+    &__nav {
+        margin-top: $spacing-sm;
+    }
+
+    // ======================================
+    // Menu List
+    // ======================================
+    &__menu-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+    }
+
+    // ======================================
+    // Menu Item
+    // ======================================
+    &__menu-item {
+        position: relative;
+
+        >a {
+            @include flex(space-between, center, row, $spacing-sm);
+            padding: $spacing-sm;
+            color: $color-white;
+            text-decoration: none;
+            font-size: $font-size-menu;
+            cursor: pointer;
+            transition: $transition-fast;
+
+            &:hover {
+                background: rgba($color-white, 0.05);
+            }
+        }
+
+        &--menu-left {
+            @include flex(flex-start, center, row, $spacing-sm);
+        }
+
+        // ======================================
+        // Expanded Sidebar Hover
+        // ======================================
+        .app-vsidebar.w250 &>a:hover {
+            border-left: 3px solid $color-warning;
+            color: $color-warning;
+        }
+
+        // ======================================
+        // Collapsed Sidebar Hover
+        // ======================================
+        .app-vsidebar:not(.w250) &>a:hover {
+            color: $color-warning;
+            animation: icon-bounce 0.5s ease-in-out;
+        }
+    }
+
+    // ======================================
+    // Level 2 Submenu
+    // ======================================
+    &--submenu {
+        display: none;
+        list-style: none;
+        margin: 0;
+        padding-left: $spacing-lg;
+
+        &.show {
+            display: block;
+        }
+
+        li {
+            position: relative;
+
+            a {
+                @include flex(space-between, center, row, $spacing-sm);
+                padding: 0.4rem $spacing-sm;
+                color: $color-white;
+                text-decoration: none;
+                font-size: $font-size-menu;
+                transition: $transition-fast;
+
+                &:hover {
+                    background: rgba($color-white, 0.08);
+                }
+            }
+        }
+    }
+
+    // ======================================
+    // Level 3 Child Menu
+    // ======================================
+    &--childmenu {
+        display: none;
+        list-style: none;
+        margin: 0;
+        padding-left: $spacing-lg;
+
+        &.show {
+            display: block;
+        }
+
+        li {
+            a {
+                @include flex(space-between, center, row, $spacing-sm);
+                padding: 0.35rem $spacing-sm;
+                color: $color-white;
+                text-decoration: none;
+                font-size: $font-size-menu;
+                transition: $transition-fast;
+
+                &:hover {
+                    background: rgba($color-white, 0.08);
+                }
+
+                div {
+                    i {
+                        margin-right: $spacing-sm;
+                    }
+                }
+            }
+        }
+    }
+
+    // ======================================
+    // Collapsed Sidebar
+    // ======================================
+    .app-vsidebar:not(.w250) & {
+        @include flex(center, center);
+
+        span {
+            display: none;
+        }
+
+        &:hover span {
+            display: inline-block;
+        }
+
+        // ======================================
+        // Level 2 Popup
+        // ======================================
+        &:hover>.app-vsidebar__menu-item--submenu {
+            display: block !important;
+            position: absolute;
+            top: 0;
+            left: $sidebar-width-collapsed;
+            min-width: 12rem;
+            padding: 0.5rem 0;
+            border-radius: $radius-xs;
+            background: $background-theme;
+            z-index: 999;
+            @include shadow(md);
+        }
+
+        // ======================================
+        // Level 3 Popup
+        // ======================================
+        &:hover>.app-vsidebar__menu-item--submenu li:hover>.app-vsidebar__menu-item--childmenu {
+            display: block !important;
+            position: absolute;
+            top: 0;
+            left: 100%;
+            margin-left: 0.5rem;
+            min-width: 12rem;
+            padding: 0.5rem 0;
+            border-radius: $radius-xs;
+            background: $background-theme;
+            z-index: 1000;
+            @include shadow(md);
+        }
+    }
+
+    // ======================================
+    // Responsive
+    // ======================================
+    @include respond(tablet) {
+        &.w250 {
+            width: 220px;
+        }
+
+        &__menu-item {
+            >a {
+                padding: 0.75rem;
+            }
+        }
+    }
+
+    @include respond(mobile) {
+        display: none;
+    }
+}
+
+// ======================================
+// Animation
+// ======================================
+@keyframes icon-bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50%,
+    80% {
+        transform: translateY(-3px);
+    }
+}

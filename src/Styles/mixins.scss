@@ -1,0 +1,155 @@
+@import './variables.scss';
+
+// ======================================================
+// TYPOGRAPHY
+// ======================================================
+
+@mixin montserrat($weight: 400) {
+    font-family: 'Montserrat', sans-serif;
+    font-weight: $weight;
+    font-style: normal;
+}
+
+@mixin bricolage-grotesque($weight: 400) {
+    font-family: 'Bricolage Grotesque', sans-serif;
+    font-weight: $weight;
+    font-style: normal;
+}
+
+// ======================================================
+// FLEX
+// ======================================================
+
+@mixin flex($justify: flex-start,
+    $align: center,
+    $direction: row,
+    $gap: 0,
+    $wrap: nowrap) {
+    display: flex;
+    justify-content: $justify;
+    align-items: $align;
+    flex-direction: $direction;
+    gap: $gap;
+    flex-wrap: $wrap;
+}
+
+// ======================================================
+// GRID
+// ======================================================
+
+@mixin grid($columns: 1fr,
+    $gap: $spacing-md,
+    $align: stretch) {
+    display: grid;
+    grid-template-columns: $columns;
+    gap: $gap;
+    align-items: $align;
+}
+
+// ======================================================
+// CONTAINER
+// ======================================================
+
+@mixin container {
+    width: 100%;
+    max-width: $container-width;
+    margin-inline: auto;
+    padding-inline: $spacing-lg;
+
+    @include respond(tablet) {
+        padding-inline: $spacing-md;
+    }
+
+    @include respond(mobile) {
+        padding-inline: $spacing-sm;
+    }
+}
+
+// ======================================================
+// BUTTON
+// ======================================================
+
+@mixin button($paddingY: .75rem,
+    $paddingX: 1.5rem,
+    $radius: $radius-md) {
+    padding: $paddingY $paddingX;
+    border: none;
+    border-radius: $radius;
+    cursor: pointer;
+    transition: $transition-normal;
+}
+
+// ======================================================
+// SHADOWS
+// ======================================================
+
+@mixin shadow($size: md) {
+
+    @if $size ==sm {
+        box-shadow: $shadow-sm;
+    }
+
+    @else if $size ==md {
+        box-shadow: $shadow-md;
+    }
+
+    @else if $size ==lg {
+        box-shadow: $shadow-lg;
+    }
+
+}
+
+// ======================================================
+// TEXT
+// ======================================================
+
+@mixin text-ellipsis {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+@mixin line-clamp($lines) {
+    display: -webkit-box;
+    -webkit-line-clamp: $lines;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+// ======================================================
+// RESPONSIVE
+// ======================================================
+
+@mixin respond($device) {
+
+    @if $device ==mobile {
+        @media (max-width: $mobile) {
+            @content;
+        }
+    }
+
+    @else if $device ==tablet {
+        @media (max-width: $tablet) {
+            @content;
+        }
+    }
+
+    @else if $device ==laptop {
+        @media (max-width: $laptop) {
+            @content;
+        }
+    }
+
+    @else if $device ==desktop {
+        @media (max-width: $desktop) {
+            @content;
+        }
+    }
+
+    @else if $device ==large {
+        @media (min-width: $large-desktop) {
+            @content;
+        }
+    }
+
+}

@@ -1,0 +1,56 @@
+<aside class="app-vsidebar" [ngClass]="sidebarWidth">
+
+  <header class="app-vsidebar__header">
+    <span *ngIf="sidebarWidth == 'w250'" class="app-vsidebar__header--logo">PG Management</span>
+    <button class="app-vsidebar__header--toggle-btn" (click)="_doToggleSidebar()">
+      <i class="fa-solid" [ngClass]="sidebarWidth == 'w250' ? 'fa-angles-left' : 'fa-angles-right'"></i>
+    </button>
+  </header>
+
+  <nav class="app-vsidebar__nav">
+    <ul class="app-vsidebar__menu-list">
+      <li *ngFor="let item of menus" class="app-vsidebar__menu-item">
+
+        <a (click)="toggleMenu(item)">
+          <div class="app-vsidebar__menu-item--menu-left">
+            <i [class]="item.icon"></i>
+            <span *ngIf="sidebarWidth == 'w250'"> {{ item.label }}</span>
+          </div>
+          <i *ngIf="(item.children || []).length > 0 && sidebarWidth == 'w250'" class="fa-solid"
+            [ngClass]="item.open ? 'fa-chevron-up' : 'fa-chevron-down'">
+          </i>
+        </a>
+
+        <!-- SUBMENU -->
+
+        <ul *ngIf="item.children" class="app-vsidebar__menu-item--submenu"
+          [class.show]="item.open && sidebarWidth == 'w250'">
+          <li *ngFor="let child of item.children">
+            <a (click)="toggleMenu(child)">
+              <div class="app-vsidebar__menu-item--menu-left">
+                <i [class]="child.icon"></i>
+                <span>{{ child.label }}</span>
+              </div>
+              <i *ngIf="child.children && sidebarWidth == 'w250'" class="fa-solid"
+                [ngClass]="child.open ? 'fa-chevron-up' : 'fa-chevron-down'">
+              </i>
+            </a>
+            <ul *ngIf="child.children" class="app-vsidebar__menu-item--childmenu" [class.show]="child.open && sidebarWidth == 'w250'">
+              <li *ngFor="let sub of child.children">
+                <a href="javascript:void(0)">
+                  <div>
+                    <i class="{{ sub.icon }}"></i>
+                    <span>{{ sub.label }}</span>
+                  </div>
+                </a>
+              </li>
+            </ul>
+          </li>
+        </ul>
+
+      </li>
+    </ul>
+
+  </nav>
+
+</aside>

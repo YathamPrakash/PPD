@@ -1,0 +1,35 @@
+.app-layout {
+  width: 100%;
+  min-height: 100vh;
+  background: #eee;
+
+  &__vcontainer {
+    width: 100%;
+    height: 100%;
+    padding-top:50px;
+    
+  }
+
+  &__hcontainer {
+    width: 100%;
+    height: 100%;
+    padding-top:50px;
+  }
+
+  &__vcontent {
+    padding:1rem 0.5rem;
+    &.w250 {
+      margin-left: 250px;
+    }
+    &.w80 {
+      margin-left: 80px;
+    }
+    &.w0 {
+      margin-left: 0px;
+    }
+  }
+
+  &__hcontent{
+    padding:1rem 0.5rem;
+  }
+}

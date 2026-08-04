@@ -1,0 +1,97 @@
+/* dropdown button */
+.custom-dropdown button {
+    background: transparent;
+    border: none;
+    font-size: 1rem;
+    cursor: pointer;
+}
+
+/* dropdown menu */
+.custom-dropdown-menu {
+    min-width: 200px;
+    padding: 10px 0;
+    border-radius: 8px;
+    border: none;
+    color: #000;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* dropdown items */
+.custom-item {
+    display: flex;
+    color: #000;
+    align-items: center;
+    gap: 10px;
+    font-size: 0.9rem;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.custom-item:hover {
+    background: #f5f5f5;
+}
+
+/* icons */
+.custom-item i {
+    color: #000;
+    font-size: 0.9rem;
+}
+
+//* align switch and label */
+.custom-switch {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* base switch */
+.custom-switch .form-check-input {
+    width: 40px;
+    height: 20px;
+    cursor: pointer;
+    border-radius: 20px;
+    border: 1px solid #bbb;
+    background-color: #e5e5e5;
+    transition: all 0.3s ease;
+}
+
+/* remove bootstrap shadow */
+.custom-switch .form-check-input:focus {
+    box-shadow: none;
+    border-color: #888;
+}
+
+/* checked state */
+.custom-switch .form-check-input:checked {
+    background-color: #4CAF50;
+    border-color: #4CAF50;
+}
+
+/* label style */
+.custom-switch .form-check-label {
+    font-size: 0.9rem;
+    color: #000;
+    cursor: pointer;
+}
+
+
+
+// /* remove bootstrap background on hover/click/focus */
+// .custom-dropdown-menu .dropdown-item:hover,
+// .custom-dropdown-menu .dropdown-item:focus,
+// .custom-dropdown-menu .dropdown-item:active,
+// .custom-dropdown-menu .dropdown-item.active {
+//   background-color: transparent !important;
+//   color: #333 !important;   /* ensure text stays visible */
+// }
+
+// /* optional: keep a subtle hover if you want */
+// .custom-dropdown-menu .dropdown-item:hover {
+//   background-color: #f7f7f7 !important;
+// }
+
+// /* remove blue outline when clicked */
+// .custom-dropdown-menu .dropdown-item:focus {
+//   outline: none;
+//   box-shadow: none;
+// }

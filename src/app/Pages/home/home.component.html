@@ -1,0 +1,366 @@
+<main class="app-home">
+
+    <header class="app-home__header">
+        <!-- Brand -->
+        <a class="app-home__brand" (click)="$event.preventDefault()">
+            <i class="fa-solid fa-house-chimney app-home__brand-icon"></i>
+            <span class="app-home__brand-text">StayNest</span>
+        </a>
+        <div class="app-home__header--right">
+            <!-- Navigation -->
+            <nav class="app-home__nav">
+                <a href="#" class="app-home__nav-link">Find a PG</a>
+                <a href="#" class="app-home__nav-link">List Your PG</a>
+            </nav>
+            <!-- Header Actions -->
+            <div class="app-home__actions">
+                <button type="button" class="app-home__btn app-home__btn--outline">
+                    Login
+                </button>
+                <button type="button" class="app-home__btn app-home__btn--primary">
+                    Register
+                </button>
+            </div>
+        </div>
+
+    </header>
+
+    <!-- Hero Section -->
+    <section class="app-home__hero">
+
+        <div class="app-home__hero-badge">
+            Verified PGs • No Brokerage • Book a Bed Online
+        </div>
+        <h1 class="app-home__hero-title">
+            Find a PG that <span>feels like home</span>
+        </h1>
+        <p class="app-home__hero-description">
+            Browse real rooms, compare amenities and pricing, and reserve your bed
+            online—all in one place.
+        </p>
+
+        <div class="app-home__search">
+
+            <!-- Location -->
+            <div class="app-home__search-item">
+                <label for="location" class="app-home__search-label">
+                    Location
+                </label>
+                <div class="app-home__search-field">
+                    <i class="fa-solid fa-location-dot"></i>
+                    <select id="location" class="app-home__search-select">
+                        <option>Kakkanad, Kochi</option>
+                        <option>Hyderabad</option>
+                        <option>Bangalore</option>
+                        <option>Chennai</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="app-home__search-divider"></div>
+
+            <!-- Sharing -->
+            <div class="app-home__search-item">
+                <label for="sharing" class="app-home__search-label">
+                    Sharing
+                </label>
+                <div class="app-home__search-field">
+                    <i class="fa-solid fa-bed"></i>
+                    <select id="sharing" class="app-home__search-select">
+                        <option>Any Sharing</option>
+                        <option>Single Sharing</option>
+                        <option>Double Sharing</option>
+                        <option>Triple Sharing</option>
+                    </select>
+                </div>
+            </div>
+
+            <div class="app-home__search-divider"></div>
+
+            <!-- For -->
+            <div class="app-home__search-item">
+                <label for="for" class="app-home__search-label">
+                    For
+                </label>
+                <div class="app-home__search-field">
+                    <i class="fa-solid fa-user"></i>
+                    <select id="for" class="app-home__search-select">
+                        <option>Anyone</option>
+                        <option>Boys</option>
+                        <option>Girls</option>
+                        <option>Family</option>
+                    </select>
+                </div>
+            </div>
+
+            <button class="app-home__search-btn">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                Search
+            </button>
+        </div>
+
+        <div class="app-home__highlights">
+            <div class="app-home__highlight">
+                <i class="fa-solid fa-circle-check"></i>
+                Every listing verified
+            </div>
+            <div class="app-home__highlight">
+                <i class="fa-solid fa-shield-halved"></i>
+                Zero brokerage
+            </div>
+            <div class="app-home__highlight">
+                <i class="fa-solid fa-utensils"></i>
+                Food menu on every PG
+            </div>
+        </div>
+    </section>
+
+    <!-- cards Section -->
+    <section class="app-home__featured">
+
+        <div class="app-home__section-header">
+            <div>
+                <h2 class="app-home__section-title">
+                    PGs near you
+                </h2>
+                <p class="app-home__section-subtitle">
+                    Handpicked stays around Kochi with beds available now
+                </p>
+            </div>
+            <a href="#" class="app-home__section-link">
+                See all
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+
+        <div class="app-home__cards">
+            <!-- Card -->
+            <article class="app-home__card">
+                <div class="app-home__card-image">
+                    <img src="assets/images/pg-1.jpg" alt="Green Nest PG">
+                    <span class="app-home__card-badge">
+                        4 Beds Left
+                    </span>
+                    <button class="app-home__card-favourite">
+                        <i class="fa-regular fa-home"></i>
+                    </button>
+                </div>
+
+                <div class="app-home__card-body">
+                    <h3 class="app-home__card-title">
+                        Green Nest PG
+                    </h3>
+                    <div class="app-home__card-location">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Kakkanad · Near Infopark
+                    </div>
+                    <div class="app-home__card-tags">
+                        <span>1 Sharing</span>
+                        <span>2 Sharing</span>
+                        <span>3 Sharing</span>
+                    </div>
+
+                    <div class="app-home__card-footer">
+                        <div class="app-home__card-price">
+                            ₹6,500
+                            <span>/ month</span>
+                        </div>
+                        <div class="app-home__card-amenities">
+                            <i class="fa-solid fa-wifi"></i>
+                            <i class="fa-solid fa-tv"></i>
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="app-home__card">
+                <div class="app-home__card-image">
+                    <img src="assets/images/pg-1.jpg" alt="Green Nest PG">
+                    <span class="app-home__card-badge">
+                        2 Beds Left
+                    </span>
+                    <button class="app-home__card-favourite">
+                        <i class="fa-regular fa-home"></i>
+                    </button>
+                </div>
+
+                <div class="app-home__card-body">
+                    <h3 class="app-home__card-title">
+                        Sreedhar Residency
+                    </h3>
+                    <div class="app-home__card-location">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Kazhakkoottam · Technopark
+                    </div>
+                    <div class="app-home__card-tags">
+                        <span>2 Sharing</span>
+                        <span>3 Sharing</span>
+                    </div>
+
+                    <div class="app-home__card-footer">
+                        <div class="app-home__card-price">
+                            ₹5,500
+                            <span>/ month</span>
+                        </div>
+                        <div class="app-home__card-amenities">
+                            <i class="fa-solid fa-wifi"></i>
+                            <i class="fa-solid fa-tv"></i>
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+            <article class="app-home__card">
+                <div class="app-home__card-image">
+                    <img src="assets/images/pg-1.jpg" alt="Green Nest PG">
+                    <span class="app-home__card-badge">
+                        6 Beds Left
+                    </span>
+                    <button class="app-home__card-favourite">
+                        <i class="fa-regular fa-home"></i>
+                    </button>
+                </div>
+
+                <div class="app-home__card-body">
+                    <h3 class="app-home__card-title">
+                        Comfort Stay Homes
+                    </h3>
+                    <div class="app-home__card-location">
+                        <i class="fa-solid fa-location-dot"></i>
+                        Palarivattom · Kochi
+                    </div>
+                    <div class="app-home__card-tags">
+                        <span>1 Sharing</span>
+                        <span>2 Sharing</span>
+                    </div>
+
+                    <div class="app-home__card-footer">
+                        <div class="app-home__card-price">
+                            ₹7,800
+                            <span>/ month</span>
+                        </div>
+                        <div class="app-home__card-amenities">
+                            <i class="fa-solid fa-wifi"></i>
+                            <i class="fa-solid fa-tv"></i>
+                            <i class="fa-solid fa-utensils"></i>
+                        </div>
+                    </div>
+                </div>
+            </article>
+
+
+        </div>
+
+    </section>
+
+
+    <section class="app-home__steps">
+        <div class="app-home__steps-wrapper">
+            <div class="app-home__section-heading">
+                <h2 class="app-home__section-title">
+                    How it works
+                </h2>
+                <p class="app-home__section-description">
+                    From searching to moving in — three simple steps.
+                </p>
+            </div>
+    
+            <div class="app-home__step-list">
+                <article class="app-home__step-card">
+                    <span class="app-home__step-number">
+                        Step 1
+                    </span>
+                    <h3 class="app-home__step-title">
+                        Search & Compare
+                    </h3>
+                    <p class="app-home__step-description">
+                        Filter by area, sharing type and budget.
+                        See real rooms, menu and facilities.
+                    </p>
+                </article>
+    
+                <article class="app-home__step-card">
+                    <span class="app-home__step-number">
+                        Step 2
+                    </span>
+                    <h3 class="app-home__step-title">
+                        Book your bed
+                    </h3>
+                    <p class="app-home__step-description">
+                        Reserve your bed by paying a small token.
+                    </p>
+                </article>
+    
+                <article class="app-home__step-card">
+                    <span class="app-home__step-number">
+                        Step 3
+                    </span>
+                    <h3 class="app-home__step-title">
+                        Move In
+                    </h3>
+                    <p class="app-home__step-description">
+                        Complete check-in and manage everything
+                        through the application.
+                    </p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="app-home__owner">
+        <div class="app-home__owner-wrapper">
+            <div class="app-home__owner-content">
+                <h2 class="app-home__owner-title">
+                    Run a PG? Fill your beds faster.
+                </h2>
+                <p class="app-home__owner-description">
+                    List your PG for free, keep menus and availability updated,
+                    and manage bookings, rent and complaints from one dashboard.
+                </p>
+            </div>
+    
+            <button class="app-home__owner-btn">
+                <i class="fa-solid fa-plus"></i>
+                List your PG
+            </button>
+        </div>
+    </section>
+
+
+    <footer class="app-home__footer">
+        <div class="app-home__footer-brand">
+            <div class="app-home__footer--brand-info">
+                <i class="fa-solid fa-house-chimney app-home__footer--brand-icon"></i>
+                <span class="app-home__footer--brand-text">
+                    StayNest
+                </span>
+            </div>
+            <p>
+                A simpler way to find, book and manage PG stays.
+            </p>
+        </div>
+
+        <div class="app-home__footer-links">
+            <div>
+                <h4>For Guests</h4>
+                <p>Find a PG</p>
+                <a href="#">How booking works</a>
+                <a href="#">Help</a>
+            </div>
+            <div>
+                <h4>For Owners</h4>
+                <a href="#">List your PG</a>
+                <a href="#">Owner Dashboard</a>
+                <a href="#">Pricing</a>
+            </div>
+            <div>
+                <h4>Company</h4>
+                <a href="#">About</a>
+                <a href="#">Terms</a>
+                <a href="#">Privacy</a>
+            </div>
+        </div>
+    </footer>
+</main>

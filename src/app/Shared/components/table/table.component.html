@@ -1,0 +1,21 @@
+<table class="app-table table">
+
+    <thead class="app-table__head">
+        <tr class="app-table__head--row">
+            <th class="app-table__head--cell"  *ngFor="let column  of tableHeaders">{{column | titlecase }}</th>
+        </tr>
+    </thead>
+
+    <tbody class="app-table__body">
+        <tr class="app-table__body--row" *ngFor="let data of tableData;let i=index;">
+            <td class="app-table__body--cell">{{i+1}}</td>
+            <td class="app-table__body--cell">{{data.userName}}</td>
+            <td class="app-table__body--cell">{{data.roomNumber}}</td>
+            <td class="app-table__body--cell">{{data.roomRent}}</td>
+            <td class="app-table__body--cell">{{data.date}}</td>
+            <td class="app-table__body--cell">
+                <button type="button" class="{{data.styleClass}}">{{data.status}}</button>
+            </td>
+        </tr>
+    </tbody>
+</table>
