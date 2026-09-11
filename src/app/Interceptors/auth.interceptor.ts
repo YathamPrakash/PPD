@@ -1,21 +1,25 @@
-import { HttpInterceptorFn,HttpErrorResponse} from '@angular/common/http';
+import { HttpInterceptorFn, HttpErrorResponse } from '@angular/common/http';
 import { inject } from '@angular/core';
-import { catchError, throwError } from 'rxjs';
+import { catchError, throwError, finalize } from 'rxjs';
 import { CommonService } from '../Services/common.service';
 
 export const authInterceptor: HttpInterceptorFn = (req, next) => {
-  
-  const commonService=inject(CommonService)
+
+  const commonService = inject(CommonService)
   let token = localStorage.getItem('token');
 
-  const modifiedRequest = req.clone({
+  commonService.show();
+  const modifiedRequest = token ? req.clone({
     setHeaders: {
-      Authorization: token ? `bearer ${token}` : "",
+      Authorization: `bearer ${token}`,
       'content-type': 'application/json'
     }
-  })
+  }) : req;
 
   return next(modifiedRequest).pipe(
+    finalize(()=>{
+      commonService.hide();
+    }),
     catchError((error: HttpErrorResponse) => {
       let errorMessage = 'Unable to connect to server';
 
@@ -35,11 +39,17 @@ export const authInterceptor: HttpInterceptorFn = (req, next) => {
       else if (error.status == 500) {
         errorMessage = "Server Error"
       }
-      else if(error.status == 404){
+      else if (error.status == 404) {
         errorMessage = "Method Not Found"
       }
+      else if (error.error?.message) {
+        errorMessage = error.error.message;
+      }
+      else if (error.status === 400) {
+        errorMessage = 'Bad Request';
+      }
       commonService.showErrorMessage(errorMessage)
-      return throwError(()=>error)
+      return throwError(() => error)
     })
 
   );

@@ -1,0 +1,202 @@
+<div class="pg-photos">
+
+    <!-- ================================================= -->
+    <!-- HEADER -->
+    <!-- ================================================= -->
+
+    <div class="pg-photos__header">
+
+        <span class="pg-photos__step">
+            {{ pageContent.step }}
+        </span>
+
+        <h2 class="pg-photos__title">
+            {{ pageContent.title }}
+        </h2>
+
+        <p class="pg-photos__description">
+            {{ pageContent.description }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- UPLOAD AREA -->
+    <!-- ================================================= -->
+
+    <div class="pg-photos__upload">
+
+        <div class="pg-photos__upload-icon">
+            📷
+        </div>
+
+        <h3 class="pg-photos__upload-title">
+            {{ pageContent.uploadTitle }}
+        </h3>
+
+        <p class="pg-photos__upload-description">
+            {{ pageContent.uploadDescription }}
+        </p>
+
+
+        <button type="button" class="pg-photos__upload-button" (click)="onChoosePhotos()">
+
+            <span>
+                +
+            </span>
+
+            {{ pageContent.chooseButton }}
+
+        </button>
+
+
+        <span class="pg-photos__upload-format">
+            {{ pageContent.supportedFormats }}
+        </span>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- PHOTO CATEGORIES -->
+    <!-- ================================================= -->
+
+    <div class="pg-photos__section">
+
+        <div class="pg-photos__section-header">
+
+            <h3 class="pg-photos__section-title">
+                Photo Categories
+            </h3>
+
+            <span class="pg-photos__section-count">
+                {{ photoCategories.length }} categories
+            </span>
+
+        </div>
+
+
+        <div class="pg-photos__categories">
+
+            @for (
+            category of photoCategories;
+            track category.id
+            ) {
+
+            <div class="pg-photos__category">
+
+                <div class="pg-photos__category-icon">
+                    {{ category.icon }}
+                </div>
+
+
+                <div class="pg-photos__category-content">
+
+                    <div class="pg-photos__category-title">
+
+                        <strong>
+                            {{ category.name }}
+                        </strong>
+
+                        @if (category.required) {
+
+                        <span class="pg-photos__required">
+                            Required
+                        </span>
+
+                        }
+
+                    </div>
+
+                    <span class="pg-photos__category-description">
+                        {{ category.description }}
+                    </span>
+
+                </div>
+
+            </div>
+
+            }
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- PHOTO GUIDELINES -->
+    <!-- ================================================= -->
+
+    <div class="pg-photos__guidelines">
+
+        <div class="pg-photos__guidelines-header">
+
+            <span class="pg-photos__guidelines-icon">
+                ✓
+            </span>
+
+            <h3>
+                {{ photoRequirements.title }}
+            </h3>
+
+        </div>
+
+
+        <ul>
+
+            @for (
+            item of photoRequirements.items;
+            track item
+            ) {
+
+            <li>
+                {{ item }}
+            </li>
+
+            }
+
+        </ul>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- INFORMATION -->
+    <!-- ================================================= -->
+
+    <div class="pg-photos__info">
+
+        <span class="pg-photos__info-icon">
+            {{ information.icon }}
+        </span>
+
+        <p>
+            {{ information.message }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- ACTIONS -->
+    <!-- ================================================= -->
+
+    <!-- <div class="pg-photos__actions">
+
+        <button type="button" class="pg-photos__button pg-photos__button--secondary" (click)="onBack()">
+
+            ← {{ buttons.back }}
+
+        </button>
+
+
+        <button type="button" class="pg-photos__button pg-photos__button--primary" (click)="onContinue()">
+
+            {{ buttons.continue }} →
+
+        </button>
+
+    </div> -->
+
+</div>

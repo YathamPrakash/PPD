@@ -1,0 +1,710 @@
+@import "../../../../../../Styles/mixins.scss";
+@import "../../../../../../Styles/variables.scss";
+
+
+// =====================================================
+// LEASE DETAILS
+// =====================================================
+
+.lease-details {
+    width: 100%;
+}
+
+
+// =====================================================
+// HEADER
+// =====================================================
+
+.lease-details__header {
+    margin-bottom: $spacing-xl;
+}
+
+.lease-details__step {
+    display: block;
+
+    margin-bottom: $spacing-xs;
+
+    color: $color-primary;
+
+    font-size: $font-size-xs;
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+}
+
+.lease-details__title {
+    margin: 0 0 $spacing-xs;
+
+    color: $text-primary;
+
+    font-size: $font-size-2xl;
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+.lease-details__description {
+    max-width: 650px;
+
+    margin: 0;
+
+    color: $text-secondary;
+
+    font-size: $font-size-sm;
+
+    line-height: 1.5;
+}
+
+
+// =====================================================
+// NOTE
+// =====================================================
+
+.lease-details__note {
+    @include flex(
+        flex-start,
+        flex-start,
+        row,
+        $spacing-sm
+    );
+
+    padding: $spacing-sm;
+
+    margin-bottom: $spacing-lg;
+
+    border: 1px solid $border-light;
+
+    border-radius: $radius-md;
+
+    background: $background-section;
+}
+
+.lease-details__note-icon {
+    @include flex(center, center);
+
+    flex: 0 0 20px;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: $radius-round;
+
+    background: rgba(67, 181, 163, 0.15);
+
+    color: $color-primary;
+
+    font-size: $font-size-xs;
+    font-weight: 700;
+}
+
+.lease-details__note p {
+    margin: 0;
+
+    color: $text-secondary;
+
+    font-size: $font-size-xs;
+
+    line-height: 1.5;
+}
+
+
+// =====================================================
+// FIELD
+// =====================================================
+
+.lease-details__field {
+    width: 100%;
+
+    margin-bottom: $spacing-lg;
+}
+
+.lease-details__label {
+    display: block;
+
+    margin-bottom: $spacing-xs;
+
+    color: $text-primary;
+
+    font-size: $font-size-sm;
+
+    font-weight: 600;
+}
+
+.lease-details__required {
+    margin-left: 2px;
+
+    color: $color-danger;
+}
+
+
+// =====================================================
+// INPUT
+// =====================================================
+
+.lease-details__input {
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 $spacing-sm;
+
+    box-sizing: border-box;
+
+    border: 1px solid $border-color;
+
+    border-radius: $radius-md;
+
+    outline: none;
+
+    background: $background-card;
+
+    color: $text-primary;
+
+    font-family: inherit;
+
+    font-size: $font-size-sm;
+
+    transition: $transition-fast;
+}
+
+.lease-details__input::placeholder {
+    color: $text-muted;
+}
+
+.lease-details__input:focus {
+    border-color: $color-primary;
+
+    box-shadow:
+        0 0 0 3px rgba(11, 107, 90, 0.08);
+}
+
+
+// =====================================================
+// GRID
+// =====================================================
+
+.lease-details__grid {
+    @include grid(
+        1fr 1fr,
+        $spacing-lg
+    );
+}
+
+
+// =====================================================
+// SECTION
+// =====================================================
+
+.lease-details__section {
+    margin: $spacing-md 0 $spacing-lg;
+}
+
+.lease-details__section-title {
+    margin: 0 0 $spacing-xs;
+
+    color: $text-primary;
+
+    font-size: $font-size-md;
+
+    font-weight: 700;
+}
+
+.lease-details__section-description {
+    margin: 0;
+
+    color: $text-secondary;
+
+    font-size: $font-size-xs;
+}
+
+
+// =====================================================
+// AMOUNT
+// =====================================================
+
+.lease-details__amount {
+    display: flex;
+
+    width: 100%;
+
+    height: 46px;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    border: 1px solid $border-color;
+
+    border-radius: $radius-md;
+
+    background: $background-card;
+}
+
+.lease-details__currency {
+    @include flex(center, center);
+
+    padding: 0 $spacing-sm;
+
+    border-right: 1px solid $border-light;
+
+    background: $background-section;
+
+    color: $text-secondary;
+
+    font-size: $font-size-sm;
+}
+
+.lease-details__amount-input {
+    width: 100%;
+
+    padding: 0 $spacing-sm;
+
+    border: 0;
+
+    outline: none;
+
+    background: transparent;
+
+    color: $text-primary;
+
+    font-family: inherit;
+
+    font-size: $font-size-sm;
+}
+
+.lease-details__amount-input::placeholder {
+    color: $text-muted;
+}
+
+
+// =====================================================
+// AGREEMENT OPTIONS
+// =====================================================
+
+.lease-details__options {
+    @include grid(
+        1fr 1fr,
+        $spacing-sm
+    );
+}
+
+.lease-details__option {
+    @include flex(
+        flex-start,
+        center,
+        row,
+        $spacing-sm
+    );
+
+    min-height: 50px;
+
+    padding: $spacing-sm;
+
+    box-sizing: border-box;
+
+    border: 1px solid $border-color;
+
+    border-radius: $radius-md;
+
+    background: $background-card;
+
+    color: $text-secondary;
+
+    cursor: pointer;
+
+    font-size: $font-size-xs;
+
+    transition: $transition-fast;
+}
+
+.lease-details__option:hover {
+    border-color: $color-primary-light;
+
+    background: $background-section;
+}
+
+.lease-details__option input {
+    margin: 0;
+
+    accent-color: $color-primary;
+}
+
+
+// =====================================================
+// DOCUMENTS
+// =====================================================
+
+.lease-details__documents {
+    @include flex(
+        flex-start,
+        stretch,
+        column,
+        $spacing-sm
+    );
+}
+
+.lease-details__document {
+    @include flex(
+        flex-start,
+        center,
+        row,
+        $spacing-md
+    );
+
+    padding: $spacing-md;
+
+    border: 1px solid $border-color;
+
+    border-radius: $radius-md;
+
+    background: $background-card;
+
+    transition: $transition-fast;
+}
+
+.lease-details__document:hover {
+    border-color: $color-primary-light;
+}
+
+
+// =====================================================
+// DOCUMENT ICON
+// =====================================================
+
+.lease-details__document-icon {
+    @include flex(center, center);
+
+    flex-shrink: 0;
+
+    width: 40px;
+    height: 40px;
+
+    border-radius: $radius-sm;
+
+    background: rgba(67, 181, 163, 0.12);
+
+    font-size: $font-size-lg;
+}
+
+
+// =====================================================
+// DOCUMENT CONTENT
+// =====================================================
+
+.lease-details__document-content {
+    @include flex(
+        flex-start,
+        flex-start,
+        column,
+        $spacing-xs
+    );
+
+    flex: 1;
+}
+
+.lease-details__document-title {
+    @include flex(
+        flex-start,
+        center,
+        row,
+        $spacing-xs
+    );
+}
+
+.lease-details__document-title strong {
+    color: $text-primary;
+
+    font-size: $font-size-sm;
+
+    font-weight: 600;
+}
+
+.lease-details__document-content > span {
+    color: $text-secondary;
+
+    font-size: $font-size-xs;
+}
+
+.lease-details__required-badge {
+    padding: 3px 7px;
+
+    border-radius: $radius-round;
+
+    background: rgba(11, 107, 90, 0.1);
+
+    color: $color-primary;
+
+    font-size: 9px;
+
+    font-weight: 700;
+
+    text-transform: uppercase;
+}
+
+
+// =====================================================
+// UPLOAD BUTTON
+// =====================================================
+
+.lease-details__upload-button {
+    @include button(
+        .5rem,
+        1rem,
+        $radius-sm
+    );
+
+    min-width: 75px;
+
+    height: 36px;
+
+    border: 1px solid $border-color;
+
+    background: $background-card;
+
+    color: $color-primary;
+
+    font-size: $font-size-xs;
+
+    font-weight: 600;
+}
+
+.lease-details__upload-button:hover {
+    border-color: $color-primary;
+
+    background: $background-section;
+}
+
+
+// =====================================================
+// VERIFICATION
+// =====================================================
+
+.lease-details__verification {
+    padding: $spacing-lg;
+
+    margin-top: $spacing-xl;
+
+    border: 1px solid $border-color;
+
+    border-radius: $radius-md;
+
+    background: $background-card;
+
+    @include shadow(sm);
+}
+
+.lease-details__verification-header {
+    @include flex(
+        flex-start,
+        center,
+        row,
+        $spacing-sm
+    );
+
+    margin-bottom: $spacing-md;
+}
+
+.lease-details__verification-icon {
+    @include flex(center, center);
+
+    flex-shrink: 0;
+
+    width: 34px;
+    height: 34px;
+
+    border-radius: $radius-round;
+
+    background: rgba(67, 181, 163, 0.15);
+
+    color: $color-primary;
+
+    font-size: $font-size-sm;
+
+    font-weight: 700;
+}
+
+.lease-details__verification-header h3 {
+    margin: 0 0 $spacing-xs;
+
+    color: $text-primary;
+
+    font-size: $font-size-sm;
+}
+
+.lease-details__verification-header span {
+    color: $color-warning;
+
+    font-size: $font-size-xs;
+
+    font-weight: 600;
+}
+
+.lease-details__verification > p {
+    margin: 0;
+
+    color: $text-secondary;
+
+    font-size: $font-size-xs;
+
+    line-height: 1.5;
+}
+
+
+// =====================================================
+// INFORMATION
+// =====================================================
+
+.lease-details__info {
+    @include flex(
+        flex-start,
+        flex-start,
+        row,
+        $spacing-sm
+    );
+
+    padding: $spacing-sm;
+
+    margin-top: $spacing-md;
+
+    border: 1px solid $border-light;
+
+    border-radius: $radius-md;
+
+    background: $background-section;
+}
+
+.lease-details__info-icon {
+    @include flex(center, center);
+
+    flex-shrink: 0;
+
+    width: 20px;
+    height: 20px;
+
+    border-radius: $radius-round;
+
+    background: rgba(67, 181, 163, 0.15);
+
+    color: $color-primary;
+
+    font-size: $font-size-xs;
+
+    font-weight: 700;
+}
+
+.lease-details__info p {
+    margin: 0;
+
+    color: $text-secondary;
+
+    font-size: $font-size-xs;
+
+    line-height: 1.5;
+}
+
+
+// =====================================================
+// ACTIONS
+// =====================================================
+
+.lease-details__actions {
+    @include flex(
+        space-between,
+        center,
+        row,
+        $spacing-sm
+    );
+
+    margin-top: $spacing-xl;
+}
+
+
+// =====================================================
+// ACTION BUTTON
+// =====================================================
+
+.lease-details__button {
+    @include button(
+        .7rem,
+        1.25rem,
+        $radius-md
+    );
+
+    min-width: 120px;
+
+    font-family: inherit;
+
+    font-size: $font-size-xs;
+
+    font-weight: 600;
+}
+
+.lease-details__button--primary {
+    border: 1px solid $color-primary;
+
+    background: $color-primary;
+
+    color: $text-light;
+}
+
+.lease-details__button--primary:hover {
+    background: $color-primary-dark;
+}
+
+.lease-details__button--secondary {
+    border: 1px solid $border-color;
+
+    background: $background-card;
+
+    color: $text-secondary;
+}
+
+.lease-details__button--secondary:hover {
+    border-color: $color-primary-light;
+
+    background: $background-section;
+}
+
+
+// =====================================================
+// RESPONSIVE
+// =====================================================
+
+@include respond(tablet) {
+
+    .lease-details__grid {
+        grid-template-columns: 1fr;
+    }
+
+    .lease-details__options {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@include respond(mobile) {
+
+    .lease-details__title {
+        font-size: $font-size-xl;
+    }
+
+    .lease-details__document {
+        align-items: flex-start;
+
+        flex-wrap: wrap;
+    }
+
+    .lease-details__upload-button {
+        width: 100%;
+    }
+
+    .lease-details__actions {
+        flex-direction: column-reverse;
+    }
+
+    .lease-details__actions button {
+        width: 100%;
+    }
+
+}

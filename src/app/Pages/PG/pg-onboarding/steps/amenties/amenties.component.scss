@@ -1,0 +1,432 @@
+// =====================================================
+// AMENITIES
+// =====================================================
+
+.amenities {
+    width: 100%;
+}
+
+
+// =====================================================
+// HEADER
+// =====================================================
+
+.amenities__header {
+    margin-bottom: 26px;
+}
+
+.amenities__step {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #087f6b;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+}
+
+.amenities__title {
+    margin: 0 0 7px;
+
+    color: #102a2d;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+.amenities__description {
+    max-width: 600px;
+
+    margin: 0;
+
+    color: #718184;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+// =====================================================
+// SELECTION HEADER
+// =====================================================
+
+.amenities__selection-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 9px;
+
+    padding: 12px 14px;
+
+    margin-bottom: 18px;
+
+    border: 1px solid #dce9e5;
+
+    border-radius: 9px;
+
+    background: #f6faf9;
+
+    color: #607173;
+
+    font-size: 11px;
+}
+
+.amenities__selection-icon {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 20px;
+
+    height: 20px;
+
+    border-radius: 50%;
+
+    background: #e1f0ec;
+
+    color: #087f6b;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+
+// =====================================================
+// GRID
+// =====================================================
+
+.amenities__grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 12px;
+}
+
+
+// =====================================================
+// CARD
+// =====================================================
+
+.amenities__card {
+    display: flex;
+
+    align-items: center;
+
+    gap: 12px;
+
+    width: 100%;
+
+    min-height: 76px;
+
+    padding: 12px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #dfe8e6;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+
+    text-align: left;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    transition:
+        border-color 0.2s ease,
+        background 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.amenities__card:hover {
+    border-color: #9ebcb5;
+}
+
+.amenities__card--selected {
+    border-color: #087f6b;
+
+    background: #f4faf8;
+
+    box-shadow:
+        0 2px 8px rgba(8, 127, 107, 0.05);
+}
+
+
+// =====================================================
+// ICON
+// =====================================================
+
+.amenities__icon {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 0 0 38px;
+
+    width: 38px;
+
+    height: 38px;
+
+    border-radius: 9px;
+
+    background: #eef5f3;
+
+    font-size: 18px;
+}
+
+
+// =====================================================
+// CONTENT
+// =====================================================
+
+.amenities__content {
+    display: flex;
+
+    flex: 1;
+
+    flex-direction: column;
+
+    gap: 4px;
+}
+
+.amenities__content strong {
+    color: #263f42;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.amenities__content span {
+    color: #849092;
+
+    font-size: 10px;
+
+    line-height: 1.4;
+}
+
+
+// =====================================================
+// CHECK
+// =====================================================
+
+.amenities__check {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 0 0 21px;
+
+    width: 21px;
+
+    height: 21px;
+
+    box-sizing: border-box;
+
+    border: 1px solid #cbd9d6;
+
+    border-radius: 50%;
+
+    background: #ffffff;
+
+    color: transparent;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+.amenities__check--selected {
+    border-color: #087f6b;
+
+    background: #087f6b;
+
+    color: #ffffff;
+}
+
+
+// =====================================================
+// INFORMATION
+// =====================================================
+
+.amenities__info {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    padding: 14px;
+
+    margin-top: 20px;
+
+    border: 1px solid #dbe9e5;
+
+    border-radius: 9px;
+
+    background: #f5faf8;
+}
+
+.amenities__info-icon {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 0 0 20px;
+
+    width: 20px;
+
+    height: 20px;
+
+    border-radius: 50%;
+
+    background: #e1f0ec;
+
+    color: #087f6b;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+.amenities__info p {
+    margin: 1px 0 0;
+
+    color: #607173;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+// =====================================================
+// ACTIONS
+// =====================================================
+
+.amenities__actions {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+
+// =====================================================
+// BUTTON
+// =====================================================
+
+.amenities__button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    min-width: 120px;
+
+    height: 44px;
+
+    padding: 0 18px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+
+// =====================================================
+// PRIMARY
+// =====================================================
+
+.amenities__button--primary {
+    border: 1px solid #087f6b;
+
+    background: #087f6b;
+
+    color: #ffffff;
+}
+
+.amenities__button--primary:hover {
+    background: #066b5a;
+}
+
+
+// =====================================================
+// SECONDARY
+// =====================================================
+
+.amenities__button--secondary {
+    border: 1px solid #d4e0dd;
+
+    background: #ffffff;
+
+    color: #536668;
+}
+
+.amenities__button--secondary:hover {
+    background: #f7faf9;
+}
+
+
+// =====================================================
+// RESPONSIVE
+// =====================================================
+
+@media (max-width: 768px) {
+
+    .amenities__grid {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .amenities__title {
+        font-size: 22px;
+    }
+
+    .amenities__actions {
+        flex-direction: column-reverse;
+    }
+
+    .amenities__button {
+        width: 100%;
+    }
+
+}

@@ -6,62 +6,136 @@ import { menuItem } from '../Shared/models/data-model';
 })
 export class AppMenusService {
 
-  constructor(private router:Router) { }
+  constructor(private router: Router) { }
 
-   menuItems: menuItem[] = [
+  menuItems: any = [
     {
       label: 'Dashboard',
-      icon: 'fa-solid fa-chart-line',
-      route: '/layout/dashboard',
-      children: []
+      icon: 'dashboard',
+      route: '/layout/dashboard'
     },
+
     {
       label: 'Tenants',
-      icon: 'fa-solid fa-users',
-      route: '/layout/tenantlist',
-      children: []
+      icon: 'tenants',
+      route: '/layout/tenants'
     },
+
     {
       label: 'Rooms & Beds',
-      icon: 'fa-solid fa-bed',
-      route: '/rooms',
-      children: []
+      icon: 'rooms',
+      children: [
+        {
+          label: 'Rooms',
+          icon: 'rooms',
+          route: '/layout/rooms'
+        },
+        {
+          label: 'Beds',
+          icon: 'beds',
+          route: '/layout/beds'
+        },
+        {
+          label: 'Floors',
+          icon: 'floors',
+          route: '/layout/floors'
+        }
+      ]
     },
+
     {
       label: 'Booking',
-      icon: 'fa-solid fa-calendar-check',
-      route: '/booking/allocation',
-      children: []
+      icon: 'booking',
+      children: [
+        {
+          label: 'All Bookings',
+          icon: 'booking',
+          route: '/layout/booking'
+        },
+        {
+          label: 'Check-ins',
+          icon: 'checkin',
+          route: '/layout/booking/check-ins'
+        },
+        {
+          label: 'Check-outs',
+          icon: 'checkout',
+          route: '/layout/booking/check-outs'
+        }
+      ]
     },
+
     {
       label: 'Payments',
-      icon: 'fa-solid fa-money-bill-wave',
-      route: '/payments/rent',
-      children: []
+      icon: 'payments',
+      children: [
+        {
+          label: 'Rent',
+          icon: 'payments',
+          route: '/layout/payments/rent'
+        },
+        {
+          label: 'Advance',
+          icon: 'payments',
+          route: '/layout/payments/advance'
+        },
+        {
+          label: 'Payment History',
+          icon: 'history',
+          route: '/layout/payments/history'
+        }
+      ]
     },
+
     {
       label: 'Mess',
-      icon: 'fa-solid fa-utensils',
-      route: '/mess/menu',
-      children: []
+      icon: 'mess',
+      route: '/layout/mess'
     },
+
     {
       label: 'Maintenance',
-      icon: 'fa-solid fa-screwdriver-wrench',
-      route: '/maintenance/complaints',
-      children: []
+      icon: 'maintenance',
+      children: [
+        {
+          label: 'Complaints',
+          icon: 'maintenance',
+          route: '/layout/maintenance/complaints'
+        },
+        {
+          label: 'Requests',
+          icon: 'maintenance',
+          route: '/layout/maintenance/requests'
+        }
+      ]
     },
+
     {
       label: 'Visitors',
-      icon: 'fa-solid fa-user-check',
-      route: '/visitors/log',
-      children: []
+      icon: 'visitors',
+      route: '/layout/visitors'
     },
+
     {
       label: 'Reports',
-      icon: 'fa-solid fa-chart-pie',
-      route: '/reports/tenants',
-      children: []
+      icon: 'reports',
+      children: [
+        {
+          label: 'Tenant Reports',
+          icon: 'reports',
+          route: '/layout/reports/tenants'
+        },
+        {
+          label: 'Payment Reports',
+          icon: 'reports',
+          route: '/layout/reports/payments'
+        },
+        {
+          label: 'Occupancy Reports',
+          icon: 'reports',
+          route: '/layout/reports/occupancy'
+        }
+      ]
     }
   ];
 

@@ -1,92 +1,743 @@
 <main class="app-page">
+
     <div class="app-page__container">
 
-        <!-- Tenant Stats Cards -->
-        <section class="row app-page__cards-row">
-            <div class="col-12">
-                <section class="app-page__cards-list">
-                    <article class="app-page__card-item" *ngFor="let data of tenantsData">
-                        <div class="app-page__card-left">
-                            <h5>{{ data.value }}</h5>
-                            <span>{{ data.label }}</span>
-                        </div>
-                        <div class="app-page__card-right">
-                            <i class="{{ data.icon }}"></i>
-                        </div>
-                    </article>
-                </section>
+
+        <!-- ==================================================
+             DASHBOARD HEADER
+        =================================================== -->
+
+        <header class="dashboard-header">
+
+            <div class="dashboard-header__main">
+
+                <div class="dashboard-header__icon">
+
+                    <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+
+                        <circle cx="12" cy="12" r="4" stroke="currentColor" stroke-width="1.8" />
+
+                        <path d="M12 2V5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                        <path d="M12 19V22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                        <path d="M2 12H5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                        <path d="M19 12H22" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                    </svg>
+
+                </div>
+
+
+                <div>
+
+                    <span class="dashboard-header__eyebrow">
+                        {{ pageContent.eyebrow }}
+                    </span>
+
+                    <h1 class="dashboard-header__title">
+                        {{ pageContent.greeting }}
+                    </h1>
+
+                    <p class="dashboard-header__description">
+                        {{ pageContent.description }}
+                    </p>
+
+                </div>
+
             </div>
+
+
+            <div class="dashboard-header__month">
+
+                <svg class="dashboard-header__month-icon" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+
+                    <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor" stroke-width="1.8" />
+
+                    <path d="M16 3V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                    <path d="M8 3V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                    <path d="M3 10H21" stroke="currentColor" stroke-width="1.8" />
+
+                </svg>
+
+                <input type="date" class="dashboard-header__month-input" [(ngModel)]="selectedMonth"
+                    (change)="onMonthChange($event)" aria-label="Select dashboard month">
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ==================================================
+             PROPERTY OVERVIEW
+        =================================================== -->
+
+        <section class="dashboard-section">
+
+            <div class="dashboard-section__heading">
+
+                <div>
+
+                    <span class="dashboard-section__eyebrow">
+                        {{ pageContent.propertyEyebrow }}
+                    </span>
+
+                    <h2 class="dashboard-section__title">
+                        {{ pageContent.propertyTitle }}
+                    </h2>
+
+                    <p class="dashboard-section__description">
+                        Payments and revenue for {{ selectedMonthLabel }}
+                    </p>
+
+                </div>
+
+
+                <a routerLink="/layout/rooms-beds" class="dashboard-section__link">
+
+                    <span>
+                        {{ pageContent.propertyLink }}
+                    </span>
+
+                    <svg viewBox="0 0 24 24" fill="none">
+
+                        <path d="M5 12H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                        <path d="M14 7L19 12L14 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round" />
+
+                    </svg>
+
+                </a>
+
+            </div>
+
+
+            <div class="stats-grid">
+
+                <article class="stat-card" *ngFor="let stat of propertyStats" [class]="'stat-card--' + stat.type">
+
+                    <div class="stat-card__icon">
+
+                        <!-- BED -->
+                        <svg *ngIf="stat.icon === 'bed'" viewBox="0 0 24 24" fill="none">
+
+                            <path d="M3 18V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                            <path d="M3 14H21V18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                            <path d="M7 14V10C7 8.9 7.9 8 9 8H12C13.1 8 14 8.9 14 10V14" stroke="currentColor"
+                                stroke-width="1.8" />
+
+                            <path d="M21 18V11C21 9.9 20.1 9 19 9H14" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" />
+
+                        </svg>
+
+
+                        <!-- USERS -->
+                        <svg *ngIf="stat.icon === 'users'" viewBox="0 0 24 24" fill="none">
+
+                            <circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.8" />
+
+                            <circle cx="17" cy="9" r="2.5" stroke="currentColor" stroke-width="1.8" />
+
+                            <path d="M3 19C3 15.7 5.7 13 9 13C12.3 13 15 15.7 15 19" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" />
+
+                            <path d="M15 14C18.2 14 21 16.2 21 19" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" />
+
+                        </svg>
+
+
+                        <!-- CLOCK -->
+                        <svg *ngIf="stat.icon === 'clock'" viewBox="0 0 24 24" fill="none">
+
+                            <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8" />
+
+                            <path d="M12 7V12L15 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                                stroke-linejoin="round" />
+
+                        </svg>
+
+                    </div>
+
+
+                    <div class="stat-card__content">
+
+                        <div class="stat-card__value">
+                            {{ stat.value }}
+                        </div>
+
+                        <div class="stat-card__label">
+                            {{ stat.label }}
+                        </div>
+
+                        <div class="stat-card__description">
+                            {{ stat.description }}
+                        </div>
+
+                    </div>
+
+
+                    <span *ngIf="stat.trend" class="stat-card__trend">
+
+                        {{ stat.trend }}
+
+                    </span>
+
+                </article>
+
+
+                <!-- OCCUPANCY CARD -->
+
+                <article class="stat-card stat-card--occupancy">
+
+                    <div class="occupancy-chart">
+
+                        <svg viewBox="0 0 100 100">
+
+                            <circle cx="50" cy="50" r="39" class="occupancy-chart__background" />
+
+                            <circle cx="50" cy="50" r="39" class="occupancy-chart__progress" [style.stroke-dasharray]="
+                                    (occupancyPercentage * 2.45) + ' 245'
+                                " />
+
+                        </svg>
+
+                        <span>
+                            {{ occupancyPercentage }}%
+                        </span>
+
+                    </div>
+
+
+                    <div class="occupancy-card__content">
+
+                        <strong>
+                            Occupancy Rate
+                        </strong>
+
+                        <span class="occupancy-card__trend">
+                            ↑ 5%
+                        </span>
+
+                        <small>
+                            vs last month
+                        </small>
+
+                    </div>
+
+                </article>
+
+            </div>
+
         </section>
 
-        <!-- Payments Cards -->
-        <section class="row app-page__payments-row my-4">
-            <div class="col-12">
-                <div class="app-page__payments-container">
-                    <h6 class="app-page__payments-header">
-                        Payments of {{ currentDate | date:'MMMM yyyy' }}
-                    </h6>
-                    <section class="app-page__cards-list">
-                        <article class="app-page__card-item" *ngFor="let data of paymentsData">
-                            <div class="app-page__card-left">
-                                <h6>{{ data.value | currency:'INR':'symbol' }} ({{ data.count }})</h6>
-                                <span class="{{ data.iconColor }}">{{ data.label }}</span>
-                            </div>
-                            <div class="app-page__card-right">
-                                <i class="{{ data.icon }} {{ data.iconColor }}"></i>
-                            </div>
-                        </article>
-                    </section>
+
+
+        <!-- ==================================================
+             FINANCIAL OVERVIEW
+        =================================================== -->
+
+        <section class="dashboard-section">
+
+            <div class="dashboard-section__heading">
+
+                <div>
+
+                    <span class="dashboard-section__eyebrow">
+                        {{ pageContent.financeEyebrow }}
+                    </span>
+
+                    <h2 class="dashboard-section__title">
+                        {{ pageContent.financeTitle }}
+                    </h2>
+
+                    <p class="dashboard-section__description">
+                        Payments and revenue for {{ selectedMonthLabel }}
+                    </p>
+
                 </div>
+
+
+                <a routerLink="/layout/payments" class="dashboard-section__link">
+
+                    <span>
+                        {{ pageContent.financeLink }}
+                    </span>
+
+                    <svg viewBox="0 0 24 24" fill="none">
+
+                        <path d="M5 12H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                        <path d="M14 7L19 12L14 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round" />
+
+                    </svg>
+
+                </a>
+
             </div>
+
+
+            <div class="stats-grid">
+
+                <article class="payment-card" *ngFor="let payment of paymentStats"
+                    [class]="'payment-card--' + payment.type">
+
+                    <div class="payment-card__icon">
+
+                        <!-- RUPEE -->
+                        <svg *ngIf="payment.icon === 'rupee'" viewBox="0 0 24 24" fill="none">
+
+                            <path d="M6 5H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+
+                            <path d="M6 9H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+
+                            <path d="M8 9C8.2 12.2 10.4 14.4 14 18" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" />
+
+                        </svg>
+
+
+                        <!-- CLOCK -->
+                        <svg *ngIf="payment.icon === 'clock'" viewBox="0 0 24 24" fill="none">
+
+                            <circle cx="12" cy="12" r="8.5" stroke="currentColor" stroke-width="1.8" />
+
+                            <path d="M12 7V12L15 14" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                        </svg>
+
+
+                        <!-- CARD -->
+                        <svg *ngIf="payment.icon === 'card'" viewBox="0 0 24 24" fill="none">
+
+                            <rect x="3" y="5" width="18" height="14" rx="2" stroke="currentColor" stroke-width="1.8" />
+
+                            <path d="M3 9H21" stroke="currentColor" stroke-width="1.8" />
+
+                            <path d="M7 14H11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                        </svg>
+
+
+                        <!-- WARNING -->
+                        <svg *ngIf="payment.icon === 'warning'" viewBox="0 0 24 24" fill="none">
+
+                            <path d="M12 3L22 20H2L12 3Z" stroke="currentColor" stroke-width="1.8"
+                                stroke-linejoin="round" />
+
+                            <path d="M12 9V13" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+
+                            <circle cx="12" cy="16.5" r="1" fill="currentColor" />
+
+                        </svg>
+
+                    </div>
+
+
+                    <div class="payment-card__content">
+
+                        <div class="payment-card__value">
+                            {{ payment.value }}
+                        </div>
+
+                        <div class="payment-card__label">
+                            {{ payment.label }}
+                        </div>
+
+                        <div class="payment-card__description" [class.payment-card__description--danger]="
+                                payment.type === 'danger'
+                            ">
+
+                            {{ payment.trend || payment.description }}
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+            </div>
+
         </section>
 
-        <!-- Tables & Sidebar -->
-        <section class="row app-page__table-row">
-            
-            <div class="col-md-8">
-                <div class="app-page__table-card card">
-                    <div class="app-page__table-card--header">
-                        <h5 class="app-page__table-card--header-lbl">Recent Joinings</h5>
-                        <button type="button" class="app-page__table-card--header-btn">View all</button>
-                    </div>
-                    <app-table></app-table>
+
+
+        <!-- ==================================================
+             DAILY OPERATIONS
+        =================================================== -->
+
+        <section class="dashboard-section">
+
+            <div class="dashboard-section__heading">
+
+                <div>
+
+                    <span class="dashboard-section__eyebrow">
+                        {{ pageContent.operationsEyebrow }}
+                    </span>
+
+                    <h2 class="dashboard-section__title">
+                        {{ pageContent.operationsTitle }}
+                    </h2>
+
+                    <p class="dashboard-section__description">
+                        {{ pageContent.operationsDescription }}
+                    </p>
+
                 </div>
+
             </div>
 
-            <div class="col-md-4">
-                <div class="app-page__table-card card">
 
-                    <div class="app-page__table-card--header">
-                        <h5 class="app-page__table-card--header-lbl">Upcoming Joinings</h5>
-                        <button type="button" class="app-page__table-card--header-btn">View all</button>
+            <div class="operations-grid">
+
+
+                <!-- RECENT JOININGS -->
+
+                <article class="dashboard-panel">
+
+                    <div class="dashboard-panel__header">
+
+                        <div>
+
+                            <h3>
+                                Recent Joinings
+                            </h3>
+
+                            <p>
+                                Latest tenants who joined your PG
+                            </p>
+
+                        </div>
+
+
+                        <a routerLink="/layout/tenants" class="dashboard-panel__link">
+
+                            <span>View all</span>
+
+                            <svg viewBox="0 0 24 24" fill="none">
+
+                                <path d="M5 12H19" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                                <path d="M14 7L19 12L14 17" stroke="currentColor" stroke-width="1.8"
+                                    stroke-linecap="round" stroke-linejoin="round" />
+
+                            </svg>
+
+                        </a>
+
                     </div>
 
-                    <table class="app-table table">
-                        <tbody class="app-table__body">
-                            <tr class="app-table__body--row" *ngFor="let data of upcomingJoinings">
-                                <td class="app-table__body--cell">
-                                    <div class="app-table__body--cell--container">
-                                       <img src="{{userImagePath}}" height="35" alt="User" />
-                                        <div class="app-table__body--cell--info">
-                                            <h5>{{data.name}}</h5>
-                                            <p>{{data.country}}</p>
-                                        </div>
-                                    </div>
-                                </td>
-                                <td class="app-table__body--cell" style="text-align: right;">
-                                    <div class="app-table__body--cell--info">
-                                        <h5>{{data.date}}</h5>
-                                        <p>Room {{data.room}}</p>
-                                    </div>
-                                </td>
-                            </tr>
-                        </tbody>
-                    </table>
+
+                    <div class="joining-table">
+
+                        <div class="joining-table__header">
+
+                            <span>Name</span>
+                            <span>Room / Bed</span>
+                            <span>Join Date</span>
+                            <span>Rent</span>
+                            <span>Status</span>
+
+                        </div>
+
+
+                        <div class="joining-table__row" *ngFor="let tenant of recentJoinings">
+
+                            <div class="joining-table__tenant">
+
+                                <span class="joining-table__avatar">
+                                    {{ tenant.initials }}
+                                </span>
+
+                                <strong>
+                                    {{ tenant.name }}
+                                </strong>
+
+                            </div>
+
+
+                            <div class="joining-table__room">
+
+                                <strong>
+                                    {{ tenant.room }}
+                                </strong>
+
+                                <span>
+                                    {{ tenant.bed }}
+                                </span>
+
+                            </div>
+
+
+                            <div class="joining-table__date">
+                                {{ tenant.date }}
+                            </div>
+
+
+                            <div class="joining-table__rent">
+                                {{ tenant.rent }}
+                            </div>
+
+
+                            <span class="status-badge" [class.status-badge--active]="
+                                    tenant.status === 'Active'
+                                " [class.status-badge--new]="
+                                    tenant.status === 'New'
+                                ">
+
+                                {{ tenant.status }}
+
+                            </span>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+
+                <!-- OPERATIONS -->
+
+                <article class="dashboard-panel">
+
+                    <div class="dashboard-panel__header">
+
+                        <div>
+
+                            <h3>
+                                Operations
+                            </h3>
+
+                            <p>
+                                Items that need your attention
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="operation-list">
+
+                        <a *ngFor="let operation of operations" [routerLink]="operation.route" class="operation-item">
+
+                            <div class="operation-item__icon" [class]="'operation-item__icon--' + operation.type">
+
+                                <svg *ngIf="operation.icon === 'maintenance'" viewBox="0 0 24 24" fill="none">
+
+                                    <path
+                                        d="M14.5 5.5C15.8 4.2 17.9 4.2 19.2 5.5C20.5 6.8 20.5 8.9 19.2 10.2L10 19.4L5 20L5.6 15L14.5 5.5Z"
+                                        stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+
+                                </svg>
+
+
+                                <svg *ngIf="operation.icon === 'complaint'" viewBox="0 0 24 24" fill="none">
+
+                                    <path d="M4 5H20V16H8L4 20V5Z" stroke="currentColor" stroke-width="1.8"
+                                        stroke-linejoin="round" />
+
+                                    <path d="M8 9H16" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                                    <path d="M8 12H13" stroke="currentColor" stroke-width="1.8"
+                                        stroke-linecap="round" />
+
+                                </svg>
+
+
+                                <svg *ngIf="operation.icon === 'visitor'" viewBox="0 0 24 24" fill="none">
+
+                                    <circle cx="12" cy="8" r="3" stroke="currentColor" stroke-width="1.8" />
+
+                                    <path d="M5 20C5 16.7 8.1 14 12 14C15.9 14 19 16.7 19 20" stroke="currentColor"
+                                        stroke-width="1.8" stroke-linecap="round" />
+
+                                </svg>
+
+
+                                <svg *ngIf="operation.icon === 'calendar'" viewBox="0 0 24 24" fill="none">
+
+                                    <rect x="3" y="5" width="18" height="16" rx="2" stroke="currentColor"
+                                        stroke-width="1.8" />
+
+                                    <path d="M8 3V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                                    <path d="M16 3V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                                    <path d="M3 10H21" stroke="currentColor" stroke-width="1.8" />
+
+                                </svg>
+
+                            </div>
+
+
+                            <div class="operation-item__content">
+
+                                <strong>
+                                    {{ operation.title }}
+                                </strong>
+
+                                <span>
+                                    {{ operation.description }}
+                                </span>
+
+                            </div>
+
+
+                            <span class="operation-item__count">
+                                {{ operation.count }}
+                            </span>
+
+
+                            <svg class="operation-item__arrow" viewBox="0 0 24 24" fill="none">
+
+                                <path d="M9 6L15 12L9 18" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" />
+
+                            </svg>
+
+                        </a>
+
+                    </div>
+
+                </article>
+
+            </div>
+
+        </section>
+
+
+
+        <!-- ==================================================
+             QUICK ACTIONS
+        =================================================== -->
+
+        <section class="dashboard-section dashboard-section--last">
+
+            <div class="dashboard-section__heading">
+
+                <div>
+
+                    <span class="dashboard-section__eyebrow">
+                        {{ pageContent.quickActionsEyebrow }}
+                    </span>
+
+                    <h2 class="dashboard-section__title">
+                        {{ pageContent.quickActionsTitle }}
+                    </h2>
+
+                    <p class="dashboard-section__description">
+                        {{ pageContent.quickActionsDescription }}
+                    </p>
 
                 </div>
+
+            </div>
+
+
+            <div class="quick-actions">
+
+                <a *ngFor="let action of quickActions" [routerLink]="action.route" class="quick-action"
+                    [class]="'quick-action--' + action.type">
+
+
+                    <div class="quick-action__icon">
+
+                        <!-- TENANT -->
+                        <svg *ngIf="action.icon === 'tenant'" viewBox="0 0 24 24" fill="none">
+
+                            <circle cx="9" cy="8" r="3" stroke="currentColor" stroke-width="1.8" />
+
+                            <path d="M3.5 19C3.5 15.9 5.9 13.5 9 13.5C12.1 13.5 14.5 15.9 14.5 19" stroke="currentColor"
+                                stroke-width="1.8" stroke-linecap="round" />
+
+                            <path d="M18 12V18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                            <path d="M15 15H21" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                        </svg>
+
+
+                        <!-- BED -->
+                        <svg *ngIf="action.icon === 'bed'" viewBox="0 0 24 24" fill="none">
+
+                            <path d="M3 18V7" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                            <path d="M3 14H21V18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                            <path d="M7 14V10C7 8.9 7.9 8 9 8H12C13.1 8 14 8.9 14 10V14" stroke="currentColor"
+                                stroke-width="1.8" />
+
+                            <path d="M21 18V11C21 9.9 20.1 9 19 9H14" stroke="currentColor" stroke-width="1.8"
+                                stroke-linecap="round" />
+
+                        </svg>
+
+
+                        <!-- RUPEE -->
+                        <svg *ngIf="action.icon === 'rupee'" viewBox="0 0 24 24" fill="none">
+
+                            <path d="M6 5H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+
+                            <path d="M6 9H15" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+
+                            <path d="M8 9C8.2 12.2 10.4 14.4 14 18" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" />
+
+                        </svg>
+
+
+                        <!-- MAINTENANCE -->
+                        <svg *ngIf="action.icon === 'maintenance'" viewBox="0 0 24 24" fill="none">
+
+                            <path
+                                d="M14.5 5.5C15.8 4.2 17.9 4.2 19.2 5.5C20.5 6.8 20.5 8.9 19.2 10.2L10 19.4L5 20L5.6 15L14.5 5.5Z"
+                                stroke="currentColor" stroke-width="1.8" stroke-linejoin="round" />
+
+                        </svg>
+
+                    </div>
+
+
+                    <div class="quick-action__content">
+
+                        <strong>
+                            {{ action.title }}
+                        </strong>
+
+                        <span>
+                            {{ action.description }}
+                        </span>
+
+                    </div>
+
+
+                    <svg class="quick-action__arrow" viewBox="0 0 24 24" fill="none">
+
+                        <path d="M5 12H18" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                        <path d="M13 7L18 12L13 17" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                            stroke-linejoin="round" />
+
+                    </svg>
+
+                </a>
+
             </div>
 
         </section>
 
     </div>
+
 </main>

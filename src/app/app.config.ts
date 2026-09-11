@@ -6,6 +6,7 @@ import { authInterceptor } from './Interceptors/auth.interceptor';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
 import { providePrimeNG } from 'primeng/config';
 import Aura from '@primeng/themes/aura';
+import { provideToastr  } from 'ngx-toastr';
 
 export const appConfig: ApplicationConfig = {
 
@@ -18,7 +19,12 @@ export const appConfig: ApplicationConfig = {
             theme: {
                 preset: Aura
             }
-        })
+      }),
+      provideToastr(),
   ]
   
 };
+
+
+
+

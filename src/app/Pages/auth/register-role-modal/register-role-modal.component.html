@@ -1,0 +1,108 @@
+<div class="register-role-modal" role="presentation" (click)="onOverlayClick()">
+    <!-- ==================================================
+         OVERLAY
+    =================================================== -->
+    <div class="register-role-modal__overlay"></div>
+    <!-- ==================================================
+         MODAL
+    =================================================== -->
+    <div class="register-role-modal__dialog" role="dialog" aria-modal="true" aria-labelledby="register-role-title"
+        (click)="onDialogClick($event)">
+        <!-- ==================================================
+             CLOSE BUTTON
+        =================================================== -->
+        <button type="button" class="register-role-modal__close" aria-label="Close registration options"
+            (click)="closeModal()">
+            <svg viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 6l12 12" />
+                <path d="M18 6 6 18" />
+            </svg>
+        </button>
+        <!-- ==================================================
+             HEADER
+        =================================================== -->
+        <div class="register-role-modal__header">
+            <div class="register-role-modal__brand-mark">
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M3 11.5 12 4l9 7.5" />
+                    <path d="M5 10.5V21h14V10.5" />
+                    <path d="M9 21v-6h6v6" />
+                </svg>
+            </div>
+            <span class="register-role-modal__eyebrow">
+                WELCOME TO STAYNEST
+            </span>
+            <h2 id="register-role-title" class="register-role-modal__title">
+                Join StayNest
+            </h2>
+            <p class="register-role-modal__subtitle">
+                What are you looking to do?
+            </p>
+            <p class="register-role-modal__description">
+                Choose an option to get started.
+            </p>
+        </div>
+        <!-- ==================================================
+             OPTIONS
+        =================================================== -->
+        <div class="register-role-modal__options">
+            <!-- ==================================================
+                 LOOKING FOR PG
+            =================================================== -->
+            <button type="button" class="register-option" (click)="selectOption('guest')">
+                <span class="register-option__icon">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M3 11.5 12 4l9 7.5" />
+                        <path d="M5 10.5V21h14V10.5" />
+                        <path d="M9 21v-6h6v6" />
+                    </svg>
+                </span>
+                <span class="register-option__content">
+                    <strong>
+                        I'm looking for a PG
+                    </strong>
+                    <small>
+                        Find a comfortable PG, compare
+                        options and book your stay.
+                    </small>
+                </span>
+                <span class="register-option__arrow">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 12h14" />
+                        <path d="m13 6 6 6-6 6" />
+                    </svg>
+                </span>
+            </button>
+            <!-- ==================================================
+                 LIST YOUR PG
+            =================================================== -->
+            <button type="button" class="register-option" (click)="selectOption('pg-operator')">
+                <span class="register-option__icon register-option__icon--owner">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M4 21V9l8-5 8 5v12" />
+                        <path d="M8 21v-6h8v6" />
+                        <path d="M8 10h2" />
+                        <path d="M14 10h2" />
+                    </svg>
+                </span>
+                <span class="register-option__content">
+                    <strong>I want to list my PG</strong>
+                    <small>List your property and reach people looking for a PG.</small>
+                </span>
+                <span class="register-option__arrow">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M5 12h14" />
+                        <path d="m13 6 6 6-6 6" />
+                    </svg>
+                </span>
+            </button>
+        </div>
+        <!-- ==================================================
+             LOGIN
+        =================================================== -->
+        <div class="register-role-modal__login">
+            <span>Already have an account?</span>
+            <button type="button" (click)="closeModal()"> Login</button>
+        </div>
+    </div>
+</div>

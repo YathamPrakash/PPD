@@ -1,0 +1,58 @@
+<header class="header">
+    <div class="header__container">
+        <!-- Logo -->
+        <a class="header__logo" routerLink="/" aria-label="StayNest Home">
+            <span class="header__logo-icon">
+                <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                    <path d="M6 22.5L24 7L42 22.5V40C42 41.1 41.1 42 40 42H8C6.9 42 6 41.1 6 40V22.5Z"
+                        fill="currentColor" />
+                    <path d="M18 42V28H30V42" fill="#FFFFFF" />
+                    <path d="M21 18H27V23H21V18Z" fill="#FFFFFF" />
+                </svg>
+            </span>
+            <span class="header__logo-text">
+                Stay<span>Nest</span>
+            </span>
+        </a>
+        <!-- Desktop Navigation -->
+        <nav class="header__nav" aria-label="Main navigation">
+            <a routerLink="/find-pg" routerLinkActive="header__nav-link--active" class="header__nav-link">
+                Find a PG
+            </a>
+            <a routerLink="/list-your-pg" routerLinkActive="header__nav-link--active" class="header__nav-link">
+                List Your PG
+            </a>
+        </nav>
+        <!-- Desktop Actions -->
+        <div class="header__actions">
+            <a routerLink="/login" class="header__login-btn" (click)="_doNavToLogin()">Login</a>
+            <a href="javascript:void(0)" class="header__register-btn" (click)="openRegisterModal()"> Register</a>
+        </div>
+        <!-- Mobile Menu Button -->
+        <button type="button" class="header__menu-btn" aria-label="Toggle navigation menu"
+            [attr.aria-expanded]="isMenuOpen" (click)="toggleMenu()">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+    </div>
+    <!-- Mobile Navigation -->
+    <div class="header__mobile-menu" [class.header__mobile-menu--open]="isMenuOpen">
+        <nav class="header__mobile-nav">
+            <a routerLink="/find-pg" class="header__mobile-link" (click)="closeMenu()">
+                Find a PG
+            </a>
+            <a routerLink="/list-your-pg" class="header__mobile-link" (click)="closeMenu()">
+                List Your PG
+            </a>
+        </nav>
+        <div class="header__mobile-actions">
+            <a routerLink="/login" class="header__mobile-login" (click)="closeMenu()">  Login</a>
+            <a href="javascript:void(0)" class="header__register-btn" (click)="openRegisterModal()">Register</a>
+        </div>
+    </div>
+</header>
+@if (showRegisterModal) {
+    <app-register-role-modal (close)="closeRegisterModal()" (selection)="handleRegistrationSelection($event)">
+    </app-register-role-modal>
+}   

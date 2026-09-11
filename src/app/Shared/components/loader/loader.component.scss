@@ -1,0 +1,203 @@
+@import '../../../../Styles/mixins.scss';
+@import "../../../../Styles/variables.scss";
+
+.app-loader {
+
+    position: fixed;
+
+    inset: 0;
+
+    z-index: 9999;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+
+    // ==================================================
+    // OVERLAY
+    // ==================================================
+
+    &__overlay {
+
+        position: absolute;
+
+        inset: 0;
+
+        background: rgba(255, 255, 255, .65);
+
+        backdrop-filter: blur(3px);
+
+        -webkit-backdrop-filter: blur(3px);
+    }
+
+
+    // ==================================================
+    // CONTENT
+    // ==================================================
+
+    &__content {
+
+        position: relative;
+
+        z-index: 1;
+
+        min-width: 150px;
+
+        padding: $spacing-lg $spacing-xl;
+
+        display: flex;
+
+        flex-direction: column;
+
+        align-items: center;
+
+        justify-content: center;
+
+        background: rgba(255, 255, 255, .96);
+
+        border: 1px solid $border-light;
+
+        border-radius: $radius-lg;
+
+        box-shadow: $shadow-md;
+    }
+
+
+    // ==================================================
+    // SPINNER
+    // ==================================================
+
+    &__spinner {
+
+        position: relative;
+
+        width: 44px;
+
+        height: 44px;
+
+        animation: loaderRotate 1.2s linear infinite;
+
+
+        span {
+
+            position: absolute;
+
+            top: 50%;
+
+            left: 50%;
+
+            width: 7px;
+
+            height: 7px;
+
+            margin: -3.5px;
+
+            border-radius: 50%;
+
+            background: $color-primary;
+
+            transform-origin: 3.5px 22px;
+
+
+            &:nth-child(1) {
+
+                transform: rotate(0deg);
+            }
+
+
+            &:nth-child(2) {
+
+                transform: rotate(120deg);
+
+                opacity: .6;
+            }
+
+
+            &:nth-child(3) {
+
+                transform: rotate(240deg);
+
+                opacity: .3;
+            }
+        }
+    }
+
+
+    // ==================================================
+    // TEXT
+    // ==================================================
+
+    &__text {
+
+        margin: $spacing-sm 0 0;
+
+        color: $text-secondary;
+
+        font-family: "Montserrat", sans-serif;
+
+        font-size: $font-size-xs;
+
+        font-weight: 500;
+
+        line-height: 1.4;
+    }
+}
+
+
+// ======================================================
+// ANIMATION
+// ======================================================
+
+@keyframes loaderRotate {
+
+    from {
+
+        transform: rotate(0deg);
+    }
+
+    to {
+
+        transform: rotate(360deg);
+    }
+}
+
+
+// ======================================================
+// MOBILE
+// ======================================================
+
+@media (max-width: $mobile) {
+
+    .app-loader {
+
+        &__content {
+
+            min-width: 130px;
+
+            padding: $spacing-md $spacing-lg;
+        }
+
+
+        &__spinner {
+
+            width: 38px;
+
+            height: 38px;
+
+
+            span {
+
+                width: 6px;
+
+                height: 6px;
+
+                margin: -3px;
+
+                transform-origin: 3px 19px;
+            }
+        }
+    }
+}

@@ -1,0 +1,440 @@
+@import "../../../../Styles/variables.scss";
+@import "../../../../Styles/mixins.scss";
+// ======================================================
+// REGISTRATION
+// ======================================================
+.registration {
+    min-height: calc(100vh - 80px);
+    padding:
+        $spacing-2xl
+        $spacing-md;
+    background:
+        linear-gradient(
+            180deg,
+            #F6F9F8 0%,
+            #EAF3EF 100%
+        );
+    // ==================================================
+    // CONTAINER
+    // ==================================================
+    &__container {
+        width: 100%;
+        max-width: 620px;
+        margin: 0 auto;
+    }
+    // ==================================================
+    // INTRO
+    // ==================================================
+    &__intro {
+        margin-bottom: $spacing-lg;
+        text-align: center;
+    }
+    &__eyebrow {
+        display: block;
+        margin-bottom: .4rem;
+        color: $color-accent;
+        @include montserrat;
+        font-size: $font-size-xs;
+        font-weight: 700;
+        letter-spacing: .08em;
+    }
+    &__title {
+        margin: 0;
+        color: $text-primary;
+        @include bricolage-grotesque(600);
+        font-size: $font-size-3xl;
+        line-height: 1.2;
+    }
+    &__subtitle {
+        max-width: 500px;
+        margin: .6rem auto 0;
+        color: $text-secondary;
+        @include montserrat;
+        font-size: $font-size-sm;
+        line-height: 1.6;
+    }
+    // ==================================================
+    // CARD
+    // ==================================================
+    &__card {
+        padding: $spacing-xl;
+        background: $color-white;
+        border: 1px solid $border-light;
+        border-radius: $radius-xl;
+        box-shadow: $shadow-md;
+    }
+}
+// ======================================================
+// REGISTRATION FORM
+// ======================================================
+.registration-form {
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-md;
+    // ==================================================
+    // ROW
+    // ==================================================
+    &__row {
+        display: grid;
+        grid-template-columns:
+            repeat(
+                2,
+                minmax(0, 1fr)
+            );
+        gap: $spacing-md;
+    }
+    // ==================================================
+    // FIELD
+    // ==================================================
+    &__field {
+        display: flex;
+        flex-direction: column;
+        gap: .45rem;
+        width: 100%;
+    }
+    // ==================================================
+    // LABEL
+    // ==================================================
+    &__label {
+        color: $text-primary;
+        @include montserrat;
+        font-size: $font-size-sm;
+        font-weight: 600;
+    }
+    // ==================================================
+    // INPUT WRAPPER
+    // ==================================================
+    &__input-wrapper {
+        position: relative;
+        display: flex;
+        align-items: center;
+        width: 100%;
+    }
+    // ==================================================
+    // LEFT INPUT ICON
+    // ==================================================
+    &__input-icon {
+        position: absolute;
+        left: 1rem;
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: $text-muted;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        pointer-events: none;
+        z-index: 1;
+    }
+    // ==================================================
+    // COMMON INPUT
+    // ==================================================
+    &__input {
+        width: 100%;
+        height: 48px;
+        padding:
+            0
+            1rem
+            0
+            2.75rem;
+        border: 1px solid $border-color;
+        border-radius: $radius-md;
+        outline: none;
+        background: $color-white;
+        color: $text-primary;
+        @include montserrat;
+        font-size: $font-size-sm;
+        transition:
+            border-color $transition-fast,
+            box-shadow $transition-fast;
+        &::placeholder {
+            color: $text-muted;
+        }
+        &:focus {
+            border-color: $color-primary-light;
+            box-shadow:
+                0 0 0 3px rgba(
+                    47,
+                    168,
+                    158,
+                    .12
+                );
+        }
+    }
+    // ==================================================
+    // SELECT
+    // ==================================================
+    &__select {
+        width: 100%;
+        height: 48px;
+        padding:
+            0
+            1rem
+            0
+            2.75rem;
+        border: 1px solid $border-color;
+        border-radius: $radius-md;
+        outline: none;
+        appearance: none;
+        background: $color-white;
+        color: $text-primary;
+        @include montserrat;
+        font-size: $font-size-sm;
+        cursor: pointer;
+        transition:
+            border-color $transition-fast,
+            box-shadow $transition-fast;
+        &:focus {
+            border-color: $color-primary-light;
+            box-shadow:
+                0 0 0 3px rgba(
+                    47,
+                    168,
+                    158,
+                    .12
+                );
+        }
+    }
+    // ==================================================
+    // PASSWORD INPUT
+    // ==================================================
+    &__password-input {
+        padding-right: 3rem;
+    }
+    // ==================================================
+    // PASSWORD TOGGLE
+    // ==================================================
+    &__password-toggle {
+        position: absolute;
+        top: 50%;
+        right: .75rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 32px;
+        height: 32px;
+        padding: 0;
+        border: 0;
+        border-radius: $radius-sm;
+        background: transparent;
+        color: $text-muted;
+        transform: translateY(-50%);
+        cursor: pointer;
+        z-index: 2;
+        &:hover {
+            color: $color-primary;
+            .registration-form__password-icon {
+                transform: scale(1.05);
+            }
+        }
+        &:focus-visible {
+            outline:
+                2px solid
+                $color-primary-light;
+            outline-offset: 2px;
+        }
+        &:active {
+            background: transparent;
+        }
+    }
+    // ==================================================
+    // PASSWORD ICON
+    // ==================================================
+    &__password-icon {
+        width: 18px;
+        height: 18px;
+        fill: none;
+        stroke: currentColor;
+        stroke-width: 1.7;
+        stroke-linecap: round;
+        stroke-linejoin: round;
+        transition:
+            transform $transition-fast;
+    }
+    // ==================================================
+    // ERROR
+    // ==================================================
+    &__error {
+        color: $color-danger;
+        @include montserrat;
+        font-size: $font-size-xs;
+        line-height: 1.4;
+    }
+    &__error-text {
+        display: block;
+    }
+    // ==================================================
+    // TERMS
+    // ==================================================
+    &__terms {
+        display: flex;
+        align-items: flex-start;
+        gap: .65rem;
+        margin-top: .15rem;
+        color: $text-secondary;
+        @include montserrat;
+        font-size: $font-size-xs;
+        line-height: 1.5;
+        cursor: pointer;
+    }
+    &__checkbox {
+        width: 16px;
+        height: 16px;
+        margin-top: 2px;
+        flex-shrink: 0;
+        accent-color: $color-primary;
+        cursor: pointer;
+    }
+    &__terms-text {
+        display: inline;
+    }
+    &__terms-link {
+        color: $color-primary;
+        font-weight: 600;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+    // ==================================================
+    // SUBMIT
+    // ==================================================
+    &__submit {
+        width: 100%;
+        height: 48px;
+        margin-top: .25rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border: 0;
+        border-radius: $radius-md;
+        background: $color-primary;
+        color: $color-white;
+        @include montserrat;
+        font-size: $font-size-sm;
+        font-weight: 600;
+        cursor: pointer;
+        transition:
+            background-color $transition-fast,
+            transform $transition-fast,
+            box-shadow $transition-fast;
+        &:hover:not(:disabled) {
+            background: $color-primary-dark;
+            transform: translateY(-1px);
+            box-shadow: $shadow-sm;
+        }
+        &:active:not(:disabled) {
+            transform: translateY(0);
+        }
+        &:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+        }
+    }
+    // ==================================================
+    // LOGIN
+    // ==================================================
+    &__login {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .35rem;
+        color: $text-secondary;
+        @include montserrat;
+        font-size: $font-size-xs;
+    }
+    &__login-text {
+        color: $text-secondary;
+    }
+    &__login-link {
+        color: $color-primary;
+        font-weight: 600;
+        cursor: pointer;
+        text-decoration: none;
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+}
+// ======================================================
+// TABLET
+// ======================================================
+@media (max-width: $tablet) {
+    .registration {
+        padding:
+            $spacing-xl
+            $spacing-md;
+        &__title {
+            font-size: $font-size-2xl;
+        }
+        &__card {
+            padding: $spacing-lg;
+        }
+    }
+}
+// ======================================================
+// MOBILE
+// ======================================================
+@media (max-width: $mobile) {
+    .registration {
+        min-height: calc(100vh - 70px);
+        padding:
+            $spacing-lg
+            $spacing-sm;
+        &__title {
+            font-size: $font-size-xl;
+        }
+        &__subtitle {
+            font-size: $font-size-xs;
+        }
+        &__card {
+            padding: $spacing-md;
+            border-radius: $radius-lg;
+        }
+    }
+    .registration-form {
+        gap: $spacing-sm;
+        &__row {
+            grid-template-columns: 1fr;
+            gap: $spacing-sm;
+        }
+        &__input,
+        &__select {
+            height: 46px;
+        }
+        &__password-toggle {
+            right: .6rem;
+        }
+        &__submit {
+            height: 46px;
+        }
+    }
+}
+// ======================================================
+// VERY SMALL DEVICES
+// ======================================================
+@media (max-width: 380px) {
+    .registration {
+        padding:
+            $spacing-md
+            .5rem;
+        &__card {
+            padding: $spacing-sm;
+        }
+    }
+    .registration-form {
+        &__input,
+        &__select {
+            height: 44px;
+        }
+        &__password-toggle {
+            width: 30px;
+            height: 30px;
+            right: .5rem;
+        }
+        &__password-icon {
+            width: 17px;
+            height: 17px;
+        }
+    }
+}

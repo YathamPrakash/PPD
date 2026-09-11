@@ -1,0 +1,283 @@
+<div class="pg-details">
+
+    <!-- ========================================== -->
+    <!-- HEADER -->
+    <!-- ========================================== -->
+
+    <div class="pg-details__header">
+
+        <span class="pg-details__step">
+            {{ pageContent.step }}
+        </span>
+
+        <h2 class="pg-details__title">
+            {{ pageContent.title }}
+        </h2>
+
+        <p class="pg-details__description">
+            {{ pageContent.description }}
+        </p>
+
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- FORM CONTENT -->
+    <!-- ========================================== -->
+
+    <div class="pg-details__body">
+
+
+        <!-- ====================================== -->
+        <!-- PG NAME -->
+        <!-- ====================================== -->
+
+        <div class="pg-details__field">
+
+            <label class="pg-details__label">
+
+                {{ pgName.label }}
+
+                <span class="pg-details__required">
+                    *
+                </span>
+
+            </label>
+
+            <input type="text" class="pg-details__input" [value]="pgName.value" [placeholder]="pgName.placeholder">
+
+        </div>
+
+
+        <!-- ====================================== -->
+        <!-- PG TYPE -->
+        <!-- ====================================== -->
+
+        <div class="pg-details__field">
+
+            <label class="pg-details__label">
+
+                {{ pgType.label }}
+
+                <span class="pg-details__required">
+                    *
+                </span>
+
+            </label>
+
+            <select class="pg-details__input" [value]="pgType.selectedValue">
+
+                <option value="">
+                    {{ pgType.placeholder }}
+                </option>
+
+                @for (
+                option of pgType.options;
+                track option.value
+                ) {
+
+                <option [value]="option.value">
+
+                    {{ option.label }}
+
+                </option>
+
+                }
+
+            </select>
+
+        </div>
+
+
+        <!-- ====================================== -->
+        <!-- DESCRIPTION -->
+        <!-- ====================================== -->
+
+        <div class="pg-details__field">
+
+            <label class="pg-details__label">
+
+                {{ description.label }}
+
+            </label>
+
+            <textarea class="pg-details__textarea"
+                [placeholder]="description.placeholder">{{ description.value }}</textarea>
+
+        </div>
+
+
+        <!-- ====================================== -->
+        <!-- PG FOR -->
+        <!-- ====================================== -->
+
+        <div class="pg-details__field">
+
+            <label class="pg-details__label">
+
+                {{ pgFor.label }}
+
+                <span class="pg-details__required">
+                    *
+                </span>
+
+            </label>
+
+
+            <div class="pg-details__options">
+
+                @for (
+                option of pgFor.options;
+                track option.value
+                ) {
+
+                <label class="pg-details__option" [class.pg-details__option--selected]="
+                            option.value === pgFor.selectedValue
+                        ">
+
+                    <input type="radio" name="pgFor" [value]="option.value" [checked]="
+                                option.value === pgFor.selectedValue
+                            ">
+
+                    <span class="pg-details__option-content">
+
+                        <strong>
+                            {{ option.label }}
+                        </strong>
+
+                    </span>
+
+                </label>
+
+                }
+
+            </div>
+
+        </div>
+
+
+        <!-- ====================================== -->
+        <!-- OCCUPANCY -->
+        <!-- ====================================== -->
+
+        <div class="pg-details__field">
+
+            <label class="pg-details__label">
+
+                {{ occupancy.label }}
+
+                <span class="pg-details__required">
+                    *
+                </span>
+
+            </label>
+
+
+            <div class="pg-details__options">
+
+                @for (
+                option of occupancy.options;
+                track option.value
+                ) {
+
+                <label class="pg-details__option" [class.pg-details__option--selected]="
+                            option.value === occupancy.selectedValue
+                        ">
+
+                    <input type="radio" name="occupancy" [value]="option.value" [checked]="
+                                option.value === occupancy.selectedValue
+                            ">
+
+                    <span class="pg-details__option-content">
+
+                        <strong>
+                            {{ option.label }}
+                        </strong>
+
+                    </span>
+
+                </label>
+
+                }
+
+            </div>
+
+        </div>
+
+
+        <!-- ====================================== -->
+        <!-- ROOMS + BEDS -->
+        <!-- ====================================== -->
+
+        <div class="pg-details__grid">
+
+
+            <div class="pg-details__field">
+
+                <label class="pg-details__label">
+
+                    {{ rooms.label }}
+
+                </label>
+
+                <input type="number" class="pg-details__input" [value]="rooms.value" [placeholder]="rooms.placeholder">
+
+            </div>
+
+
+            <div class="pg-details__field">
+
+                <label class="pg-details__label">
+
+                    {{ beds.label }}
+
+                </label>
+
+                <input type="number" class="pg-details__input" [value]="beds.value" [placeholder]="beds.placeholder">
+
+            </div>
+
+        </div>
+
+
+        <!-- ====================================== -->
+        <!-- INFORMATION -->
+        <!-- ====================================== -->
+
+        <div class="pg-details__info">
+
+            <span class="pg-details__info-icon">
+                {{ information.icon }}
+            </span>
+
+            <p>
+                {{ information.message }}
+            </p>
+
+        </div>
+
+    </div>
+
+
+    <!-- ========================================== -->
+    <!-- ACTIONS -->
+    <!-- ========================================== -->
+
+    <!-- <div class="pg-details__actions">
+
+        <button type="button" class="pg-details__button pg-details__button--secondary" (click)="onBack()">
+
+            ← {{ buttons.back }}
+
+        </button>
+
+
+        <button type="button" class="pg-details__button pg-details__button--primary" (click)="onContinue()">
+
+            {{ buttons.continue }} →
+
+        </button>
+
+    </div> -->
+
+</div>

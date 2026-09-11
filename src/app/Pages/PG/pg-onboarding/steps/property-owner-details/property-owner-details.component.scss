@@ -1,0 +1,491 @@
+// =====================================================
+// PROPERTY OWNER DETAILS
+// =====================================================
+
+.property-owner-details {
+    width: 100%;
+}
+
+
+// =====================================================
+// HEADER
+// =====================================================
+
+.property-owner-details__header {
+    margin-bottom: 26px;
+}
+
+.property-owner-details__step {
+    display: block;
+
+    margin-bottom: 7px;
+
+    color: #087f6b;
+
+    font-size: 11px;
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+}
+
+.property-owner-details__title {
+    margin: 0 0 7px;
+
+    color: #102a2d;
+
+    font-size: 24px;
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+.property-owner-details__description {
+    max-width: 650px;
+
+    margin: 0;
+
+    color: #718184;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+
+// =====================================================
+// NOTE
+// =====================================================
+
+.property-owner-details__note {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    padding: 14px;
+
+    margin-bottom: 24px;
+
+    border: 1px solid #dbe9e5;
+
+    border-radius: 9px;
+
+    background: #f5faf8;
+}
+
+.property-owner-details__note-icon {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 0 0 20px;
+
+    width: 20px;
+
+    height: 20px;
+
+    border-radius: 50%;
+
+    background: #e1f0ec;
+
+    color: #087f6b;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+.property-owner-details__note p {
+    margin: 1px 0 0;
+
+    color: #607173;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+// =====================================================
+// FIELD
+// =====================================================
+
+.property-owner-details__field {
+    width: 100%;
+
+    margin-bottom: 20px;
+}
+
+.property-owner-details__label {
+    display: block;
+
+    margin-bottom: 8px;
+
+    color: #263f42;
+
+    font-size: 13px;
+
+    font-weight: 600;
+}
+
+.property-owner-details__required {
+    margin-left: 2px;
+
+    color: #d35c5c;
+}
+
+
+// =====================================================
+// INPUT
+// =====================================================
+
+.property-owner-details__input,
+.property-owner-details__phone-input {
+
+    box-sizing: border-box;
+
+    border: 1px solid #d7e2e0;
+
+    outline: none;
+
+    background: #ffffff;
+
+    color: #263f42;
+
+    font-family: inherit;
+
+    font-size: 13px;
+
+    transition:
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.property-owner-details__input {
+    width: 100%;
+
+    height: 46px;
+
+    padding: 0 14px;
+
+    border-radius: 8px;
+}
+
+.property-owner-details__input::placeholder,
+.property-owner-details__phone-input::placeholder {
+    color: #a0abad;
+}
+
+.property-owner-details__input:focus,
+.property-owner-details__phone-input:focus {
+
+    border-color: #087f6b;
+
+    box-shadow:
+        0 0 0 3px rgba(8, 127, 107, 0.08);
+}
+
+
+// =====================================================
+// GRID
+// =====================================================
+
+.property-owner-details__grid {
+    display: grid;
+
+    grid-template-columns: 1fr 1fr;
+
+    gap: 18px;
+}
+
+
+// =====================================================
+// PHONE
+// =====================================================
+
+.property-owner-details__phone {
+    display: flex;
+
+    width: 100%;
+
+    height: 46px;
+
+    overflow: hidden;
+
+    box-sizing: border-box;
+
+    border: 1px solid #d7e2e0;
+
+    border-radius: 8px;
+
+    background: #ffffff;
+}
+
+.property-owner-details__country-code {
+    display: flex;
+
+    align-items: center;
+
+    padding: 0 14px;
+
+    border-right: 1px solid #e1e9e7;
+
+    background: #f8faf9;
+
+    color: #5f7072;
+
+    font-size: 13px;
+}
+
+.property-owner-details__phone-input {
+    width: 100%;
+
+    height: 100%;
+
+    padding: 0 14px;
+
+    border: 0;
+
+    border-radius: 0;
+}
+
+
+// =====================================================
+// VERIFICATION
+// =====================================================
+
+.property-owner-details__verification {
+    padding: 17px;
+
+    margin-top: 4px;
+
+    border: 1px solid #dce9e5;
+
+    border-radius: 10px;
+
+    background: #ffffff;
+}
+
+.property-owner-details__verification-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 11px;
+
+    margin-bottom: 12px;
+}
+
+.property-owner-details__verification-icon {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    width: 34px;
+
+    height: 34px;
+
+    border-radius: 50%;
+
+    background: #e7f3ef;
+
+    color: #087f6b;
+
+    font-size: 14px;
+
+    font-weight: 700;
+}
+
+.property-owner-details__verification-header h3 {
+    margin: 0 0 3px;
+
+    color: #344a4c;
+
+    font-size: 13px;
+
+    font-weight: 700;
+}
+
+.property-owner-details__verification-header span {
+    color: #a07832;
+
+    font-size: 10px;
+
+    font-weight: 600;
+}
+
+.property-owner-details__verification-description {
+    margin: 0;
+
+    color: #718184;
+
+    font-size: 11px;
+
+    line-height: 1.55;
+}
+
+
+// =====================================================
+// INFORMATION
+// =====================================================
+
+.property-owner-details__info {
+    display: flex;
+
+    align-items: flex-start;
+
+    gap: 10px;
+
+    padding: 14px;
+
+    margin-top: 16px;
+
+    border: 1px solid #dbe9e5;
+
+    border-radius: 9px;
+
+    background: #f5faf8;
+}
+
+.property-owner-details__info-icon {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    flex: 0 0 20px;
+
+    width: 20px;
+
+    height: 20px;
+
+    border-radius: 50%;
+
+    background: #e1f0ec;
+
+    color: #087f6b;
+
+    font-size: 11px;
+
+    font-weight: 700;
+}
+
+.property-owner-details__info p {
+    margin: 1px 0 0;
+
+    color: #607173;
+
+    font-size: 11px;
+
+    line-height: 1.5;
+}
+
+
+// =====================================================
+// ACTIONS
+// =====================================================
+
+.property-owner-details__actions {
+    display: flex;
+
+    align-items: center;
+
+    justify-content: space-between;
+
+    gap: 12px;
+
+    margin-top: 30px;
+}
+
+
+// =====================================================
+// BUTTONS
+// =====================================================
+
+.property-owner-details__button {
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: 8px;
+
+    min-width: 120px;
+
+    height: 44px;
+
+    padding: 0 18px;
+
+    border-radius: 8px;
+
+    cursor: pointer;
+
+    font-family: inherit;
+
+    font-size: 12px;
+
+    font-weight: 600;
+}
+
+.property-owner-details__button--primary {
+    border: 1px solid #087f6b;
+
+    background: #087f6b;
+
+    color: #ffffff;
+}
+
+.property-owner-details__button--primary:hover {
+    background: #066b5a;
+}
+
+.property-owner-details__button--secondary {
+    border: 1px solid #d4e0dd;
+
+    background: #ffffff;
+
+    color: #536668;
+}
+
+.property-owner-details__button--secondary:hover {
+    background: #f7faf9;
+}
+
+
+// =====================================================
+// RESPONSIVE
+// =====================================================
+
+@media (max-width: 768px) {
+
+    .property-owner-details__grid {
+        grid-template-columns: 1fr;
+
+        gap: 0;
+    }
+
+}
+
+
+@media (max-width: 480px) {
+
+    .property-owner-details__title {
+        font-size: 22px;
+    }
+
+    .property-owner-details__actions {
+        flex-direction: column-reverse;
+    }
+
+    .property-owner-details__button {
+        width: 100%;
+    }
+
+}

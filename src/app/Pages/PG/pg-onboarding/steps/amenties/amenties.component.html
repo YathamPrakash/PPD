@@ -1,0 +1,139 @@
+<div class="amenities">
+
+    <!-- ================================================= -->
+    <!-- HEADER -->
+    <!-- ================================================= -->
+
+    <div class="amenities__header">
+
+        <span class="amenities__step">
+            {{ pageContent.step }}
+        </span>
+
+        <h2 class="amenities__title">
+            {{ pageContent.title }}
+        </h2>
+
+        <p class="amenities__description">
+            {{ pageContent.description }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- SELECTION INFO -->
+    <!-- ================================================= -->
+
+    <div class="amenities__selection-header">
+
+        <span class="amenities__selection-icon">
+            ✓
+        </span>
+
+        <span>
+            {{ pageContent.selectionText }}
+        </span>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- AMENITIES GRID -->
+    <!-- ================================================= -->
+
+    <div class="amenities__grid">
+
+        @for (
+        amenity of amenities;
+        track amenity.id
+        ) {
+
+        <button type="button" class="amenities__card" [class.amenities__card--selected]="
+                    amenity.selected
+                " (click)="toggleAmenity(amenity)">
+
+            <!-- Icon -->
+
+            <span class="amenities__icon">
+
+                {{ amenity.icon }}
+
+            </span>
+
+
+            <!-- Content -->
+
+            <span class="amenities__content">
+
+                <strong>
+                    {{ amenity.name }}
+                </strong>
+
+                <span>
+                    {{ amenity.description }}
+                </span>
+
+            </span>
+
+
+            <!-- Selection -->
+
+            <span class="amenities__check" [class.amenities__check--selected]="
+                        amenity.selected
+                    ">
+
+                @if (amenity.selected) {
+
+                ✓
+
+                }
+
+            </span>
+
+        </button>
+
+        }
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- INFORMATION -->
+    <!-- ================================================= -->
+
+    <div class="amenities__info">
+
+        <span class="amenities__info-icon">
+            {{ information.icon }}
+        </span>
+
+        <p>
+            {{ information.message }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- ACTIONS -->
+    <!-- ================================================= -->
+
+    <!-- <div class="amenities__actions">
+
+        <button type="button" class="amenities__button amenities__button--secondary" (click)="onBack()">
+
+            ← {{ buttons.back }}
+
+        </button>
+
+
+        <button type="button" class="amenities__button amenities__button--primary" (click)="onContinue()">
+
+            {{ buttons.continue }} →
+
+        </button>
+
+    </div> -->
+
+</div>

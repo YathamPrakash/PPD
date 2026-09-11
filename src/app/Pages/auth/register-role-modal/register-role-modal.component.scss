@@ -1,0 +1,451 @@
+@import "../../../../Styles/mixins.scss";
+@import "../../../../Styles/variables.scss";
+
+// ======================================================
+// REGISTER ROLE MODAL
+// ======================================================
+.register-role-modal {
+    position: fixed;
+    inset: 0;
+    z-index: $z-modal;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: $spacing-md;
+    // Prevent page interaction behind modal
+    overflow-y: auto;
+    // ==================================================
+    // OVERLAY
+    // ==================================================
+    &__overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(23, 33, 31, .48);
+        backdrop-filter: blur(4px);
+        -webkit-backdrop-filter: blur(4px);
+    }
+    // ==================================================
+    // DIALOG
+    // ==================================================
+    &__dialog {
+        position: relative;
+        z-index: 1;
+        width: 100%;
+        max-width: 500px;
+        max-height: calc(100vh - 2 * #{$spacing-md});
+        overflow-y: auto;
+        padding: $spacing-xl;
+        background: $color-white;
+        border: 1px solid $border-light;
+        border-radius: $radius-xl;
+        box-shadow: $shadow-lg;
+        animation: registerModalEnter .25s ease-out;
+    }
+    // ==================================================
+    // CLOSE
+    // ==================================================
+    &__close {
+        position: absolute;
+        top: $spacing-sm;
+        right: $spacing-sm;
+        width: 36px;
+        height: 36px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 0;
+        border-radius: $radius-round;
+        background: $background-section;
+        color: $text-secondary;
+        cursor: pointer;
+        transition:
+            background-color $transition-fast,
+            color $transition-fast,
+            transform $transition-fast;
+        svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+        }
+        &:hover {
+            background: #E8F2EF;
+            color: $color-primary;
+            transform: rotate(4deg);
+        }
+        &:focus-visible {
+            outline: 2px solid $color-primary-light;
+            outline-offset: 2px;
+        }
+    }
+    // ==================================================
+    // HEADER
+    // ==================================================
+    &__header {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        margin-bottom: $spacing-lg;
+        padding: 0 $spacing-lg;
+    }
+    // ==================================================
+    // BRAND MARK
+    // ==================================================
+    &__brand-mark {
+        width: 48px;
+        height: 48px;
+        margin-bottom: $spacing-sm;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: $radius-md;
+        background: #E8F2EF;
+        color: $color-primary;
+        svg {
+            width: 25px;
+            height: 25px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    }
+    // ==================================================
+    // EYEBROW
+    // ==================================================
+    &__eyebrow {
+        margin-bottom: .3rem;
+        color: $color-accent;
+        @include montserrat(700);
+        font-size: $font-size-xs;
+        letter-spacing: .08em;
+    }
+    // ==================================================
+    // TITLE
+    // ==================================================
+    &__title {
+        margin: 0;
+        color: $text-primary;
+        @include bricolage-grotesque(600);
+        font-size: $font-size-2xl;
+        line-height: 1.2;
+    }
+    // ==================================================
+    // SUBTITLE
+    // ==================================================
+    &__subtitle {
+        margin: .5rem 0 0;
+        color: $text-primary;
+        @include montserrat(600);
+        font-size: $font-size-sm;
+        line-height: 1.4;
+    }
+    // ==================================================
+    // DESCRIPTION
+    // ==================================================
+    &__description {
+        margin: .2rem 0 0;
+        color: $text-muted;
+        @include montserrat(400);
+        font-size: $font-size-xs;
+        line-height: 1.5;
+    }
+    // ==================================================
+    // OPTIONS
+    // ==================================================
+    &__options {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-sm;
+    }
+    // ==================================================
+    // LOGIN
+    // ==================================================
+    &__login {
+        margin-top: $spacing-lg;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: .3rem;
+        color: $text-secondary;
+        @include montserrat(400);
+        font-size: $font-size-xs;
+        button {
+            padding: 0;
+            border: 0;
+            background: transparent;
+            color: $color-primary;
+            cursor: pointer;
+            @include montserrat(600);
+            font-size: inherit;
+            &:hover {
+                color: $color-primary-dark;
+                text-decoration: underline;
+            }
+            &:focus-visible {
+                outline: 2px solid $color-primary-light;
+                outline-offset: 2px;
+                border-radius: $radius-xs;
+            }
+        }
+    }
+}
+// ======================================================
+// REGISTER OPTION
+// ======================================================
+.register-option {
+    width: 100%;
+    min-height: 100px;
+    padding: $spacing-md;
+    display: grid;
+    grid-template-columns: 52px minmax(0, 1fr) 24px;
+    align-items: center;
+    gap: $spacing-sm;
+    text-align: left;
+    background: $color-white;
+    border: 1px solid $border-color;
+    border-radius: $radius-lg;
+    color: $text-primary;
+    cursor: pointer;
+    transition:
+        background-color $transition-fast,
+        border-color $transition-fast,
+        box-shadow $transition-fast,
+        transform $transition-fast;
+    // ==================================================
+    // HOVER
+    // ==================================================
+    &:hover {
+        background: #F8FBFA;
+        border-color: $color-primary-light;
+        box-shadow: $shadow-sm;
+        transform: translateY(-2px);
+        .register-option__icon {
+            background: $color-primary;
+            color: $color-white;
+        }
+        .register-option__arrow {
+            color: $color-primary;
+            transform: translateX(3px);
+        }
+    }
+    &:active {
+        transform: translateY(0);
+    }
+    &:focus-visible {
+        outline: 2px solid $color-primary-light;
+        outline-offset: 2px;
+    }
+    // ==================================================
+    // ICON
+    // ==================================================
+    &__icon {
+        width: 52px;
+        height: 52px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        flex-shrink: 0;
+        border-radius: $radius-md;
+        background: #E8F2EF;
+        color: $color-primary;
+        transition:
+            background-color $transition-fast,
+            color $transition-fast;
+        svg {
+            width: 26px;
+            height: 26px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 1.7;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    }
+    // ==================================================
+    // CONTENT
+    // ==================================================
+    &__content {
+        min-width: 0;
+        strong {
+            display: block;
+            color: $text-primary;
+            @include bricolage-grotesque(600);
+            font-size: $font-size-md;
+            line-height: 1.3;
+        }
+        small {
+            display: block;
+            margin-top: .3rem;
+            color: $text-secondary;
+            @include montserrat(400);
+            font-size: .72rem;
+            line-height: 1.5;
+        }
+    }
+    // ==================================================
+    // ARROW
+    // ==================================================
+    &__arrow {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: $text-muted;
+        transition:
+            color $transition-fast,
+            transform $transition-fast;
+        svg {
+            width: 19px;
+            height: 19px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    }
+}
+// ======================================================
+// ANIMATION
+// ======================================================
+@keyframes registerModalEnter {
+    from {
+        opacity: 0;
+        transform: translateY(12px) scale(.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
+}
+// ======================================================
+// TABLET
+// ======================================================
+@media (max-width: $tablet) {
+    .register-role-modal {
+        padding: $spacing-md;
+        &__dialog {
+            max-width: 460px;
+            padding: $spacing-lg;
+        }
+    }
+}
+// ======================================================
+// MOBILE
+// ======================================================
+@media (max-width: $mobile) {
+    .register-role-modal {
+        align-items: center;
+        padding: $spacing-sm;
+        &__dialog {
+            max-width: none;
+            max-height: calc(100vh - 2 * #{$spacing-sm});
+            padding: $spacing-lg $spacing-sm;
+            border-radius: $radius-lg;
+        }
+        &__header {
+            padding: 0 $spacing-md;
+            margin-bottom: $spacing-md;
+        }
+        &__brand-mark {
+            width: 42px;
+            height: 42px;
+            margin-bottom: .65rem;
+            svg {
+                width: 22px;
+                height: 22px;
+            }
+        }
+        &__title {
+            font-size: $font-size-xl;
+        }
+        &__subtitle {
+            font-size: $font-size-sm;
+        }
+        &__description {
+            font-size: .7rem;
+        }
+        &__close {
+            top: .7rem;
+            right: .7rem;
+            width: 32px;
+            height: 32px;
+        }
+    }
+    .register-option {
+        min-height: 88px;
+        padding: $spacing-sm;
+        grid-template-columns: 44px minmax(0, 1fr)20px;
+        gap: .65rem;
+        &__icon {
+            width: 44px;
+            height: 44px;
+            svg {
+                width: 22px;
+                height: 22px;
+            }
+        }
+        &__content {
+            strong {
+                font-size: $font-size-sm;
+            }
+            small {
+                margin-top: .2rem;
+                font-size: .68rem;
+            }
+        }
+        &__arrow {
+            svg {
+                width: 17px;
+                height: 17px;
+            }
+        }
+    }
+    .register-role-modal__login {
+        margin-top: $spacing-md;
+        font-size: .7rem;
+    }
+}
+// ======================================================
+// VERY SMALL DEVICES
+// ======================================================
+@media (max-width: 380px) {
+    .register-role-modal {
+        &__dialog {
+            padding: $spacing-md .65rem;
+        }
+        &__header {
+            padding: 0 $spacing-sm;
+        }
+        &__eyebrow {
+            font-size: .65rem;
+        }
+        &__title {
+            font-size: $font-size-lg;
+        }
+    }
+    .register-option {
+        grid-template-columns: 40px minmax(0, 1fr) 18px;
+        &__icon {
+            width: 40px;
+            height: 40px;
+            svg {
+                width: 20px;
+                height: 20px;
+            }
+        }
+        &__content {
+            strong {
+                font-size: .8rem;
+            }
+            small {
+                font-size: .64rem;
+            }
+        }
+    }
+}

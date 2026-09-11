@@ -13,7 +13,6 @@ $large-desktop: 1400px;
 // ======================================================
 
 $container-width: 1280px;
-
 $sidebar-width-collapsed: 80px;
 $sidebar-width-expanded: 250px;
 
@@ -41,61 +40,66 @@ $radius-xl: 1.5rem;
 $radius-2xl: 2rem;
 $radius-round: 999px;
 
-// ======================================================
+/// ======================================================
 // BRAND COLORS
 // ======================================================
 
-$color-primary: #0F5C4E;
-$color-primary-light: #2FA89E;
-$color-primary-dark: #0B4A3E;
+$color-primary: #0B6B5A; // Main StayNest green
+$color-primary-light: #43B5A3; // Card/image accent
+$color-primary-dark: #075044; // Hover / darker green
 
-$color-accent: #EDA338;
+$color-accent: #F4A62A; // Warm orange
+
 
 // ======================================================
 // BASE COLORS
 // ======================================================
 
 $color-white: #FFFFFF;
-$color-black: #000000;
+$color-black: #11181A;
 
-$color-success: #28A745;
-$color-warning: #EDA338;
+$color-success: #218A68;
+$color-warning: #F4A62A;
 $color-danger: #DC3545;
-$color-info: #0EA5E9;
+$color-info: #1597B5;
+
 
 // ======================================================
 // TEXT COLORS
 // ======================================================
 
-$text-primary: #17211F;
-$text-secondary: #61706C;
-$text-muted: #8A9692;
+$text-primary: #172326; // Main headings
+$text-secondary: #5D706B; // Paragraphs / secondary text
+$text-muted: #899793;
 $text-light: #FFFFFF;
+
 
 // ======================================================
 // BACKGROUND COLORS
 // ======================================================
 
-$background-page: #E4EFEB;
-$background-section: #F6F9F8;
+$background-page: #F1F6F4; // Main page
+$background-section: #F7FAF9; // Very subtle section background
 $background-card: #FFFFFF;
-$background-theme: #2C3E50;
+$background-theme: #0B6B5A;
+
 
 // ======================================================
 // BORDER COLORS
 // ======================================================
 
-$border-color: #E2E7E4;
-$border-dark: #928B8B;
-$border-light: #F0F3F2;
+$border-color: #DCE7E3;
+$border-dark: #AABBB5;
+$border-light: #EDF2F0;
+
 
 // ======================================================
 // SHADOWS
 // ======================================================
 
-$shadow-sm: 0 2px 8px rgba(0,0,0,.05);
-$shadow-md: 0 8px 20px rgba(0,0,0,.08);
-$shadow-lg: 0 15px 40px rgba(0,0,0,.10);
+$shadow-sm: 0 2px 8px rgba(20, 50, 45, 0.05);
+$shadow-md: 0 8px 24px rgba(20, 50, 45, 0.08);
+$shadow-lg: 0 16px 40px rgba(20, 50, 45, 0.10);
 
 // ======================================================
 // TYPOGRAPHY

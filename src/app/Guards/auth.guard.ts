@@ -2,9 +2,8 @@ import { CanActivateFn, CanDeactivateFn, CanMatchFn } from '@angular/router';
 
 // 🔐 CanActivate → protect route
 export const canActivateGuard: CanActivateFn = (route, state) => {
-
-  console.log(route,'CanActivate triggered');
-  console.log(state,'CanActivate triggered');
+  console.log(route, 'CanActivate triggered');
+  console.log(state, 'CanActivate triggered');
   return true;
 };
 
@@ -18,6 +17,11 @@ export const canMatchGuard: CanMatchFn = (route, segments) => {
 
 // 🔐 CanDeactivate → prevent leaving component
 export const canDeactivateGuard: CanDeactivateFn<any> = (component) => {
-  console.log('CanDeactivate triggered');
-  return confirm('Do you really want to leave this page?');
+  // console.log('CanDeactivate triggered');
+  // return confirm('Do you really want to leave this page?');
+
+  if (component.canDeactivate()) {
+    return confirm('You have unsaved changes. Do you really want to leave this page?');
+  }
+  return true;
 };

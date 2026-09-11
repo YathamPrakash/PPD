@@ -1,0 +1,343 @@
+@import "../../../../Styles/variables.scss";
+@import "../../../../Styles/mixins.scss";
+// ======================================================
+// HEADER
+// ======================================================
+.header {
+    position: relative;
+    z-index: $z-sticky;
+    width: 100%;
+    background: $color-white;
+    border-bottom: 1px solid $border-light;
+    // --------------------------------------------------
+    // CONTAINER
+    // --------------------------------------------------
+    &__container {
+        width: min(100% - 2 * $spacing-lg, $container-width);
+        min-height: 76px;
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: $spacing-lg;
+    }
+    // --------------------------------------------------
+    // LOGO
+    // --------------------------------------------------
+    &__logo {
+        display: inline-flex;
+        align-items: center;
+        gap: .45rem;
+        flex-shrink: 0;
+        text-decoration: none;
+        color: $color-primary;
+        @include bricolage-grotesque(600);
+        transition: transform $transition-fast;
+        &:hover {
+            transform: translateY(-1px);
+        }
+    }
+    &__logo-icon {
+        width: 38px;
+        height: 38px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        color: $color-accent;
+        svg {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+    }
+    &__logo-text {
+        font-size: $font-size-2xl;
+        line-height: 1;
+        color: $color-primary;
+        span {
+            color: $color-accent;
+        }
+    }
+    // --------------------------------------------------
+    // DESKTOP NAVIGATION
+    // --------------------------------------------------
+    &__nav {
+        display: flex;
+        align-items: center;
+        gap: $spacing-xl;
+        margin-left: auto;
+    }
+    &__nav-link {
+        position: relative;
+        padding: .75rem 0;
+        color: $text-primary;
+        text-decoration: none;
+        @include montserrat(500);
+        font-size: $font-size-md;
+        transition:
+            color $transition-fast,
+            transform $transition-fast;
+        &::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: .35rem;
+            width: 0;
+            height: 2px;
+            border-radius: $radius-round;
+            background: $color-primary;
+            transition: width $transition-normal;
+        }
+        &:hover {
+            color: $color-primary;
+            &::after {
+                width: 100%;
+            }
+        }
+        &--active {
+            color: $color-primary;
+            &::after {
+                width: 100%;
+            }
+        }
+    }
+    // --------------------------------------------------
+    // DESKTOP ACTIONS
+    // --------------------------------------------------
+    &__actions {
+        display: flex;
+        align-items: center;
+        gap: .75rem;
+        margin-left: $spacing-lg;
+    }
+    &__login-btn,
+    &__register-btn {
+        min-height: 46px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: .65rem 1.5rem;
+        border-radius: $radius-md;
+        text-decoration: none;
+        @include montserrat(600);
+        font-size: $font-size-md;
+        transition:
+            background-color $transition-fast,
+            color $transition-fast,
+            border-color $transition-fast,
+            transform $transition-fast,
+            box-shadow $transition-fast;
+        &:hover {
+            transform: translateY(-1px);
+        }
+    }
+    // --------------------------------------------------
+    // LOGIN
+    // --------------------------------------------------
+    &__login-btn {
+        color: $color-primary;
+        background: $color-white;
+        border: 1px solid $color-primary;
+        &:hover {
+            color: $color-white;
+            background: $color-primary;
+        }
+    }
+    // --------------------------------------------------
+    // REGISTER
+    // --------------------------------------------------
+    &__register-btn {
+        color: $color-white;
+        background: $color-primary;
+        border: 1px solid $color-primary;
+        box-shadow: $shadow-sm;
+        &:hover {
+            background: $color-primary-dark;
+            border-color: $color-primary-dark;
+            box-shadow: $shadow-md;
+        }
+    }
+    // --------------------------------------------------
+    // MOBILE MENU BUTTON
+    // --------------------------------------------------
+    &__menu-btn {
+        display: none;
+        width: 44px;
+        height: 44px;
+        padding: .65rem;
+        border: 1px solid $border-color;
+        border-radius: $radius-md;
+        background: $color-white;
+        cursor: pointer;
+        align-items: center;
+        justify-content: center;
+        flex-direction: column;
+        gap: 5px;
+        transition:
+            border-color $transition-fast,
+            background-color $transition-fast;
+        &:hover {
+            border-color: $color-primary;
+            background: $background-section;
+        }
+        span {
+            display: block;
+            width: 20px;
+            height: 2px;
+            border-radius: $radius-round;
+            background: $color-primary;
+            transition:
+                transform $transition-normal,
+                opacity $transition-normal;
+        }
+    }
+    // --------------------------------------------------
+    // MOBILE MENU
+    // --------------------------------------------------
+    &__mobile-menu {
+        display: none;
+        padding: $spacing-md $spacing-lg $spacing-lg;
+        background: $color-white;
+        border-top: 1px solid $border-light;
+        box-shadow: $shadow-md;
+    }
+    &__mobile-nav {
+        display: flex;
+        flex-direction: column;
+        gap: .25rem;
+    }
+    &__mobile-link {
+        display: block;
+        padding: .85rem 1rem;
+        border-radius: $radius-md;
+        color: $text-primary;
+        text-decoration: none;
+        @include montserrat(500);
+        font-size: $font-size-md;
+        transition:
+            color $transition-fast,
+            background-color $transition-fast;
+        &:hover,
+        &:focus {
+            color: $color-primary;
+            background: $background-section;
+        }
+    }
+    // --------------------------------------------------
+    // MOBILE ACTIONS
+    // --------------------------------------------------
+    &__mobile-actions {
+        display: flex;
+        gap: .75rem;
+        margin-top: $spacing-md;
+        padding-top: $spacing-md;
+        border-top: 1px solid $border-light;
+    }
+    &__mobile-login,
+    &__mobile-register {
+        flex: 1;
+        min-height: 46px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: $radius-md;
+        text-decoration: none;
+        @include montserrat(600);
+        font-size: $font-size-sm;
+        transition:
+            background-color $transition-fast,
+            color $transition-fast;
+    }
+    &__mobile-login {
+        color: $color-primary;
+        background: $color-white;
+        border: 1px solid $color-primary;
+        &:hover {
+            color: $color-white;
+            background: $color-primary;
+        }
+    }
+    &__mobile-register {
+        color: $color-white;
+        background: $color-primary;
+        border: 1px solid $color-primary;
+        &:hover {
+            background: $color-primary-dark;
+        }
+    }
+    // ==================================================
+    // LAPTOP
+    // ==================================================
+    @media (max-width: $laptop) {
+        &__container {
+            min-height: 70px;
+            width: min(
+                100% - 2 * $spacing-md,
+                $container-width
+            );
+        }
+        &__nav {
+            gap: $spacing-lg;
+        }
+        &__actions {
+            margin-left: $spacing-sm;
+        }
+        &__login-btn,
+        &__register-btn {
+            padding-left: 1.15rem;
+            padding-right: 1.15rem;
+        }
+    }
+    // ==================================================
+    // TABLET
+    // ==================================================
+    @media (max-width: $tablet) {
+        &__container {
+            min-height: 68px;
+            width: min(
+                100% - 2 * $spacing-md,
+                $container-width
+            );
+        }
+        &__nav,
+        &__actions {
+            display: none;
+        }
+        &__menu-btn {
+            display: inline-flex;
+        }
+        &__mobile-menu {
+            display: none;
+            &--open {
+                display: block;
+            }
+        }
+    }
+    // ==================================================
+    // MOBILE
+    // ==================================================
+    @media (max-width: $mobile) {
+        &__container {
+            min-height: 64px;
+            width: calc(100% - 2 * $spacing-sm);
+        }
+        &__logo-icon {
+            width: 34px;
+            height: 34px;
+        }
+        &__logo-text {
+            font-size: $font-size-xl;
+        }
+        &__mobile-menu {
+            padding-left: $spacing-sm;
+            padding-right: $spacing-sm;
+        }
+        &__mobile-actions {
+            flex-direction: column;
+        }
+        &__mobile-login,
+        &__mobile-register {
+            width: 100%;
+        }
+    }
+}

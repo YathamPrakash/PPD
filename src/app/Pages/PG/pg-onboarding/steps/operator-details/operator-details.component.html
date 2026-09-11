@@ -1,0 +1,233 @@
+<div class="operator-details">
+
+    <!-- ================================================= -->
+    <!-- HEADER -->
+    <!-- ================================================= -->
+
+    <div class="operator-details__header">
+
+        <span class="operator-details__step">
+            {{ pageContent.step }}
+        </span>
+
+        <h2 class="operator-details__title">
+            {{ pageContent.title }}
+        </h2>
+
+        <p class="operator-details__description">
+            {{ pageContent.description }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- ACCOUNT -->
+    <!-- ================================================= -->
+
+    <div class="operator-details__account">
+
+        <div class="operator-details__account-icon">
+            👤
+        </div>
+
+
+        <div class="operator-details__account-content">
+
+            <span class="operator-details__account-label">
+                {{ accountDetails.label }}
+            </span>
+
+            <strong>
+                {{ accountDetails.name }}
+            </strong>
+
+            <span>
+                {{ accountDetails.email }}
+            </span>
+
+        </div>
+
+
+        @if (accountDetails.verified) {
+
+        <span class="operator-details__verified">
+
+            ✓ {{ accountDetails.verifiedText }}
+
+        </span>
+
+        }
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- PHONE -->
+    <!-- ================================================= -->
+
+    <div class="operator-details__field">
+
+        <label class="operator-details__label">
+
+            {{ phone.label }}
+
+            <span class="operator-details__required">
+                *
+            </span>
+
+        </label>
+
+
+        <div class="operator-details__phone">
+
+            <span class="operator-details__country-code">
+                {{ phone.countryCode }}
+            </span>
+
+            <input type="text" class="operator-details__input" [placeholder]="phone.placeholder" />
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- PROPERTY ADDRESS -->
+    <!-- ================================================= -->
+
+    <div class="operator-details__section">
+
+        <h3 class="operator-details__section-title">
+            {{ addressSection.title }}
+        </h3>
+
+        <p class="operator-details__section-description">
+            {{ addressSection.description }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- ADDRESS -->
+    <!-- ================================================= -->
+
+    <div class="operator-details__field">
+
+        <label class="operator-details__label">
+
+            {{ address.label }}
+
+            <span class="operator-details__required">
+                *
+            </span>
+
+        </label>
+
+        <input type="text" class="operator-details__input" [placeholder]="address.placeholder" />
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- CITY + STATE -->
+    <!-- ================================================= -->
+
+    <div class="operator-details__grid">
+
+        <!-- CITY -->
+
+        <div class="operator-details__field">
+
+            <label class="operator-details__label">
+
+                {{ city.label }}
+
+                <span class="operator-details__required">
+                    *
+                </span>
+
+            </label>
+
+            <input type="text" class="operator-details__input" [placeholder]="city.placeholder" />
+
+        </div>
+
+
+        <!-- STATE -->
+
+        <div class="operator-details__field">
+
+            <label class="operator-details__label">
+
+                {{ state.label }}
+
+                <span class="operator-details__required">
+                    *
+                </span>
+
+            </label>
+
+            <input type="text" class="operator-details__input" [placeholder]="state.placeholder" />
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- PINCODE -->
+    <!-- ================================================= -->
+
+    <div class="operator-details__field">
+
+        <label class="operator-details__label">
+
+            {{ pincode.label }}
+
+            <span class="operator-details__required">
+                *
+            </span>
+
+        </label>
+
+        <input type="text" class="operator-details__input" [placeholder]="pincode.placeholder" />
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- INFORMATION -->
+    <!-- ================================================= -->
+
+    <div class="operator-details__info">
+
+        <span class="operator-details__info-icon">
+            {{ information.icon }}
+        </span>
+
+        <p>
+            {{ information.message }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- ACTION -->
+    <!-- ================================================= -->
+
+    <!-- <div class="operator-details__actions">
+
+        <button type="button" class="operator-details__button operator-details__button--primary" (click)="onContinue()">
+
+            {{ buttons.continue }}
+
+            <span>→</span>
+
+        </button>
+
+    </div> -->
+
+</div>

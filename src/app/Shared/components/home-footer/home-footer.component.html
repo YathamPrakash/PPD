@@ -1,0 +1,102 @@
+<footer class="footer">
+    <div class="footer__container">
+        <!-- Brand -->
+        <div class="footer__brand">
+            <a routerLink="/" class="footer__logo" aria-label="StayNest Home">
+                <span class="footer__logo-icon">
+                    <svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                        <path d="M6 22.5L24 7L42 22.5V40C42 41.1 41.1 42 40 42H8C6.9 42 6 41.1 6 40V22.5Z"
+                            fill="currentColor" />
+                        <path d="M18 42V28H30V42" fill="#FFFFFF" />
+                        <path d="M21 18H27V23H21V18Z" fill="#FFFFFF" />
+                    </svg>
+                </span>
+                <span class="footer__logo-text">
+                    Stay<span>Nest</span>
+                </span>
+            </a>
+            <p class="footer__description">
+                A simpler way to find, book and manage PG stays.
+            </p>
+        </div>
+        <!-- Guests -->
+        <div class="footer__column">
+            <h3 class="footer__title">
+                For Guests
+            </h3>
+            <nav class="footer__links">
+                <a routerLink="/find-pg" class="footer__link">
+                    Find a PG
+                </a>
+                <a routerLink="/how-booking-works" class="footer__link">
+                    How booking works
+                </a>
+                <a routerLink="/help" class="footer__link">
+                    Help
+                </a>
+            </nav>
+        </div>
+        <!-- Owners -->
+        <div class="footer__column">
+            <h3 class="footer__title">
+                For Owners
+            </h3>
+            <nav class="footer__links">
+                <a routerLink="/list-your-pg" class="footer__link">
+                    List your PG
+                </a>
+                <a routerLink="/owner/dashboard" class="footer__link">
+                    Owner Dashboard
+                </a>
+                <a routerLink="/pricing" class="footer__link">
+                    Pricing
+                </a>
+            </nav>
+        </div>
+        <!-- Company -->
+        <div class="footer__column">
+            <h3 class="footer__title">
+                Company
+            </h3>
+            <nav class="footer__links">
+                <a routerLink="/about" class="footer__link">
+                    About
+                </a>
+                <a routerLink="/terms" class="footer__link">
+                    Terms
+                </a>
+                <a routerLink="/privacy" class="footer__link">
+                    Privacy
+                </a>
+            </nav>
+        </div>
+        <!-- Social -->
+        <div class="footer__social">
+            <a href="#" class="footer__social-link" aria-label="Facebook">
+                f
+            </a>
+            <a href="#" class="footer__social-link" aria-label="Instagram">
+                ◎
+            </a>
+            <a href="#" class="footer__social-link" aria-label="Twitter">
+                𝕏
+            </a>
+        </div>
+    </div>
+    <!-- Bottom -->
+    <div class="footer__bottom">
+        <div class="footer__bottom-container">
+            <p class="footer__copyright">
+                © {{ currentYear }} StayNest. All rights reserved.
+            </p>
+            <div class="footer__bottom-links">
+                <a routerLink="/terms" class="footer__bottom-link">
+                    Terms
+                </a>
+                <a routerLink="/privacy" class="footer__bottom-link">
+                    Privacy
+                </a>
+            </div>
+        </div>
+    </div>
+</footer>

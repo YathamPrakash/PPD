@@ -1,0 +1,308 @@
+<div class="pg-onboarding">
+
+    <!-- ================================================= -->
+    <!-- PAGE HEADER -->
+    <!-- ================================================= -->
+
+    <header class="pg-onboarding__header">
+
+        <div class="pg-onboarding__header-container">
+
+            <div class="pg-onboarding__header-content">
+
+                <span class="pg-onboarding__eyebrow">
+                    {{ pageContent.eyebrow }}
+                </span>
+
+                <h1 class="pg-onboarding__title">
+                    {{ pageContent.title }}
+                </h1>
+
+                <p class="pg-onboarding__description">
+                    {{ pageContent.description }}
+                </p>
+
+            </div>
+
+        </div>
+
+    </header>
+
+
+    <!-- ================================================= -->
+    <!-- PROGRESS -->
+    <!-- ================================================= -->
+
+    @if (!isSubmitted) {
+
+    <section class="pg-onboarding__progress-section">
+
+        <div class="pg-onboarding__progress-container">
+
+            <nav class="pg-onboarding__progress">
+
+                @for (step of steps; track step.number) {
+
+                <button type="button" class="pg-onboarding__step" [class.pg-onboarding__step--active]="
+                                isStepActive(step.number)
+                            " [class.pg-onboarding__step--completed]="
+                                isStepCompleted(step.number)
+                            " [disabled]="step.number > currentStep" (click)="goToStep(step.number)">
+
+                    <span class="pg-onboarding__step-number">
+
+                        @if (isStepCompleted(step.number)) {
+
+                        ✓
+
+                        } @else {
+
+                        {{ step.number }}
+
+                        }
+
+                    </span>
+
+                    <span class="pg-onboarding__step-label">
+                        {{ step.label }}
+                    </span>
+
+                </button>
+
+
+                @if (!$last) {
+
+                <span class="pg-onboarding__step-line" [class.pg-onboarding__step-line--completed]="
+                                    step.number < currentStep
+                                "></span>
+
+                }
+
+                }
+
+            </nav>
+
+        </div>
+
+    </section>
+
+    }
+
+
+    <!-- ================================================= -->
+    <!-- STEP CONTENT -->
+    <!-- ================================================= -->
+
+    <main class="pg-onboarding__content">
+
+        <!-- ============================================= -->
+        <!-- STEP 1 -->
+        <!-- ============================================= -->
+
+        @if (currentStep === 1) {
+
+        <app-operator-details></app-operator-details>
+
+        }
+
+
+        <!-- ============================================= -->
+        <!-- STEP 2 -->
+        <!-- ============================================= -->
+
+        @if (currentStep === 2) {
+
+        <app-pg-details></app-pg-details>
+
+        }
+
+
+        <!-- ============================================= -->
+        <!-- STEP 3 -->
+        <!-- ============================================= -->
+
+        @if (currentStep === 3) {
+
+        <app-amenties></app-amenties>
+
+        }
+
+
+        <!-- ============================================= -->
+        <!-- STEP 4 -->
+        <!-- ============================================= -->
+
+        @if (currentStep === 4) {
+
+        <app-pg-photos></app-pg-photos>
+
+        }
+
+
+        <!-- ============================================= -->
+        <!-- STEP 5 -->
+        <!-- ============================================= -->
+
+        @if (currentStep === 5) {
+
+        <app-property-owner-details></app-property-owner-details>
+
+        }
+
+
+        <!-- ============================================= -->
+        <!-- STEP 6 -->
+        <!-- ============================================= -->
+
+        @if (currentStep === 6) {
+
+        <app-lease-details></app-lease-details>
+
+        }
+
+
+        <!-- ============================================= -->
+        <!-- STEP 7 -->
+        <!-- ============================================= -->
+
+        @if (currentStep === 7) {
+
+        <app-review-submission></app-review-submission>
+
+        }
+
+
+        <!-- ================================================= -->
+        <!-- NAVIGATION -->
+        <!-- ================================================= -->
+
+        @if (!isSubmitted) {
+
+        <div class="pg-onboarding__navigation">
+
+            <!-- BACK -->
+
+            <button type="button" class="pg-onboarding__button
+                           pg-onboarding__button--back" [disabled]="currentStep === 1" (click)="previousStep()">
+
+                <span>←</span>
+
+                <span>Back</span>
+
+            </button>
+
+
+            <!-- STEP COUNT -->
+
+            <span class="pg-onboarding__navigation-count">
+
+                {{ currentStep }} / {{ steps.length }}
+
+            </span>
+
+
+            <!-- CONTINUE -->
+
+            @if (currentStep < steps.length) { <button type="button" class="pg-onboarding__button
+                               pg-onboarding__button--continue" (click)="nextStep()">
+
+                <span>Continue</span>
+
+                <span>→</span>
+
+                </button>
+
+                }
+
+
+                <!-- SUBMIT -->
+
+                @if (currentStep === steps.length) {
+
+                <button type="button" class="pg-onboarding__button
+                               pg-onboarding__button--continue" (click)="submitOnboarding()">
+
+                    <span>Submit for Verification</span>
+
+                    <span>✓</span>
+
+                </button>
+
+                }
+
+        </div>
+
+        }
+
+
+        <!-- ================================================= -->
+        <!-- SUBMISSION SUCCESS -->
+        <!-- ================================================= -->
+
+        @if (isSubmitted) {
+
+        <section class="pg-onboarding__submitted">
+
+            <div class="pg-onboarding__submitted-icon">
+                ✓
+            </div>
+
+            <span class="pg-onboarding__submitted-status">
+                {{ pageContent.completedStatus }}
+            </span>
+
+            <h2 class="pg-onboarding__submitted-title">
+                {{ pageContent.completedTitle }}
+            </h2>
+
+            <p class="pg-onboarding__submitted-description">
+                {{ pageContent.completedDescription }}
+            </p>
+
+
+            <!-- ========================================= -->
+            <!-- SUBMISSION FLOW -->
+            <!-- ========================================= -->
+
+            <div class="pg-onboarding__submission-flow">
+
+                @for (
+                item of submissionFlow;
+                track item.number
+                ) {
+
+                <div class="pg-onboarding__submission-item">
+
+                    <span class="pg-onboarding__submission-number">
+                        {{ item.number }}
+                    </span>
+
+                    <span class="pg-onboarding__submission-title">
+                        {{ item.title }}
+                    </span>
+
+                </div>
+
+
+                @if (!$last) {
+
+                <span class="pg-onboarding__submission-line"></span>
+
+                }
+
+                }
+
+            </div>
+
+
+            <button type="button" class="pg-onboarding__new-listing" (click)="startNewListing()">
+                Start New Listing
+            </button>
+
+        </section>
+
+        }
+
+    </main>
+
+</div>

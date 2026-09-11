@@ -1,0 +1,274 @@
+<div class="property-owner-details">
+
+    <!-- ================================================= -->
+    <!-- HEADER -->
+    <!-- ================================================= -->
+
+    <div class="property-owner-details__header">
+
+        <span class="property-owner-details__step">
+            {{ pageContent.step }}
+        </span>
+
+        <h2 class="property-owner-details__title">
+            {{ pageContent.title }}
+        </h2>
+
+        <p class="property-owner-details__description">
+            {{ pageContent.description }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- OWNER NOTE -->
+    <!-- ================================================= -->
+
+    <div class="property-owner-details__note">
+
+        <span class="property-owner-details__note-icon">
+            ℹ
+        </span>
+
+        <p>
+            {{ pageContent.note }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- OWNER NAME -->
+    <!-- ================================================= -->
+
+    <div class="property-owner-details__field">
+
+        <label class="property-owner-details__label">
+
+            {{ ownerName.label }}
+
+            <span class="property-owner-details__required">
+                *
+            </span>
+
+        </label>
+
+        <input
+            type="text"
+            class="property-owner-details__input"
+            [placeholder]="ownerName.placeholder"
+        />
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- PHONE + EMAIL -->
+    <!-- ================================================= -->
+
+    <div class="property-owner-details__grid">
+
+
+        <!-- PHONE -->
+
+        <div class="property-owner-details__field">
+
+            <label class="property-owner-details__label">
+
+                {{ ownerPhone.label }}
+
+                <span class="property-owner-details__required">
+                    *
+                </span>
+
+            </label>
+
+
+            <div class="property-owner-details__phone">
+
+                <span class="property-owner-details__country-code">
+                    {{ ownerPhone.countryCode }}
+                </span>
+
+                <input
+                    type="text"
+                    class="property-owner-details__phone-input"
+                    [placeholder]="ownerPhone.placeholder"
+                />
+
+            </div>
+
+        </div>
+
+
+        <!-- EMAIL -->
+
+        <div class="property-owner-details__field">
+
+            <label class="property-owner-details__label">
+
+                {{ ownerEmail.label }}
+
+                <span class="property-owner-details__required">
+                    *
+                </span>
+
+            </label>
+
+            <input
+                type="email"
+                class="property-owner-details__input"
+                [placeholder]="ownerEmail.placeholder"
+            />
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- RELATIONSHIP -->
+    <!-- ================================================= -->
+
+    <div class="property-owner-details__field">
+
+        <label class="property-owner-details__label">
+
+            {{ relationship.label }}
+
+            <span class="property-owner-details__required">
+                *
+            </span>
+
+        </label>
+
+
+        <select class="property-owner-details__input">
+
+            <option value="">
+                {{ relationship.placeholder }}
+            </option>
+
+            @for (
+                option of relationship.options;
+                track option.value
+            ) {
+
+                <option [value]="option.value">
+
+                    {{ option.label }}
+
+                </option>
+
+            }
+
+        </select>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- OWNER ADDRESS -->
+    <!-- ================================================= -->
+
+    <div class="property-owner-details__field">
+
+        <label class="property-owner-details__label">
+
+            {{ ownerAddress.label }}
+
+        </label>
+
+        <input
+            type="text"
+            class="property-owner-details__input"
+            [placeholder]="ownerAddress.placeholder"
+        />
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- VERIFICATION SECTION -->
+    <!-- ================================================= -->
+
+    <div class="property-owner-details__verification">
+
+        <div class="property-owner-details__verification-header">
+
+            <div class="property-owner-details__verification-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <h3>
+                    {{ verification.title }}
+                </h3>
+
+                <span>
+                    {{ verification.status }}
+                </span>
+
+            </div>
+
+        </div>
+
+
+        <p class="property-owner-details__verification-description">
+
+            {{ verification.description }}
+
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- INFORMATION -->
+    <!-- ================================================= -->
+
+    <div class="property-owner-details__info">
+
+        <span class="property-owner-details__info-icon">
+            {{ information.icon }}
+        </span>
+
+        <p>
+            {{ information.message }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- ACTIONS -->
+    <!-- ================================================= -->
+
+    <!-- <div class="property-owner-details__actions">
+
+        <button
+            type="button"
+            class="property-owner-details__button property-owner-details__button--secondary"
+            (click)="onBack()"
+        >
+
+            ← {{ buttons.back }}
+
+        </button>
+
+
+        <button
+            type="button"
+            class="property-owner-details__button property-owner-details__button--primary"
+            (click)="onContinue()"
+        >
+
+            {{ buttons.continue }} →
+
+        </button>
+
+    </div> -->
+
+</div>

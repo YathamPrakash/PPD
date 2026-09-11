@@ -1,0 +1,106 @@
+<section class="featured-pgs">
+    <div class="featured-pgs__container">
+        <!-- ============================================
+             SECTION HEADER
+        ============================================= -->
+        <div class="featured-pgs__header">
+            <div class="featured-pgs__heading">
+                <span class="featured-pgs__eyebrow">
+                    FEATURED STAYS
+                </span>
+                <h2 class="featured-pgs__title">
+                    PGs near you
+                </h2>
+                <p class="featured-pgs__subtitle">
+                    Handpicked stays with beds available now.
+                </p>
+            </div>
+            <button type="button" class="featured-pgs__view-all" (click)="viewAllPGs()">
+                <span>
+                    View all PGs
+                </span>
+                <svg viewBox="0 0 24 24" aria-hidden="true">
+                    <path d="M5 12h14" />
+                    <path d="m13 6 6 6-6 6" />
+                </svg>
+            </button>
+        </div>
+        <!-- ============================================
+             PG GRID
+        ============================================= -->
+        <div class="featured-pgs__grid">
+            <article class="pg-card" *ngFor="let pg of pgs" (click)="viewPG(pg)">
+                <!-- ====================================
+                     IMAGE
+                ==================================== -->
+                <div class="pg-card__image-wrapper">
+                    <img class="pg-card__image" [src]="pg.image" [alt]="pg.name" loading="lazy" />
+                    <!-- Verified -->
+                    <div class="pg-card__verified" *ngIf="pg.verified">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m5 12 4 4L19 6" />
+                        </svg>
+                        Verified
+                    </div>
+                    <!-- Beds -->
+                    <span class="pg-card__beds">
+                        {{ pg.bedsLeft }}
+                        {{ pg.bedsLeft === 1 ? 'Bed' : 'Beds' }}
+                        Left
+                    </span>
+                    <!-- Favorite -->
+                    <button type="button" class="pg-card__favorite" aria-label="Add to favorites"
+                        (click)="toggleFavorite(pg); $event.stopPropagation()">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path
+                                d="M20.8 8.7c0 5-8.8 10.3-8.8 10.3S3.2 13.7 3.2 8.7A4.7 4.7 0 0 1 12 6.2a4.7 4.7 0 0 1 8.8 2.5Z" />
+                        </svg>
+                    </button>
+                </div>
+                <!-- ====================================
+                     CONTENT
+                ==================================== -->
+                <div class="pg-card__content">
+                    <!-- Name -->
+                    <h3 class="pg-card__title">
+                        {{ pg.name }}
+                    </h3>
+                    <!-- Location -->
+                    <div class="pg-card__location">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z" />
+                            <circle cx="12" cy="9" r="2.2" />
+                        </svg>
+                        <span>
+                            {{ pg.location }}
+                        </span>
+                    </div>
+                    <!-- Sharing -->
+                    <div class="pg-card__sharing">
+                        <span *ngFor="let sharing of pg.sharing">
+                            {{ sharing }}
+                        </span>
+                    </div>
+                    <!-- Bottom -->
+                    <div class="pg-card__footer">
+                        <div class="pg-card__price">
+                            <span>
+                                Starting from
+                            </span>
+                            <strong>
+                                {{ pg.price | currency:'INR':'symbol':'1.0-0' }}
+                            </strong>
+                            <small>
+                                / month
+                            </small>
+                        </div>
+                        <button type="button" class="pg-card__view-button"
+                            (click)="viewPG(pg); $event.stopPropagation()">
+                            View
+                        </button>
+                    </div>
+                </div>
+            </article>
+        </div>
+    </div>
+</section>

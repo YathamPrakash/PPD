@@ -1,0 +1,260 @@
+<div class="review-submission">
+
+    <!-- ================================================= -->
+    <!-- HEADER -->
+    <!-- ================================================= -->
+
+    <div class="review-submission__header">
+
+        <span class="review-submission__step">
+            {{ pageContent.step }}
+        </span>
+
+        <h2 class="review-submission__title">
+            {{ pageContent.title }}
+        </h2>
+
+        <p class="review-submission__description">
+            {{ pageContent.description }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- REVIEW MESSAGE -->
+    <!-- ================================================= -->
+
+    <div class="review-submission__message">
+
+        <span class="review-submission__message-icon">
+            ✓
+        </span>
+
+        <p>
+            {{ pageContent.reviewMessage }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- REVIEW SECTIONS -->
+    <!-- ================================================= -->
+
+    <div class="review-submission__sections">
+
+        @for (
+            section of reviewSections;
+            track section.id
+        ) {
+
+            <section class="review-submission__section">
+
+
+                <!-- ===================================== -->
+                <!-- SECTION HEADER -->
+                <!-- ===================================== -->
+
+                <div class="review-submission__section-header">
+
+                    <div class="review-submission__section-heading">
+
+                        <span class="review-submission__section-icon">
+                            {{ section.icon }}
+                        </span>
+
+                        <h3>
+                            {{ section.title }}
+                        </h3>
+
+                    </div>
+
+
+                    <button
+                        type="button"
+                        class="review-submission__edit"
+                        (click)="onEdit(section)"
+                    >
+
+                        Edit
+
+                    </button>
+
+                </div>
+
+
+                <!-- ===================================== -->
+                <!-- SECTION CONTENT -->
+                <!-- ===================================== -->
+
+                <div class="review-submission__items">
+
+                    @for (
+                        item of section.items;
+                        track item.label
+                    ) {
+
+                        <div class="review-submission__item">
+
+                            <span class="review-submission__item-label">
+                                {{ item.label }}
+                            </span>
+
+                            <span class="review-submission__item-value">
+                                {{ item.value }}
+                            </span>
+
+                        </div>
+
+                    }
+
+                </div>
+
+            </section>
+
+        }
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- WHAT HAPPENS NEXT -->
+    <!-- ================================================= -->
+
+    <section class="review-submission__verification">
+
+        <div class="review-submission__verification-header">
+
+            <span class="review-submission__verification-icon">
+                ✓
+            </span>
+
+            <div>
+
+                <h3>
+                    {{ verification.title }}
+                </h3>
+
+            </div>
+
+        </div>
+
+
+        <div class="review-submission__verification-steps">
+
+            @for (
+                step of verification.steps;
+                track step.number
+            ) {
+
+                <div class="review-submission__verification-step">
+
+                    <div class="review-submission__step-number">
+                        {{ step.number }}
+                    </div>
+
+                    <div class="review-submission__step-content">
+
+                        <strong>
+                            {{ step.title }}
+                        </strong>
+
+                        <span>
+                            {{ step.description }}
+                        </span>
+
+                    </div>
+
+                </div>
+
+            }
+
+        </div>
+
+    </section>
+
+
+    <!-- ================================================= -->
+    <!-- AGREEMENT -->
+    <!-- ================================================= -->
+
+    <div
+        class="review-submission__agreement"
+        [class.review-submission__agreement--selected]="
+            agreement.accepted
+        "
+        (click)="toggleAgreement()"
+    >
+
+        <span
+            class="review-submission__checkbox"
+            [class.review-submission__checkbox--selected]="
+                agreement.accepted
+            "
+        >
+
+            @if (agreement.accepted) {
+                ✓
+            }
+
+        </span>
+
+
+        <span class="review-submission__agreement-text">
+
+            {{ agreement.text }}
+
+        </span>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- SUBMISSION MESSAGE -->
+    <!-- ================================================= -->
+
+    <div class="review-submission__submit-info">
+
+        <span class="review-submission__submit-info-icon">
+            ℹ
+        </span>
+
+        <p>
+            {{ pageContent.submitMessage }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- ACTIONS -->
+    <!-- ================================================= -->
+
+    <!-- <div class="review-submission__actions">
+
+        <button
+            type="button"
+            class="review-submission__button review-submission__button--secondary"
+            (click)="onBack()"
+        >
+
+            ← {{ buttons.back }}
+
+        </button>
+
+
+        <button
+            type="button"
+            class="review-submission__button review-submission__button--primary"
+            [disabled]="!agreement.accepted"
+            (click)="onSubmit()"
+        >
+
+            {{ buttons.submit }}
+
+        </button>
+
+    </div> -->
+
+</div>

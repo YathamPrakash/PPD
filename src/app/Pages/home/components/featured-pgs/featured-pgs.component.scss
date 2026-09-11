@@ -1,0 +1,392 @@
+@import "../../../../../Styles/variables.scss";
+@import "../../../../../Styles/mixins.scss";
+// ======================================================
+// FEATURED PGs
+// ======================================================
+.featured-pgs {
+    width: 100%;
+    padding: $spacing-2xl 0;
+    background: $color-white;
+    // ==================================================
+    // CONTAINER
+    // ==================================================
+    &__container {
+        width: min(100% - 2 * $spacing-lg,$container-width );
+        margin: 0 auto;
+    }
+    // ==================================================
+    // HEADER
+    // ==================================================
+    &__header {
+        display: flex;
+        align-items: flex-end;
+        justify-content: space-between;
+        gap: $spacing-lg;
+        margin-bottom: $spacing-lg;
+    }
+    &__heading {
+        min-width: 0;
+    }
+    &__eyebrow {
+        display: block;
+        margin-bottom: .35rem;
+        color: $color-accent;
+        @include montserrat(700);
+        font-size: $font-size-xs;
+        letter-spacing: .08em;
+    }
+    &__title {
+        margin: 0;
+        color: $text-primary;
+        @include bricolage-grotesque(600);
+        font-size: $font-size-3xl;
+        line-height: 1.15;
+    }
+    &__subtitle {
+        margin: .45rem 0 0;
+        color: $text-secondary;
+        @include montserrat(400);
+        font-size: $font-size-sm;
+        line-height: 1.5;
+    }
+    // ==================================================
+    // VIEW ALL
+    // ==================================================
+    &__view-all {
+        flex-shrink: 0;
+        display: inline-flex;
+        align-items: center;
+        gap: .45rem;
+        padding: .65rem .85rem;
+        border: 0;
+        background: transparent;
+        color: $color-primary;
+        cursor: pointer;
+        @include montserrat(600);
+        font-size: $font-size-sm;
+        transition:
+            color $transition-fast,
+            transform $transition-fast;
+        svg {
+            width: 18px;
+            height: 18px;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+        &:hover {
+            color: $color-primary-dark;
+            transform: translateX(3px);
+        }
+    }
+    // ==================================================
+    // GRID
+    // ==================================================
+    &__grid {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: $spacing-lg;
+    }
+    // ==================================================
+    // PG CARD
+    // ==================================================
+    .pg-card {
+        min-width: 0;
+        overflow: hidden;
+        background: $background-card;
+        border: 1px solid $border-color;
+        border-radius: $radius-xl;
+        box-shadow: $shadow-sm;
+        cursor: pointer;
+        transition:
+            transform $transition-normal,
+            box-shadow $transition-normal,
+            border-color $transition-normal;
+        &:hover {
+            transform: translateY(-5px);
+            border-color: $border-light;
+            box-shadow: $shadow-md;
+        }
+        // ==============================================
+        // IMAGE
+        // ==============================================
+        &__image-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 16 / 10;
+            overflow: hidden;
+            background: $background-section;
+        }
+        &__image {
+            width: 100%;
+            height: 100%;
+            display: block;
+            object-fit: cover;
+            transition: transform $transition-slow;
+        }
+        &:hover &__image {
+            transform: scale(1.04);
+        }
+        // ==============================================
+        // VERIFIED
+        // ==============================================
+        &__verified {
+            position: absolute;
+            top: .75rem;
+            left: .75rem;
+            display: inline-flex;
+            align-items: center;
+            gap: .3rem;
+            padding: .35rem .6rem;
+            border-radius: $radius-round;
+            background: rgba(255, 255, 255, .94);
+            color: $color-primary;
+            @include montserrat(600);
+            font-size: .68rem;
+            box-shadow: $shadow-sm;
+            svg {
+                width: 13px;
+                height: 13px;
+                fill: none;
+                stroke: currentColor;
+                stroke-width: 2.5;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+            }
+        }
+        // ==============================================
+        // BEDS
+        // ==============================================
+        &__beds {
+            position: absolute;
+            top: .75rem;
+            right: .75rem;
+            padding: .4rem .65rem;
+            border-radius: $radius-sm;
+            background: $color-accent;
+            color: $text-primary;
+            @include montserrat(700);
+            font-size: .68rem;
+        }
+        // ==============================================
+        // FAVORITE
+        // ==============================================
+        &__favorite {
+            position: absolute;
+            right: .75rem;
+            bottom: .75rem;
+            width: 38px;
+            height: 38px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            border: 0;
+            border-radius: $radius-round;
+            background: rgba(255, 255, 255, .95);
+            color: $text-secondary;
+            cursor: pointer;
+            box-shadow: $shadow-sm;
+            transition:
+                color $transition-fast,
+                transform $transition-fast,
+                background-color $transition-fast;
+            svg {
+                width: 18px;
+                height: 18px;
+                fill: none;
+                stroke: currentColor;
+                stroke-width: 1.8;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+            }
+            &:hover {
+                color: $color-danger;
+                transform: scale(1.05);
+                background: $color-white;
+            }
+        }
+        // ==============================================
+        // CONTENT
+        // ==============================================
+        &__content {
+            padding: $spacing-md;
+        }
+        &__title {
+            overflow: hidden;
+            margin: 0;
+            color: $text-primary;
+            @include bricolage-grotesque(600);
+            font-size: $font-size-lg;
+            line-height: 1.3;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+        }
+        // ==============================================
+        // LOCATION
+        // ==============================================
+        &__location {
+            display: flex;
+            align-items: center;
+            gap: .4rem;
+            margin-top: .45rem;
+            color: $text-secondary;
+            @include montserrat(400);
+            font-size: $font-size-xs;
+            svg {
+                width: 15px;
+                height: 15px;
+                flex-shrink: 0;
+                fill: none;
+                stroke: $color-primary;
+                stroke-width: 1.8;
+                stroke-linecap: round;
+                stroke-linejoin: round;
+            }
+            span {
+                overflow: hidden;
+                white-space: nowrap;
+                text-overflow: ellipsis;
+            }
+        }
+        // ==============================================
+        // SHARING
+        // ==============================================
+        &__sharing {
+            display: flex;
+            flex-wrap: wrap;
+            gap: .4rem;
+            margin-top: $spacing-sm;
+            span {
+                padding: .35rem .55rem;
+                border-radius: $radius-sm;
+                background: $background-section;
+                color: $color-primary;
+                @include montserrat(500);
+                font-size: .68rem;
+            }
+        }
+        // ==============================================
+        // FOOTER
+        // ==============================================
+        &__footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: $spacing-sm;
+            margin-top: $spacing-md;
+            padding-top: $spacing-sm;
+            border-top: 1px solid $border-light;
+        }
+        &__price {
+            min-width: 0;
+            span {
+                display: block;
+                margin-bottom: .1rem;
+                color: $text-muted;
+                @include montserrat(400);
+                font-size: .65rem;
+            }
+            strong {
+                color: $text-primary;
+                @include montserrat(700);
+                font-size: $font-size-md;
+            }
+            small {
+                color: $text-secondary;
+                @include montserrat(400);
+                font-size: .68rem;
+            }
+        }
+        // ==============================================
+        // VIEW BUTTON
+        // ==============================================
+        &__view-button {
+            flex-shrink: 0;
+            min-height: 38px;
+            padding: .5rem .9rem;
+            border: 1px solid $color-primary;
+            border-radius: $radius-sm;
+            background: $color-white;
+            color: $color-primary;
+            cursor: pointer;
+            @include montserrat(600);
+            font-size: $font-size-xs;
+            transition:
+                background-color $transition-fast,
+                color $transition-fast;
+            &:hover {
+                background: $color-primary;
+                color: $color-white;
+            }
+        }
+    }
+    // ==================================================
+    // LAPTOP
+    // ==================================================
+    @media (max-width: $laptop) {
+        &__container {
+            width: min(100% - 2 * $spacing-md,
+                    $container-width );
+        }
+        &__grid {
+            gap: $spacing-md;
+        }
+        .pg-card {
+            &__content {
+                padding: $spacing-sm;
+            }
+        }
+    }
+    // ==================================================
+    // TABLET
+    // ==================================================
+    @media (max-width: $tablet) {
+        &__grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+        .pg-card:last-child {
+            grid-column: 1 / -1;
+            width: calc(50% - #{$spacing-sm});
+            margin: 0 auto;
+        }
+    }
+    // ==================================================
+    // MOBILE
+    // ==================================================
+    @media (max-width: $mobile) {
+        padding: $spacing-xl 0;
+        &__container {
+            width: calc(100% - 2 * $spacing-sm);
+        }
+        &__header {
+            align-items: flex-start;
+            flex-direction: column;
+            gap: $spacing-sm;
+            margin-bottom: $spacing-md;
+        }
+        &__title {
+            font-size: $font-size-2xl;
+        }
+        &__view-all {
+            padding-left: 0;
+        }
+        &__grid {
+            grid-template-columns: 1fr;
+            gap: $spacing-md;
+        }
+        .pg-card:last-child {
+            grid-column: auto;
+            width: 100%;
+        }
+        .pg-card {
+            &__image-wrapper {
+                aspect-ratio: 16 / 10;
+            }
+            &__content {
+                padding: $spacing-md;
+            }
+        }
+    }
+}

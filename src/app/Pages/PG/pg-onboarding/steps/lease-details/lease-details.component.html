@@ -1,0 +1,408 @@
+<div class="lease-details">
+
+    <!-- ================================================= -->
+    <!-- HEADER -->
+    <!-- ================================================= -->
+
+    <div class="lease-details__header">
+
+        <span class="lease-details__step">
+            {{ pageContent.step }}
+        </span>
+
+        <h2 class="lease-details__title">
+            {{ pageContent.title }}
+        </h2>
+
+        <p class="lease-details__description">
+            {{ pageContent.description }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- NOTE -->
+    <!-- ================================================= -->
+
+    <div class="lease-details__note">
+
+        <span class="lease-details__note-icon">
+            ℹ
+        </span>
+
+        <p>
+            {{ pageContent.note }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- LEASE DATES -->
+    <!-- ================================================= -->
+
+    <div class="lease-details__grid">
+
+        <!-- START DATE -->
+
+        <div class="lease-details__field">
+
+            <label class="lease-details__label">
+
+                {{ leaseStartDate.label }}
+
+                <span class="lease-details__required">
+                    *
+                </span>
+
+            </label>
+
+            <input
+                type="date"
+                class="lease-details__input"
+                [attr.aria-label]="leaseStartDate.placeholder"
+            />
+
+        </div>
+
+
+        <!-- END DATE -->
+
+        <div class="lease-details__field">
+
+            <label class="lease-details__label">
+
+                {{ leaseEndDate.label }}
+
+                <span class="lease-details__required">
+                    *
+                </span>
+
+            </label>
+
+            <input
+                type="date"
+                class="lease-details__input"
+                [attr.aria-label]="leaseEndDate.placeholder"
+            />
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- LEASE DURATION -->
+    <!-- ================================================= -->
+
+    <div class="lease-details__field">
+
+        <label class="lease-details__label">
+
+            {{ leaseDuration.label }}
+
+            <span class="lease-details__required">
+                *
+            </span>
+
+        </label>
+
+        <select class="lease-details__input">
+
+            <option value="">
+                {{ leaseDuration.placeholder }}
+            </option>
+
+            @for (
+                option of leaseDuration.options;
+                track option.value
+            ) {
+
+                <option [value]="option.value">
+                    {{ option.label }}
+                </option>
+
+            }
+
+        </select>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- FINANCIAL DETAILS -->
+    <!-- ================================================= -->
+
+    <div class="lease-details__section">
+
+        <h3 class="lease-details__section-title">
+            {{ financialSection.title }}
+        </h3>
+
+        <p class="lease-details__section-description">
+            {{ financialSection.description }}
+        </p>
+
+    </div>
+
+
+    <div class="lease-details__grid">
+
+        <!-- MONTHLY LEASE -->
+
+        <div class="lease-details__field">
+
+            <label class="lease-details__label">
+
+                {{ leaseAmount.label }}
+
+                <span class="lease-details__required">
+                    *
+                </span>
+
+            </label>
+
+            <div class="lease-details__amount">
+
+                <span class="lease-details__currency">
+                    {{ leaseAmount.currency }}
+                </span>
+
+                <input
+                    type="number"
+                    class="lease-details__amount-input"
+                    [placeholder]="leaseAmount.placeholder"
+                />
+
+            </div>
+
+        </div>
+
+
+        <!-- SECURITY DEPOSIT -->
+
+        <div class="lease-details__field">
+
+            <label class="lease-details__label">
+
+                {{ securityDeposit.label }}
+
+            </label>
+
+            <div class="lease-details__amount">
+
+                <span class="lease-details__currency">
+                    {{ securityDeposit.currency }}
+                </span>
+
+                <input
+                    type="number"
+                    class="lease-details__amount-input"
+                    [placeholder]="securityDeposit.placeholder"
+                />
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- AGREEMENT TYPE -->
+    <!-- ================================================= -->
+
+    <div class="lease-details__field">
+
+        <label class="lease-details__label">
+
+            {{ agreementType.label }}
+
+            <span class="lease-details__required">
+                *
+            </span>
+
+        </label>
+
+        <div class="lease-details__options">
+
+            @for (
+                option of agreementType.options;
+                track option.value
+            ) {
+
+                <label class="lease-details__option">
+
+                    <input
+                        type="radio"
+                        name="agreementType"
+                        [value]="option.value"
+                    />
+
+                    <span>
+                        {{ option.label }}
+                    </span>
+
+                </label>
+
+            }
+
+        </div>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- DOCUMENTS -->
+    <!-- ================================================= -->
+
+    <div class="lease-details__section">
+
+        <h3 class="lease-details__section-title">
+            {{ documentsSection.title }}
+        </h3>
+
+        <p class="lease-details__section-description">
+            {{ documentsSection.description }}
+        </p>
+
+    </div>
+
+
+    <div class="lease-details__documents">
+
+        @for (
+            document of leaseDocuments;
+            track document.id
+        ) {
+
+            <div class="lease-details__document">
+
+                <div class="lease-details__document-icon">
+                    📄
+                </div>
+
+
+                <div class="lease-details__document-content">
+
+                    <div class="lease-details__document-title">
+
+                        <strong>
+                            {{ document.name }}
+                        </strong>
+
+                        @if (document.required) {
+
+                            <span class="lease-details__required-badge">
+                                Required
+                            </span>
+
+                        }
+
+                    </div>
+
+                    <span>
+                        {{ document.description }}
+                    </span>
+
+                </div>
+
+
+                <button
+                    type="button"
+                    class="lease-details__upload-button"
+                    (click)="onUploadDocument(document)"
+                >
+
+                    Upload
+
+                </button>
+
+            </div>
+
+        }
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- VERIFICATION -->
+    <!-- ================================================= -->
+
+    <div class="lease-details__verification">
+
+        <div class="lease-details__verification-header">
+
+            <div class="lease-details__verification-icon">
+                ✓
+            </div>
+
+            <div>
+
+                <h3>
+                    {{ verification.title }}
+                </h3>
+
+                <span>
+                    {{ verification.status }}
+                </span>
+
+            </div>
+
+        </div>
+
+        <p>
+            {{ verification.description }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- INFORMATION -->
+    <!-- ================================================= -->
+
+    <div class="lease-details__info">
+
+        <span class="lease-details__info-icon">
+            {{ information.icon }}
+        </span>
+
+        <p>
+            {{ information.message }}
+        </p>
+
+    </div>
+
+
+    <!-- ================================================= -->
+    <!-- ACTIONS -->
+    <!-- ================================================= -->
+
+    <!-- <div class="lease-details__actions">
+
+        <button
+            type="button"
+            class="lease-details__button lease-details__button--secondary"
+            (click)="onBack()"
+        >
+
+            ← {{ buttons.back }}
+
+        </button>
+
+
+        <button
+            type="button"
+            class="lease-details__button lease-details__button--primary"
+            (click)="onContinue()"
+        >
+
+            {{ buttons.continue }} →
+
+        </button>
+
+    </div> -->
+
+</div>

@@ -1,0 +1,597 @@
+@import "../../../../../../Styles/mixins.scss";
+@import "../../../../../../Styles/variables.scss";
+
+
+// =====================================================
+// REVIEW SUBMISSION
+// =====================================================
+
+.review-submission {
+    width: 100%;
+}
+
+
+// =====================================================
+// HEADER
+// =====================================================
+
+.review-submission__header {
+    margin-bottom: $spacing-xl;
+}
+
+.review-submission__step {
+    display: block;
+
+    margin-bottom: $spacing-xs;
+
+    color: $color-primary;
+
+    font-size: $font-size-xs;
+
+    font-weight: 700;
+
+    letter-spacing: 0.8px;
+}
+
+.review-submission__title {
+    margin: 0 0 $spacing-xs;
+
+    color: $text-primary;
+
+    font-size: $font-size-2xl;
+
+    font-weight: 700;
+
+    line-height: 1.3;
+}
+
+.review-submission__description {
+    max-width: 650px;
+
+    margin: 0;
+
+    color: $text-secondary;
+
+    font-size: $font-size-sm;
+
+    line-height: 1.5;
+}
+
+
+// =====================================================
+// REVIEW MESSAGE
+// =====================================================
+
+.review-submission__message {
+    @include flex(flex-start,
+        center,
+        row,
+        $spacing-sm );
+
+    padding: $spacing-sm;
+
+    margin-bottom: $spacing-lg;
+
+    border: 1px solid $border-light;
+
+    border-radius: $radius-md;
+
+    background: $background-section;
+}
+
+.review-submission__message-icon {
+    @include flex(center, center);
+
+    flex-shrink: 0;
+
+    width: 22px;
+
+    height: 22px;
+
+    border-radius: $radius-round;
+
+    background: rgba(67, 181, 163, 0.15);
+
+    color: $color-primary;
+
+    font-size: $font-size-xs;
+
+    font-weight: 700;
+}
+
+.review-submission__message p {
+    margin: 0;
+
+    color: $text-secondary;
+
+    font-size: $font-size-xs;
+
+    line-height: 1.5;
+}
+
+
+// =====================================================
+// REVIEW SECTIONS
+// =====================================================
+
+.review-submission__sections {
+    @include flex(flex-start,
+        stretch,
+        column,
+        $spacing-md );
+}
+
+.review-submission__section {
+    padding: $spacing-md;
+
+    border: 1px solid $border-color;
+
+    border-radius: $radius-md;
+
+    background: $background-card;
+
+    @include shadow(sm);
+}
+
+
+// =====================================================
+// SECTION HEADER
+// =====================================================
+
+.review-submission__section-header {
+    @include flex(space-between,
+        center);
+
+    padding-bottom: $spacing-sm;
+
+    margin-bottom: $spacing-sm;
+
+    border-bottom: 1px solid $border-light;
+}
+
+.review-submission__section-heading {
+    @include flex(flex-start,
+        center,
+        row,
+        $spacing-sm );
+}
+
+.review-submission__section-icon {
+    @include flex(center, center);
+
+    width: 34px;
+
+    height: 34px;
+
+    border-radius: $radius-sm;
+
+    background: rgba(67, 181, 163, 0.12);
+
+    font-size: $font-size-md;
+}
+
+.review-submission__section-header h3 {
+    margin: 0;
+
+    color: $text-primary;
+
+    font-size: $font-size-md;
+
+    font-weight: 700;
+}
+
+
+// =====================================================
+// EDIT
+// =====================================================
+
+.review-submission__edit {
+    @include button(.35rem,
+        .75rem,
+        $radius-sm );
+
+    border: 1px solid $border-color;
+
+    background: $background-card;
+
+    color: $color-primary;
+
+    font-family: inherit;
+
+    font-size: $font-size-xs;
+
+    font-weight: 600;
+}
+
+.review-submission__edit:hover {
+    border-color: $color-primary-light;
+
+    background: $background-section;
+}
+
+
+// =====================================================
+// REVIEW ITEMS
+// =====================================================
+
+.review-submission__items {
+    @include grid(1fr 1fr,
+        $spacing-sm );
+}
+
+.review-submission__item {
+    @include flex(flex-start,
+        flex-start,
+        column,
+        $spacing-xs );
+
+    padding: $spacing-xs 0;
+}
+
+.review-submission__item-label {
+    color: $text-muted;
+
+    font-size: $font-size-xs;
+}
+
+.review-submission__item-value {
+    color: $text-primary;
+
+    font-size: $font-size-sm;
+
+    font-weight: 500;
+
+    line-height: 1.45;
+}
+
+
+// =====================================================
+// VERIFICATION
+// =====================================================
+
+.review-submission__verification {
+    padding: $spacing-lg;
+
+    margin-top: $spacing-lg;
+
+    border: 1px solid rgba(11, 107, 90, 0.18);
+
+    border-radius: $radius-md;
+
+    background: $background-section;
+}
+
+.review-submission__verification-header {
+    @include flex(flex-start,
+        center,
+        row,
+        $spacing-sm );
+
+    margin-bottom: $spacing-lg;
+}
+
+.review-submission__verification-icon {
+    @include flex(center, center);
+
+    width: 34px;
+
+    height: 34px;
+
+    border-radius: $radius-round;
+
+    background: rgba(67, 181, 163, 0.15);
+
+    color: $color-primary;
+
+    font-size: $font-size-sm;
+
+    font-weight: 700;
+}
+
+.review-submission__verification-header h3 {
+    margin: 0;
+
+    color: $text-primary;
+
+    font-size: $font-size-md;
+
+    font-weight: 700;
+}
+
+
+// =====================================================
+// VERIFICATION STEPS
+// =====================================================
+
+.review-submission__verification-steps {
+    @include flex(flex-start,
+        stretch,
+        column,
+        $spacing-md );
+}
+
+.review-submission__verification-step {
+    @include flex(flex-start,
+        flex-start,
+        row,
+        $spacing-sm );
+}
+
+.review-submission__step-number {
+    @include flex(center, center);
+
+    flex-shrink: 0;
+
+    width: 28px;
+
+    height: 28px;
+
+    border-radius: $radius-round;
+
+    background: $color-primary;
+
+    color: $text-light;
+
+    font-size: $font-size-xs;
+
+    font-weight: 700;
+}
+
+.review-submission__step-content {
+    @include flex(flex-start,
+        flex-start,
+        column,
+        $spacing-xs );
+}
+
+.review-submission__step-content strong {
+    color: $text-primary;
+
+    font-size: $font-size-sm;
+
+    font-weight: 600;
+}
+
+.review-submission__step-content span {
+    color: $text-secondary;
+
+    font-size: $font-size-xs;
+
+    line-height: 1.45;
+}
+
+
+// =====================================================
+// AGREEMENT
+// =====================================================
+
+.review-submission__agreement {
+    @include flex(flex-start,
+        flex-start,
+        row,
+        $spacing-sm );
+
+    padding: $spacing-md;
+
+    margin-top: $spacing-lg;
+
+    border: 1px solid $border-color;
+
+    border-radius: $radius-md;
+
+    background: $background-card;
+
+    cursor: pointer;
+
+    transition: $transition-fast;
+}
+
+.review-submission__agreement:hover {
+    border-color: $color-primary-light;
+}
+
+.review-submission__agreement--selected {
+    border-color: $color-primary;
+
+    background: rgba(11, 107, 90, 0.04);
+}
+
+
+// =====================================================
+// CHECKBOX
+// =====================================================
+
+.review-submission__checkbox {
+    @include flex(center, center);
+
+    flex-shrink: 0;
+
+    width: 20px;
+
+    height: 20px;
+
+    box-sizing: border-box;
+
+    border: 1px solid $border-dark;
+
+    border-radius: $radius-xs;
+
+    background: $background-card;
+
+    color: transparent;
+
+    font-size: $font-size-xs;
+
+    font-weight: 700;
+}
+
+.review-submission__checkbox--selected {
+    border-color: $color-primary;
+
+    background: $color-primary;
+
+    color: $text-light;
+}
+
+.review-submission__agreement-text {
+    color: $text-secondary;
+
+    font-size: $font-size-xs;
+
+    line-height: 1.55;
+}
+
+
+// =====================================================
+// SUBMIT INFO
+// =====================================================
+
+.review-submission__submit-info {
+    @include flex(flex-start,
+        flex-start,
+        row,
+        $spacing-sm );
+
+    padding: $spacing-sm;
+
+    margin-top: $spacing-md;
+
+    border: 1px solid $border-light;
+
+    border-radius: $radius-md;
+
+    background: $background-section;
+}
+
+.review-submission__submit-info-icon {
+    @include flex(center, center);
+
+    flex-shrink: 0;
+
+    width: 20px;
+
+    height: 20px;
+
+    border-radius: $radius-round;
+
+    background: rgba(67, 181, 163, 0.15);
+
+    color: $color-primary;
+
+    font-size: $font-size-xs;
+
+    font-weight: 700;
+}
+
+.review-submission__submit-info p {
+    margin: 0;
+
+    color: $text-secondary;
+
+    font-size: $font-size-xs;
+
+    line-height: 1.5;
+}
+
+
+// =====================================================
+// ACTIONS
+// =====================================================
+
+.review-submission__actions {
+    @include flex(space-between,
+        center,
+        row,
+        $spacing-sm );
+
+    margin-top: $spacing-xl;
+}
+
+
+// =====================================================
+// BUTTONS
+// =====================================================
+
+.review-submission__button {
+    @include button(.7rem,
+        1.25rem,
+        $radius-md );
+
+    min-width: 120px;
+
+    font-family: inherit;
+
+    font-size: $font-size-xs;
+
+    font-weight: 600;
+}
+
+.review-submission__button--primary {
+    border: 1px solid $color-primary;
+
+    background: $color-primary;
+
+    color: $text-light;
+}
+
+.review-submission__button--primary:hover:not(:disabled) {
+    background: $color-primary-dark;
+}
+
+.review-submission__button--primary:disabled {
+    border-color: $border-color;
+
+    background: $border-light;
+
+    color: $text-muted;
+
+    cursor: not-allowed;
+}
+
+.review-submission__button--secondary {
+    border: 1px solid $border-color;
+
+    background: $background-card;
+
+    color: $text-secondary;
+}
+
+.review-submission__button--secondary:hover {
+    border-color: $color-primary-light;
+
+    background: $background-section;
+}
+
+
+// =====================================================
+// RESPONSIVE
+// =====================================================
+
+@include respond(tablet) {
+
+    .review-submission__items {
+        grid-template-columns: 1fr;
+    }
+
+}
+
+
+@include respond(mobile) {
+
+    .review-submission__title {
+        font-size: $font-size-xl;
+    }
+
+    .review-submission__section-header {
+        align-items: flex-start;
+    }
+
+    .review-submission__actions {
+        flex-direction: column-reverse;
+    }
+
+    .review-submission__actions button {
+        width: 100%;
+    }
+
+}

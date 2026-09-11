@@ -1,0 +1,168 @@
+<section class="hero">
+    <div class="hero__container">
+        <!-- ============================================
+             LEFT / MAIN CONTENT
+        ============================================= -->
+        <div class="hero__content">
+            <!-- Badge -->
+            <div class="hero__badge">
+                <span class="hero__badge-icon">✓</span>
+                <span> Verified PGs</span>
+                <span class="hero__badge-separator">•</span><span> No Brokerage</span>
+                <span class="hero__badge-separator">•</span>
+                <span> Book a Bed Online</span>
+            </div>
+            <!-- Heading -->
+            <h1 class="hero__title">Find a PG that<span> feels like home</span></h1>
+            <!-- Description -->
+            <p class="hero__description">
+                Browse real rooms, compare amenities and pricing,
+                and reserve your bed online — all in one place.
+            </p>
+            <!-- ========================================
+                 SEARCH BOX
+            ========================================= -->
+            <div class="hero__search">
+                <!-- LOCATION -->
+                <div class="hero__search-field">
+                    <label class="hero__search-label">
+                        Location
+                    </label>
+                    <button type="button" class="hero__search-select">
+                        <span class="hero__search-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M12 21s7-6.2 7-12a7 7 0 1 0-14 0c0 5.8 7 12 7 12Z" />
+                                <circle cx="12" cy="9" r="2.2" />
+                            </svg>
+                        </span>
+                        <span class="hero__search-value">
+                            {{ selectedLocation }}
+                        </span>
+                        <span class="hero__search-chevron">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m6 9 6 6 6-6" />
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+                <!-- SHARING -->
+                <div class="hero__search-field">
+                    <label class="hero__search-label"> Sharing</label>
+                    <button type="button" class="hero__search-select">
+                        <span class="hero__search-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M4 10h16" />
+                                <path d="M5 10v8" />
+                                <path d="M19 10v8" />
+                                <path d="M3 18h18" />
+                                <path d="M6 10V7h12v3" />
+                                <path d="M9 7V5h6v2" />
+                            </svg>
+                        </span>
+                        <span class="hero__search-value">{{ selectedSharing }}</span>
+                        <span class="hero__search-chevron">
+                            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6" /> </svg>
+                        </span>
+                    </button>
+                </div>
+                <!-- FOR -->
+                <div class="hero__search-field">
+                    <label class="hero__search-label"> For</label>
+                    <button type="button" class="hero__search-select">
+                        <span class="hero__search-icon">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <circle cx="12" cy="8" r="3" />
+                                <path d="M5 20c.8-3.2 3.2-5 7-5s6.2 1.8 7 5" />
+                            </svg>
+                        </span>
+                        <span class="hero__search-value">
+                            {{ selectedFor }}
+                        </span>
+                        <span class="hero__search-chevron">
+                            <svg viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="m6 9 6 6 6-6" />
+                            </svg>
+                        </span>
+                    </button>
+                </div>
+                <!-- SEARCH BUTTON -->
+                <button type="button" class="hero__search-button" (click)="search()">
+                    <svg viewBox="0 0 24 24" aria-hidden="true">
+                        <circle cx="11" cy="11" r="6.5" />
+                        <path d="m16 16 5 5" />
+                    </svg>
+                    <span> Search </span>
+                </button>
+            </div>
+            <!-- ========================================
+                 HIGHLIGHTS
+            ========================================= -->
+            <div class="hero__highlights">
+                <!-- Highlight 1 -->
+                <div class="hero__highlight">
+                    <span class="hero__highlight-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="m5 12 4 4L19 6" />
+                        </svg>
+                    </span>
+                    <div>
+                        <strong> Every listing verified</strong>
+                        <small> Only genuine PGs</small>
+                    </div>
+                </div>
+                <!-- Highlight 2 -->
+                <div class="hero__highlight">
+                    <span class="hero__highlight-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <circle cx="12" cy="12" r="8" />
+                            <path d="M8 12h8" />
+                        </svg>
+                    </span>
+                    <div>
+                        <strong>Zero brokerage</strong>
+                        <small> No hidden charges</small>
+                    </div>
+                </div>
+                <!-- Highlight 3 -->
+                <div class="hero__highlight">
+                    <span class="hero__highlight-icon">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M4 11h16" />
+                            <path d="M6 11V7h12v4" />
+                            <path d="M5 11v8" />
+                            <path d="M19 11v8" />
+                            <path d="M3 19h18" />
+                        </svg>
+                    </span>
+                    <div>
+                        <strong> Food menu on every PG</strong>
+                        <small> Eat healthy, stay happy
+                        </small>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- ============================================
+             RIGHT VISUAL
+        ============================================= -->
+        <div class="hero__visual">
+            <div class="hero__visual-card">
+                <img src="assets/images/hero-pg.jpg" alt="Comfortable PG accommodation" />
+            </div>
+            <!-- Floating verification badge -->
+            <div class="hero__floating-card">
+                <span class="hero__floating-icon">
+                    ✓
+                </span>
+                <div>
+                    <strong>
+                        Verified Stay
+                    </strong>
+                    <small>
+                        Trusted PG listing
+                    </small>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
