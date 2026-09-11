@@ -1,31 +1,91 @@
-<div class="app-layout">
+<div
+  class="app-layout"
+  [class.mobile-menu-open]="mobileMenuOpen">
 
-  <!-- Vertical Layout -->
-  <div class="app-layout__vcontainer" *ngIf="!layoutMode">
-    <div class="app-layout__left">
-      <app-vertical-sidebar [sidebarWidth]="sidebarWidth" (toggleSidebar)="_doFetchToggleSidebar($event)">
+
+  <!-- =========================================================
+       VERTICAL LAYOUT
+  ========================================================== -->
+
+  <div
+    class="app-layout__vcontainer"
+    *ngIf="!layoutMode">
+
+
+    <!-- =======================================================
+         LEFT SIDEBAR
+    ======================================================== -->
+
+    <div
+      class="app-layout__left"
+      [ngClass]="sidebarWidth">
+
+      <app-vertical-sidebar
+        [sidebarWidth]="sidebarWidth"
+        [mobileMenuOpen]="mobileMenuOpen"
+        (toggleSidebar)="_doFetchToggleSidebar($event)"
+        (mobileMenuClosed)="closeMobileMenu()">
       </app-vertical-sidebar>
+
     </div>
+
+
+    <!-- =======================================================
+         RIGHT SIDE
+    ======================================================== -->
 
     <div class="app-layout__right">
-      <app-header (toggleLayout)="_doFetchLayoutMode($event)" [layoutMode]="layoutMode" [sidebarWidth]="sidebarWidth">
+
+      <app-header
+        [sidebarWidth]="sidebarWidth"
+        [layoutMode]="layoutMode"
+        (toggleLayout)="_doFetchLayoutMode($event)"
+        (mobileMenuToggle)="toggleMobileMenu()">
       </app-header>
 
-      <main class="app-layout__vcontent" [ngClass]="sidebarWidth">
+
+      <main class="app-layout__vcontent">
+
         <router-outlet></router-outlet>
+
       </main>
+
     </div>
+
+
+    <!-- MOBILE BACKDROP -->
+
+    <div
+      class="app-layout__mobile-backdrop"
+      (click)="closeMobileMenu()">
+    </div>
+
   </div>
 
-  <!-- Horizontal Layout -->
-  <div class="app-layout__hcontainer" *ngIf="layoutMode">
-    <app-header (toggleLayout)="_doFetchLayoutMode($event)" [layoutMode]="layoutMode" [sidebarWidth]="sidebarWidth">
+
+  <!-- =========================================================
+       HORIZONTAL LAYOUT
+  ========================================================== -->
+
+  <div
+    class="app-layout__hcontainer"
+    *ngIf="layoutMode">
+
+    <app-header
+      [sidebarWidth]="'w0'"
+      [layoutMode]="layoutMode"
+      (toggleLayout)="_doFetchLayoutMode($event)">
     </app-header>
 
-    <app-horizontal-sidebar></app-horizontal-sidebar>
+
+    <app-horizontal-sidebar>
+    </app-horizontal-sidebar>
+
 
     <main class="app-layout__hcontent">
+
       <router-outlet></router-outlet>
+
     </main>
 
   </div>

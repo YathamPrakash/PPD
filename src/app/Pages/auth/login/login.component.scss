@@ -748,21 +748,13 @@
 // ======================================================
 
 .login-register {
-    @include flex(center,
-        center,
-        row,
-        .4rem,
-        wrap);
-
+    @include flex(center,center,row,.4rem,wrap);
     margin-top: $spacing-lg;
-
     color: $text-secondary;
-
     font-size: $font-size-sm;
 
     a {
         color: $color-primary;
-
         text-decoration: none;
 
         font-weight: 600;

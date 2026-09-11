@@ -3,8 +3,9 @@ import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { HomeHeaderComponent } from '../../../Shared/components/home-header/home-header.component';
-
-
+import { EncryptionService } from '../../../Services/encryption.service';
+import { RegisterRoleModalComponent } from '../../../Pages/auth/register-role-modal/register-role-modal.component';
+import {HomeFooterComponent} from '../../../Shared/components/home-footer/home-footer.component';
 interface LoginFeature {
   icon: string;
   title: string;
@@ -14,14 +15,15 @@ interface LoginFeature {
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, FormsModule,HomeHeaderComponent],
+  imports: [CommonModule, FormsModule, HomeHeaderComponent,RegisterRoleModalComponent, HomeFooterComponent],
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
 export class LoginComponent {
   isShowPassword = signal(false);
   activeTab = signal("1")
-  constructor(private router: Router) { }
+  // constructor(private router: Router) { }
+  constructor(private router: Router, private encryptionService: EncryptionService) {}
 
 
   //old implementation with array and update array element
@@ -141,8 +143,28 @@ export class LoginComponent {
   ];
 
   showPassword = false;
-
+  showRegisterModal = false;
   togglePassword(): void {
     this.showPassword = !this.showPassword;
+  }
+
+
+
+  openRegisterModal(): void {
+    alert("alert")
+    debugger;
+    console.log('Opening register modal');
+    this.showRegisterModal = true;
+  }
+
+  closeRegisterModal(): void {
+    this.showRegisterModal = false;
+  }
+
+  handleRegistrationSelection(intent: 'guest' | 'pg-operator'): void {
+    console.log(`Selected registration intent: ${intent}`);
+    let selectedIntent = this.encryptionService.encrypt(intent);
+    this.showRegisterModal = false;
+    this.router.navigate(['/registration'], { queryParams: { intent: selectedIntent } });
   }
 }

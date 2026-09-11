@@ -1,215 +1,298 @@
 @import '../../../../Styles/variables.scss';
 @import '../../../../Styles/mixins.scss';
-
 .app-hsidebar {
+    position: fixed;
+    top: 50px;
+    left: 0;
     width: 100%;
-    margin-top: 40px;
-
-    // =====================================================
-    // Container
-    // =====================================================
-    &__container {
-        @include flex(flex-start, center);
-        position: fixed;
-        top: 40px;
-        left: 0;
+    height: 40px;
+    background: $background-theme;
+    /*
+     * VERY IMPORTANT
+     *
+     * Parent does NOT scroll.
+     * Therefore popup can escape freely.
+     */
+    overflow: visible;
+    // ============================================================
+    // HORIZONTAL SCROLL
+    // ============================================================
+    &__scroll {
         width: 100%;
         height: 40px;
-        padding-inline: $spacing-md;
-        background: $background-theme;
-        z-index: $z-fixed;
+        overflow-x: auto;
+        overflow-y: hidden;
+        /*
+         * ADDED — smoother native momentum scrolling on iOS, and
+         * hints the browser this element only pans horizontally so
+         * it doesn't fight a vertical page-scroll gesture that
+         * starts on top of it.
+         */
+        -webkit-overflow-scrolling: touch;
+        touch-action: pan-x;
+        scrollbar-width: thin;
+        scrollbar-color:
+            rgba($color-white, .35) transparent;
+        &::-webkit-scrollbar {
+            height: 5px;
+        }
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        &::-webkit-scrollbar-thumb {
+            background:
+                rgba($color-white, .35);
+            border-radius: $radius-round;
+        }
+        &::-webkit-scrollbar-thumb:hover {
+            background:
+                rgba($color-white, .55);
+        }
     }
-
-    // =====================================================
-    // Menu
-    // =====================================================
+    // ============================================================
+    // NAV
+    // ============================================================
+    &__nav {
+        width: max-content;
+        min-width: 100%;
+        height: 100%;
+    }
+    // ============================================================
+    // MAIN MENU
+    // ============================================================
     &__menu-list {
-        @include flex(flex-start, center, row, $spacing-xl);
+        @include flex(flex-start,
+            center,
+            row,
+            $spacing-xl,
+            nowrap);
+        width: max-content;
+        min-width: 100%;
+        height: 100%;
         margin: 0;
-        padding: 0;
+        padding-inline: $spacing-md;
         list-style: none;
     }
-
+    // ============================================================
+    // LEVEL 1 ITEM
+    // ============================================================
     &__menu-item {
         position: relative;
+        flex: 0 0 auto;
+        height: 100%;
         list-style: none;
-
-        &--container {
-            @include bricolage-grotesque(500);
-            text-decoration: none;
-            color: $color-white;
-            font-size: $font-size-menu;
-            transition: $transition-fast;
-            cursor: pointer;
-
-            &:hover {
-                color: $color-warning;
-            }
-        }
-
-        &::after {
-            content: "";
-            position: absolute;
-            left: 0;
-            bottom: -1rem;
-            width: 100%;
-            height: 1rem;
-        }
-
-        &:hover>.app-hsidebar__submenu-list {
-            display: block;
+        /*
+         * ADDED — visual feedback that a click opened this item,
+         * independent of :hover (which doesn't apply on touch).
+         */
+        &.is-open > .app-hsidebar__menu-item--container {
+            color: $color-warning;
         }
     }
-
-    // =====================================================
-    // Sub Menu
-    // =====================================================
-    &__submenu-list {
-        display: none;
-        position: absolute;
-        top: calc(100% + 1rem);
-        left: 0;
-        min-width: 180px;
-        margin: 0;
-        padding: $spacing-sm;
-        list-style: none;
+    // ============================================================
+    // LEVEL 1 CONTAINER
+    // ============================================================
+    &__menu-item--container {
+        @include bricolage-grotesque(500);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 7px;
+        height: 40px;
+        color: $color-white;
+        font-size: $font-size-menu;
+        white-space: nowrap;
+        cursor: pointer;
+        transition:
+            color $transition-fast;
+        &:hover {
+            color: $color-warning;
+        }
+    }
+    // ============================================================
+    // LEVEL 1 CHEVRON
+    // ============================================================
+    &__menu-arrow {
+        font-size: 9px;
+        transition:
+            transform $transition-fast;
+    }
+    // ============================================================
+    // POPUP
+    // ============================================================
+    &__popup {
+        position: fixed;
+        min-width: 190px;
+        padding: $spacing-xs;
         background: $background-theme;
         border-radius: $radius-sm;
         @include shadow(md);
-
+        z-index: $z-tooltip;
+        /*
+         * Popup is outside the scrolling element.
+         */
+        animation:
+            app-hsidebar-popup-in .12s ease-out;
+    }
+    // ============================================================
+    // LEVEL 2 POPUP
+    // ============================================================
+    &__popup--submenu {
+        transform-origin: top left;
         &::before {
             content: "";
             position: absolute;
-            top: -.5rem;
+            top: -.45rem;
             left: 1.2rem;
-            border-left: .5rem solid transparent;
-            border-right: .5rem solid transparent;
-            border-bottom: .5rem solid $background-theme;
+            border-left: .45rem solid transparent;
+            border-right: .45rem solid transparent;
+            border-bottom: .45rem solid $background-theme;
         }
     }
-
-    &__submenu-item {
-        position: relative;
-        list-style: none;
-        margin-bottom: $spacing-xs;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
-
-        &:hover>.app-hsidebar__childmenu-list {
-            display: block;
-        }
-
-        &--container {
-            @include bricolage-grotesque(400);
-            display: block;
-            padding: .4rem .5rem;
-            border-radius: $radius-xs;
-            color: $color-white;
-            text-decoration: none;
-            font-size: $font-size-subtitle;
-            transition: $transition-fast;
-            cursor: pointer;
-
-            &:hover {
-                background: rgba($color-white, .08);
-            }
-        }
-
-        &::after {
-            content: "";
-            position: absolute;
-            left: 100%;
-            top: 0;
-            width: 1rem;
-            height: 100%;
-        }
-    }
-
-    // =====================================================
-    // Child Menu
-    // =====================================================
-    &__childmenu-list {
-        display: none;
-        position: absolute;
-        top: 0;
-        left: calc(100% + .8rem);
-        min-width: 180px;
-        margin: 0;
-        padding: $spacing-sm;
-        list-style: none;
-        background: $background-theme;
-        border-radius: $radius-sm;
-        @include shadow(md);
-
+    // ============================================================
+    // LEVEL 3 POPUP
+    // ============================================================
+    &__popup--childmenu {
+        transform-origin: left center;
         &::before {
             content: "";
             position: absolute;
             top: .7rem;
-            left: -.5rem;
-            border-top: .5rem solid transparent;
-            border-bottom: .5rem solid transparent;
-            border-right: .5rem solid $background-theme;
+            left: -.45rem;
+            border-top: .45rem solid transparent;
+            border-bottom: .45rem solid transparent;
+            border-right: .45rem solid $background-theme;
         }
     }
-
-    &__childmenu-item {
+    // ============================================================
+    // POPUP LIST
+    // ============================================================
+    &__popup-list {
+        margin: 0;
+        padding: 0;
         list-style: none;
-        margin-bottom: $spacing-xs;
-
-        &:last-child {
-            margin-bottom: 0;
+    }
+    // ============================================================
+    // POPUP ITEM
+    // ============================================================
+    &__popup-item {
+        position: relative;
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        /*
+         * ADDED — same is-open feedback as level 1, for the same
+         * reason (:hover alone means nothing on touch).
+         */
+        &.is-open > .app-hsidebar__popup-item--container {
+            background: rgba($color-white, .08);
+            color: $color-warning;
         }
-
-        &:hover>.app-hsidebar__childmenu-list {
-            display: block;
-        }
-
-        &--container {
-            @include bricolage-grotesque(400);
-            display: block;
-            padding: .4rem .5rem;
-            border-radius: $radius-xs;
-            color: $color-white;
-            text-decoration: none;
-            font-size: $font-size-subtitle;
-            transition: $transition-fast;
-            cursor: pointer;
-
-            &:hover {
-                background: rgba($color-white, .08);
-            }
+        /*
+         * Bridge between submenu and child popup.
+         */
+        &::after {
+            content: "";
+            position: absolute;
+            top: 0;
+            right: -.6rem;
+            width: .6rem;
+            height: 100%;
         }
     }
-
-    // =====================================================
-    // Responsive
-    // =====================================================
-    @include respond(tablet) {
-        &__container {
-            overflow-x: auto;
-            padding-inline: $spacing-sm;
+    // ============================================================
+    // POPUP ITEM CONTAINER
+    // ============================================================
+    &__popup-item--container {
+        @include bricolage-grotesque(400);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: $spacing-sm;
+        width: 100%;
+        padding: .55rem .65rem;
+        color: $color-white;
+        font-size: $font-size-subtitle;
+        border-radius: $radius-xs;
+        white-space: nowrap;
+        cursor: pointer;
+        transition:
+            background $transition-fast,
+            color $transition-fast;
+        i {
+            flex-shrink: 0;
+            font-size: 9px;
+            color:
+                rgba($color-white, .7);
         }
-
+        &:hover {
+            background:
+                rgba($color-white, .08);
+            color: $color-warning;
+        }
+    }
+    // ============================================================
+    // TABLET
+    // ============================================================
+    @include respond(tablet) {
+        height: 44px;
+        &__scroll {
+            height: 44px;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
         &__menu-list {
             gap: $spacing-lg;
-            white-space: nowrap;
+            padding-inline: $spacing-sm;
         }
-
-        &__submenu-list,
-        &__childmenu-list {
-            min-width: 160px;
+        &__menu-item--container {
+            height: 44px;
+            font-size: $font-size-menu;
         }
     }
-
+    // ============================================================
+    // MOBILE
+    // ============================================================
     @include respond(mobile) {
+        height: 44px;
+        &__scroll {
+            height: 44px;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
         &__menu-list {
             gap: $spacing-md;
+            padding-inline: $spacing-sm;
         }
-
         &__menu-item--container {
+            height: 44px;
+            font-size: $font-size-caption;
+            gap: 6px;
+        }
+        &__popup {
+            min-width: 175px;
+            max-width: calc(100vw - 20px);
+            max-height: 60vh;
+            overflow-y: auto;
+        }
+        &__popup-item--container {
+            padding: .5rem .6rem;
             font-size: $font-size-caption;
         }
+    }
+}
+// ================================================================
+// POPUP ANIMATION
+// ================================================================
+@keyframes app-hsidebar-popup-in {
+    from {
+        opacity: 0;
+        transform:
+            translateY(-4px) scale(.98);
+    }
+    to {
+        opacity: 1;
+        transform:
+            translateY(0) scale(1);
     }
 }

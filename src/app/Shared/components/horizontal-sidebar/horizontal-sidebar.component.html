@@ -1,29 +1,66 @@
 <div class="app-hsidebar">
-    <div class="app-hsidebar__container">
+    <!-- ========================================================= -->
+    <!-- HORIZONTAL SCROLL AREA -->
+    <!-- ========================================================= -->
+    <div class="app-hsidebar__scroll" (scroll)="onBarScroll()">
         <nav class="app-hsidebar__nav">
             <ul class="app-hsidebar__menu-list">
-                <li class="app-hsidebar__menu-item" *ngFor="let menu of menuItems">
-                    <div class="app-hsidebar__menu-item--container">
-                        <span>{{menu.label}}</span>
+                <li class="app-hsidebar__menu-item" *ngFor="let menu of menuItems"
+                    [class.is-open]="openMenu === menu"
+                    (mouseenter)="onMenuEnter(menu, $event)"
+                    (mouseleave)="onMenuLeave()">
+                    <div class="app-hsidebar__menu-item--container" (click)="toggleMenu(menu, $event)">
+                        <span>
+                            {{ menu.label }}
+                        </span>
+                        <!-- SUBMENU INDICATOR -->
+                        <i *ngIf="menu?.children?.length > 0" class="fa-solid fa-chevron-down app-hsidebar__menu-arrow">
+                        </i>
                     </div>
-                    <ng-container *ngIf="menu?.children?.length > 0">
-                    <ul class="app-hsidebar__submenu-list" >
-                        <li class="app-hsidebar__submenu-item" *ngFor="let submenu of menu?.children">
-                            <div class="app-hsidebar__submenu-item--container">
-                                <span>{{submenu.label}}</span>
-                            </div>
-                            <ul class="app-hsidebar__childmenu-list" *ngIf="submenu.children">
-                                <li class="app-hsidebar__childmenu-item" *ngFor="let childmenu of submenu.children">
-                                    <div class="app-hsidebar__childmenu-item--container">
-                                        <span>{{childmenu.label}}</span>
-                                    </div>
-                                </li>
-                            </ul>
-                        </li>
-                    </ul>
-                    </ng-container>
                 </li>
             </ul>
         </nav>
     </div>
+    <!-- ========================================================= -->
+    <!-- LEVEL 2 POPUP -->
+    <!-- ========================================================= -->
+    <ng-container *ngIf="openMenu">
+        <div #submenuPopup class="app-hsidebar__popup app-hsidebar__popup--submenu"
+            [style.top.px]="submenuPosition.top" [style.left.px]="submenuPosition.left"
+            (mouseenter)="onPopupEnter()" (mouseleave)="onPopupLeave()">
+            <ul class="app-hsidebar__popup-list">
+                <li class="app-hsidebar__popup-item" *ngFor="let submenu of openMenu.children"
+                    [class.is-open]="openSubmenu === submenu"
+                    (mouseenter)="onSubmenuEnter(submenu, $event)"
+                    (mouseleave)="onSubmenuLeave()">
+                    <div class="app-hsidebar__popup-item--container" (click)="toggleSubmenu(submenu, $event)">
+                        <span>
+                            {{ submenu.label }}
+                        </span>
+                        <!-- LEVEL 3 INDICATOR -->
+                        <i *ngIf="submenu?.children?.length > 0" class="fa-solid fa-chevron-right">
+                        </i>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </ng-container>
+    <!-- ========================================================= -->
+    <!-- LEVEL 3 POPUP -->
+    <!-- ========================================================= -->
+    <ng-container *ngIf="openSubmenu">
+        <div #childmenuPopup class="app-hsidebar__popup app-hsidebar__popup--childmenu"
+            [style.top.px]="childmenuPosition.top" [style.left.px]="childmenuPosition.left"
+            (mouseenter)="onPopupEnter()" (mouseleave)="onPopupLeave()">
+            <ul class="app-hsidebar__popup-list">
+                <li class="app-hsidebar__popup-item" *ngFor="let childmenu of openSubmenu.children">
+                    <div class="app-hsidebar__popup-item--container">
+                        <span>
+                            {{ childmenu.label }}
+                        </span>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </ng-container>
 </div>

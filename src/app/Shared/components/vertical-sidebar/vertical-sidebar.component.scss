@@ -1,263 +1,1128 @@
-@import "../../../../Styles/mixins.scss";
-@import "../../../../Styles/variables.scss";
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/mixins.scss';
+
+
+/* ================================================================
+   VERTICAL SIDEBAR
+   ================================================================ */
 
 .app-vsidebar {
     position: fixed;
     top: 0;
     left: 0;
-    height: 100%;
-    overflow: visible;
+
+    width: $sidebar-width-expanded;
+    height: 100vh;
+
+    display: flex;
+    flex-direction: column;
+
     background: $background-theme;
     color: $color-white;
-    transition: width $transition-normal;
+
     z-index: $z-fixed;
+
+    overflow: visible;
+
+    transition:
+        width $transition-normal,
+        transform $transition-normal;
+
+    box-shadow: $shadow-md;
+
+
+    /* ==============================================================
+     EXPANDED
+     ============================================================== */
 
     &.w250 {
         width: $sidebar-width-expanded;
     }
 
+
+    /* ==============================================================
+     COLLAPSED
+     ============================================================== */
+
     &.w80 {
         width: $sidebar-width-collapsed;
     }
 
-    // ======================================
-    // Header
-    // ======================================
-    &__header {
-        @include flex(center, center);
-        padding: $spacing-sm;
 
-        .app-vsidebar.w250 & {
-            justify-content: space-between;
-        }
+    /* ==============================================================
+     ZERO
+     ============================================================== */
+
+    &.w0 {
+        width: 0;
+        transform: translateX(-100%);
+    }
+
+
+    /* ==============================================================
+     HEADER
+     ============================================================== */
+
+    &__header {
+        height: 50px;
+        min-height: 50px;
+
+        padding: 0 $spacing-sm;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        position: relative;
+
+        border-bottom: 1px solid rgba($color-white,
+                .12);
+
+        z-index: $z-sticky;
+
 
         &--logo {
             @include bricolage-grotesque(600);
-            font-size: $font-size-title;
+
+            font-size: $font-size-lg;
+
             color: $color-white;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            transition:
+                opacity $transition-normal,
+                width $transition-normal;
         }
+
 
         &--toggle-btn {
-            @include flex(center, center);
-            width: 2rem;
-            height: 2rem;
-            border: 1px solid rgba($color-white, 0.15);
+            width: 34px;
+            height: 34px;
+
+            padding: 0;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            flex-shrink: 0;
+
+            border: none;
             border-radius: $radius-sm;
-            background: rgba($color-white, 0.2);
+
+            background: transparent;
             color: $color-white;
+
             cursor: pointer;
-            @include shadow(sm);
-            transition: $transition-fast;
+
+            transition:
+                background $transition-fast,
+                transform $transition-fast;
+
+            i {
+                font-size: $font-size-sm;
+            }
 
             &:hover {
-                background: rgba($color-white, 0.3);
+                background: rgba($color-white,
+                        .12);
+            }
+
+            &:active {
+                transform: scale(.94);
             }
         }
-    }
 
-    // ======================================
-    // Navigation
-    // ======================================
-    &__nav {
-        margin-top: $spacing-sm;
-    }
 
-    // ======================================
-    // Menu List
-    // ======================================
-    &__menu-list {
-        margin: 0;
-        padding: 0;
-        list-style: none;
-    }
+        &--mobile-close {
+            display: none;
 
-    // ======================================
-    // Menu Item
-    // ======================================
-    &__menu-item {
-        position: relative;
+            width: 36px;
+            height: 36px;
 
-        >a {
-            @include flex(space-between, center, row, $spacing-sm);
-            padding: $spacing-sm;
+            padding: 0;
+
+            align-items: center;
+            justify-content: center;
+
+            border: none;
+            border-radius: $radius-sm;
+
+            background: transparent;
             color: $color-white;
-            text-decoration: none;
-            font-size: $font-size-menu;
+
             cursor: pointer;
-            transition: $transition-fast;
+
+            svg {
+                width: 22px;
+                height: 22px;
+            }
 
             &:hover {
-                background: rgba($color-white, 0.05);
-            }
-        }
-
-        &--menu-left {
-            @include flex(flex-start, center, row, $spacing-sm);
-        }
-
-        // ======================================
-        // Expanded Sidebar Hover
-        // ======================================
-        .app-vsidebar.w250 &>a:hover {
-            border-left: 3px solid $color-warning;
-            color: $color-warning;
-        }
-
-        // ======================================
-        // Collapsed Sidebar Hover
-        // ======================================
-        .app-vsidebar:not(.w250) &>a:hover {
-            color: $color-warning;
-            animation: icon-bounce 0.5s ease-in-out;
-        }
-    }
-
-    // ======================================
-    // Level 2 Submenu
-    // ======================================
-    &--submenu {
-        display: none;
-        list-style: none;
-        margin: 0;
-        padding-left: $spacing-lg;
-
-        &.show {
-            display: block;
-        }
-
-        li {
-            position: relative;
-
-            a {
-                @include flex(space-between, center, row, $spacing-sm);
-                padding: 0.4rem $spacing-sm;
-                color: $color-white;
-                text-decoration: none;
-                font-size: $font-size-menu;
-                transition: $transition-fast;
-
-                &:hover {
-                    background: rgba($color-white, 0.08);
-                }
+                background: rgba($color-white,
+                        .12);
             }
         }
     }
 
-    // ======================================
-    // Level 3 Child Menu
-    // ======================================
-    &--childmenu {
-        display: none;
-        list-style: none;
-        margin: 0;
-        padding-left: $spacing-lg;
 
-        &.show {
-            display: block;
+    /* ==============================================================
+     COLLAPSED HEADER
+     ============================================================== */
+
+    &.w80 {
+
+        .app-vsidebar__header {
+            padding-inline: 0;
+
+            justify-content: center;
         }
 
-        li {
-            a {
-                @include flex(space-between, center, row, $spacing-sm);
-                padding: 0.35rem $spacing-sm;
-                color: $color-white;
-                text-decoration: none;
-                font-size: $font-size-menu;
-                transition: $transition-fast;
-
-                &:hover {
-                    background: rgba($color-white, 0.08);
-                }
-
-                div {
-                    i {
-                        margin-right: $spacing-sm;
-                    }
-                }
-            }
-        }
-    }
-
-    // ======================================
-    // Collapsed Sidebar
-    // ======================================
-    .app-vsidebar:not(.w250) & {
-        @include flex(center, center);
-
-        span {
+        .app-vsidebar__header--logo {
             display: none;
         }
 
-        &:hover span {
-            display: inline-block;
-        }
-
-        // ======================================
-        // Level 2 Popup
-        // ======================================
-        &:hover>.app-vsidebar__menu-item--submenu {
-            display: block !important;
-            position: absolute;
-            top: 0;
-            left: $sidebar-width-collapsed;
-            min-width: 12rem;
-            padding: 0.5rem 0;
-            border-radius: $radius-xs;
-            background: $background-theme;
-            z-index: 999;
-            @include shadow(md);
-        }
-
-        // ======================================
-        // Level 3 Popup
-        // ======================================
-        &:hover>.app-vsidebar__menu-item--submenu li:hover>.app-vsidebar__menu-item--childmenu {
-            display: block !important;
-            position: absolute;
-            top: 0;
-            left: 100%;
-            margin-left: 0.5rem;
-            min-width: 12rem;
-            padding: 0.5rem 0;
-            border-radius: $radius-xs;
-            background: $background-theme;
-            z-index: 1000;
-            @include shadow(md);
+        .app-vsidebar__header--toggle-btn {
+            display: flex;
         }
     }
 
-    // ======================================
-    // Responsive
-    // ======================================
-    @include respond(tablet) {
-        &.w250 {
-            width: 220px;
+
+    /* ==============================================================
+     NAVIGATION
+     ============================================================== */
+
+    &__nav {
+        position: relative;
+
+        flex: 1;
+
+        min-height: 0;
+
+        overflow: visible;
+    }
+
+
+    /* ==============================================================
+     SCROLL CONTAINER
+     ============================================================== */
+
+    &__nav-scroll {
+        height: 100%;
+
+        overflow-y: auto;
+        overflow-x: visible;
+
+        scrollbar-width: thin;
+
+        scrollbar-color:
+            rgba($color-white, .25) transparent;
+
+
+        &::-webkit-scrollbar {
+            width: 5px;
         }
 
-        &__menu-item {
-            >a {
-                padding: 0.75rem;
-            }
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba($color-white,
+                    .25);
+
+            border-radius: $radius-round;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: rgba($color-white,
+                    .4);
         }
     }
 
-    @include respond(mobile) {
+
+    /* ==============================================================
+     COLLAPSED — DISABLE SCROLL CLIPPING
+     ==============================================================
+     
+     overflow-y:auto forces overflow-x:visible to compute as auto
+     per spec (mismatched overflow values can't stay visible),
+     which is what clips the flyout popups.
+     
+     Collapsed sidebar only shows icons, so it doesn't need to
+     scroll — turning overflow fully visible here lets the
+     hover popups escape the container properly.
+     ============================================================== */
+
+    &.w80 {
+
+        .app-vsidebar__nav-scroll {
+            overflow: visible;
+        }
+    }
+
+
+    /* ==============================================================
+     LEVEL 1 MENU LIST
+     ============================================================== */
+
+    &__menu-list {
+        margin: 0;
+
+        padding: $spacing-xs 0;
+
+        list-style: none;
+    }
+
+
+    /* ==============================================================
+     LEVEL 1 MENU ITEM
+     ============================================================== */
+
+    &__menu-item {
+        position: relative;
+
+        margin: 2px 8px;
+
+        list-style: none;
+    }
+
+
+    /* ==============================================================
+     LEVEL 1 MENU LINK
+     ============================================================== */
+
+    &__menu-link {
+        min-height: 44px;
+
+        padding: 0 12px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 10px;
+
+        color: $color-white;
+
+        text-decoration: none;
+
+        border-radius: $radius-sm;
+
+        cursor: pointer;
+
+        transition:
+            background $transition-fast,
+            color $transition-fast;
+
+
+        &:hover {
+            background: rgba($color-white,
+                    .10);
+
+            color: $color-white;
+        }
+    }
+
+
+    /* ==============================================================
+     MENU LEFT
+     ============================================================== */
+
+    &__menu-item--menu-left {
+        min-width: 0;
+
+        display: flex;
+        align-items: center;
+
+        gap: 12px;
+    }
+
+
+    /* ==============================================================
+     LEVEL 1 ICON
+     ============================================================== */
+
+    &__menu-icon {
+        width: 22px;
+        min-width: 22px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        color: $color-white;
+
+        i {
+            width: 18px;
+
+            font-size: 16px;
+
+            text-align: center;
+        }
+    }
+
+
+    /* ==============================================================
+     LEVEL 1 LABEL
+     ============================================================== */
+
+    &__menu-label {
+        @include montserrat(500);
+
+        font-size: $font-size-menu;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+
+    /* ==============================================================
+     ARROW
+     ============================================================== */
+
+    &__menu-arrow {
+        flex-shrink: 0;
+
+        font-size: 10px;
+    }
+
+
+    /* ==============================================================
+     COLLAPSED LEVEL 1
+     ============================================================== */
+
+    &.w80 {
+
+        .app-vsidebar__menu-item {
+            margin-inline: 8px;
+        }
+
+        .app-vsidebar__menu-link {
+            min-height: 44px;
+
+            padding-inline: 0;
+
+            justify-content: center;
+        }
+
+        .app-vsidebar__menu-item--menu-left {
+            justify-content: center;
+
+            gap: 0;
+        }
+
+        .app-vsidebar__menu-icon {
+            width: 24px;
+            min-width: 24px;
+        }
+
+        .app-vsidebar__menu-label,
+        .app-vsidebar__menu-arrow {
+            display: none;
+        }
+    }
+
+
+    /* ==============================================================
+     NORMAL LEVEL 2 SUBMENU
+     ============================================================== */
+
+    &__menu-item--submenu {
         display: none;
+
+        margin: 2px 0 4px;
+
+        padding: 0 0 0 16px;
+
+        list-style: none;
+
+
+        &.show {
+            display: block;
+        }
+    }
+
+
+    /* ==============================================================
+     LEVEL 2 ITEM
+     ============================================================== */
+
+    &__submenu-item {
+        position: relative;
+
+        margin: 1px 0;
+
+        list-style: none;
+    }
+
+
+    /* ==============================================================
+     LEVEL 2 LINK
+     ============================================================== */
+
+    &__submenu-link {
+        min-height: 40px;
+
+        padding: 0 10px;
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        gap: 8px;
+
+        color: rgba($color-white,
+                .88);
+
+        text-decoration: none;
+
+        border-radius: $radius-sm;
+
+        cursor: pointer;
+
+        transition:
+            background $transition-fast,
+            color $transition-fast;
+
+
+        &:hover {
+            background: rgba($color-white,
+                    .08);
+
+            color: $color-white;
+        }
+    }
+
+
+    /* ==============================================================
+     LEVEL 2 ICON
+     ============================================================== */
+
+    &__submenu-icon {
+        width: 20px;
+        min-width: 20px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        i {
+            font-size: 13px;
+        }
+    }
+
+
+    /* ==============================================================
+     LEVEL 2 LABEL
+     ============================================================== */
+
+    &__submenu-label {
+        @include montserrat(400);
+
+        font-size: $font-size-sm;
+
+        white-space: nowrap;
+
+        overflow: hidden;
+
+        text-overflow: ellipsis;
+    }
+
+
+    /* ==============================================================
+     NORMAL LEVEL 3
+     ============================================================== */
+
+    &__menu-item--childmenu {
+        display: none;
+
+        margin: 2px 0;
+
+        padding: 0 0 0 20px;
+
+        list-style: none;
+
+
+        &.show {
+            display: block;
+        }
+    }
+
+
+    /* ==============================================================
+     LEVEL 3 ITEM
+     ============================================================== */
+
+    &__childmenu-item {
+        list-style: none;
+    }
+
+
+    /* ==============================================================
+     LEVEL 3 LINK
+     ============================================================== */
+
+    &__childmenu-link {
+        min-height: 38px;
+
+        padding: 0 10px;
+
+        display: flex;
+        align-items: center;
+
+        gap: 9px;
+
+        color: rgba($color-white,
+                .78);
+
+        text-decoration: none;
+
+        border-radius: $radius-sm;
+
+        cursor: pointer;
+
+        transition:
+            background $transition-fast,
+            color $transition-fast;
+
+
+        &:hover {
+            background: rgba($color-white,
+                    .08);
+
+            color: $color-white;
+        }
+    }
+
+
+    /* ==============================================================
+     LEVEL 3 ICON
+     ============================================================== */
+
+    &__childmenu-icon {
+        width: 18px;
+        min-width: 18px;
+
+        display: flex;
+        justify-content: center;
+
+        i {
+            font-size: 12px;
+        }
+    }
+
+
+    /* ==============================================================
+     LEVEL 3 LABEL
+     ============================================================== */
+
+    &__childmenu-label {
+        @include montserrat(400);
+
+        font-size: $font-size-sm;
+
+        white-space: nowrap;
+    }
+
+
+    /* ==============================================================
+     COLLAPSED SIDEBAR POPUP
+     ============================================================== */
+
+    &.w80 {
+
+        .app-vsidebar__menu-item--submenu.popup {
+
+            display: none;
+
+            position: absolute;
+
+            top: 10px;
+
+            left: 100%;
+
+            width: 220px;
+
+            min-width: 220px;
+
+            margin: 0;
+
+            padding: 6px;
+
+            background: $background-card;
+            border: 1px solid $border-color;
+            border-radius: $radius-sm;
+
+            box-shadow: $shadow-lg;
+
+            z-index: $z-tooltip;
+
+            list-style: none;
+        }
+
+
+        .app-vsidebar__menu-item:hover>.app-vsidebar__menu-item--submenu.popup {
+
+            display: block;
+        }
+
+
+        .app-vsidebar__menu-item--submenu.popup>.app-vsidebar__submenu-item {
+
+            position: relative;
+
+            margin: 1px 0;
+
+            list-style: none;
+        }
+
+
+        .app-vsidebar__menu-item--submenu.popup .app-vsidebar__submenu-link {
+
+            min-height: 40px;
+
+            padding: 0 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            justify-content: space-between;
+
+            gap: 10px;
+
+            color: $text-primary;
+
+            background: transparent;
+
+            border-radius: $radius-sm;
+
+            text-decoration: none;
+
+            white-space: nowrap;
+
+            cursor: pointer;
+
+            transition:
+                background $transition-fast,
+                color $transition-fast;
+        }
+
+
+        .app-vsidebar__menu-item--submenu.popup .app-vsidebar__submenu-link:hover {
+
+            background: $background-section;
+
+            color: $color-primary;
+        }
+
+
+        .app-vsidebar__menu-item--submenu.popup .app-vsidebar__submenu-icon {
+
+            width: 18px;
+
+            min-width: 18px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            color: $color-primary;
+        }
+
+
+        .app-vsidebar__menu-item--submenu.popup .app-vsidebar__submenu-label {
+
+            display: block;
+
+            flex: 1;
+
+            color: inherit;
+
+            font-size: $font-size-sm;
+
+            white-space: nowrap;
+
+            overflow: hidden;
+
+            text-overflow: ellipsis;
+        }
+
+
+        .app-vsidebar__menu-item--submenu.popup .app-vsidebar__menu-arrow {
+
+            display: block;
+
+            flex-shrink: 0;
+
+            color: $text-muted;
+
+            font-size: 10px;
+        }
+
+
+        .app-vsidebar__menu-item--submenu.popup .app-vsidebar__submenu-item>.app-vsidebar__menu-item--childmenu.popup {
+
+            display: none;
+
+            position: absolute;
+
+            top: 0;
+
+            left: 100%;
+
+            width: 210px;
+
+            min-width: 210px;
+
+            margin: 0;
+
+            padding: 6px;
+
+            background: $background-card;
+
+            border: 1px solid $border-color;
+
+            border-radius: $radius-md;
+
+            box-shadow: $shadow-lg;
+
+            z-index: $z-tooltip + 1;
+
+            list-style: none;
+        }
+
+
+        .app-vsidebar__menu-item--submenu.popup .app-vsidebar__submenu-item:hover>.app-vsidebar__menu-item--childmenu.popup {
+
+            display: block;
+        }
+
+
+        .app-vsidebar__menu-item--childmenu.popup .app-vsidebar__childmenu-item {
+
+            margin: 1px 0;
+
+            list-style: none;
+        }
+
+
+        .app-vsidebar__menu-item--childmenu.popup .app-vsidebar__childmenu-link {
+
+            min-height: 40px;
+
+            padding: 0 10px;
+
+            display: flex;
+
+            align-items: center;
+
+            gap: 10px;
+
+            color: $text-primary;
+
+            background: transparent;
+
+            border-radius: $radius-sm;
+
+            text-decoration: none;
+
+            white-space: nowrap;
+
+            cursor: pointer;
+
+            transition:
+                background $transition-fast,
+                color $transition-fast;
+        }
+
+
+        .app-vsidebar__menu-item--childmenu.popup .app-vsidebar__childmenu-link:hover {
+
+            background: $background-section;
+
+            color: $color-primary;
+        }
+
+
+        .app-vsidebar__menu-item--childmenu.popup .app-vsidebar__childmenu-icon {
+
+            width: 18px;
+
+            min-width: 18px;
+
+            display: flex;
+
+            align-items: center;
+            justify-content: center;
+
+            color: $color-primary;
+        }
+
+
+        .app-vsidebar__menu-item--childmenu.popup .app-vsidebar__childmenu-label {
+
+            color: inherit;
+
+            font-size: $font-size-sm;
+
+            white-space: nowrap;
+        }
     }
 }
 
-// ======================================
-// Animation
-// ======================================
-@keyframes icon-bounce {
 
-    0%,
-    100% {
-        transform: translateY(0);
+/* ================================================================
+   TABLET / MOBILE DRAWER
+   ================================================================ */
+
+@include respond(tablet) {
+
+    .app-vsidebar {
+
+        width: 300px;
+
+        max-width: 88vw;
+
+        transform: translateX(-100%);
+
+        box-shadow: $shadow-lg;
+
+
+        &.w250,
+        &.w80 {
+            width: 300px;
+            max-width: 88vw;
+        }
+
+
+        &.mobile-open {
+            transform: translateX(0);
+
+            /*
+             * The backdrop (layout.component.scss) sits at
+             * $z-fixed + 1 so it can dim the page behind the
+             * drawer. This must render above that backdrop
+             * while open, or its menu items become unclickable.
+             */
+            z-index: $z-fixed + 2;
+        }
+
+
+        &__header {
+            height: 56px;
+            min-height: 56px;
+
+            padding-inline: $spacing-sm;
+        }
+
+
+        &__header--logo {
+            display: block !important;
+
+            width: auto !important;
+
+            opacity: 1 !important;
+        }
+
+
+        &__header--toggle-btn {
+            display: none !important;
+        }
+
+
+        &__header--mobile-close {
+            display: flex;
+        }
+
+
+        &__nav {
+            overflow: hidden;
+        }
+
+
+        &__nav-scroll {
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+
+        &__menu-link {
+            min-height: 48px;
+
+            padding-inline: 14px;
+        }
+
+
+        &__menu-label {
+            display: block !important;
+
+            font-size: $font-size-menu;
+        }
+
+
+        &__menu-arrow {
+            display: block !important;
+        }
+
+
+        &__menu-item--menu-left {
+            gap: 12px;
+        }
+
+
+        &__menu-icon {
+            width: 24px;
+            min-width: 24px;
+        }
+
+
+        &__collapsed-popup,
+        &__collapsed-child-popup {
+            display: none !important;
+        }
+
+
+        &.w80 {
+
+            .app-vsidebar__nav-scroll {
+                /*
+         * Mobile always uses inline submenus, so restore
+         * normal scroll clipping here (overrides the desktop
+         * w80 "overflow: visible" rule above at this breakpoint).
+         */
+                overflow-y: auto;
+                overflow-x: hidden;
+            }
+
+            .app-vsidebar__header {
+                padding-inline: $spacing-sm;
+
+                justify-content: space-between;
+            }
+
+            .app-vsidebar__header--logo {
+                display: block !important;
+            }
+
+            .app-vsidebar__menu-link {
+                justify-content: space-between;
+
+                padding-inline: 14px;
+            }
+
+            .app-vsidebar__menu-item--menu-left {
+                justify-content: flex-start;
+
+                gap: 12px;
+            }
+
+            .app-vsidebar__menu-icon {
+                width: 24px;
+                min-width: 24px;
+            }
+
+            .app-vsidebar__menu-label,
+            .app-vsidebar__menu-arrow {
+                display: block !important;
+            }
+
+
+            .app-vsidebar__menu-item--submenu.popup {
+
+                position: static;
+
+                width: auto;
+
+                min-width: 0;
+
+                margin: 2px 0 4px;
+
+                padding-left: 16px;
+
+                background: transparent;
+
+                border: none;
+
+                border-radius: 0;
+
+                box-shadow: none;
+
+                /*
+                 * IMPORTANT — hand display control back to the
+                 * .show class (driven by item.open). Without this,
+                 * the desktop hover-only ".popup { display:none }"
+                 * rule (not viewport-scoped) keeps this submenu
+                 * permanently closed on tablet/mobile, since touch
+                 * devices don't reliably fire :hover.
+                 */
+                display: none;
+
+                &.show {
+                    display: block;
+                }
+            }
+
+
+            .app-vsidebar__menu-item--submenu.popup .app-vsidebar__submenu-item>.app-vsidebar__menu-item--childmenu.popup {
+
+                position: static;
+
+                width: auto;
+
+                min-width: 0;
+
+                margin: 2px 0;
+
+                padding-left: 20px;
+
+                background: transparent;
+
+                border: none;
+
+                border-radius: 0;
+
+                box-shadow: none;
+
+                /* Same fix, level 3 */
+                display: none;
+
+                &.show {
+                    display: block;
+                }
+            }
+        }
     }
+}
 
-    50%,
-    80% {
-        transform: translateY(-3px);
+
+/* ================================================================
+   SMALL MOBILE
+   ================================================================ */
+
+@include respond(mobile) {
+
+    .app-vsidebar {
+
+        width: 100%;
+
+        max-width: 100%;
+
+
+        &.w250,
+        &.w80 {
+
+            width: 100%;
+
+            max-width: 100%;
+        }
     }
 }

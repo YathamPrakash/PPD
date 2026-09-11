@@ -1,97 +1,187 @@
-/* dropdown button */
+@import "../../../../Styles/mixins.scss";
+@import "../../../../Styles/variables.scss";
+.app-header {
+  border-bottom: 1px solid $border-color;
+  box-shadow: $shadow-sm;
+  @include flex(space-between, center);
+  position: fixed;
+  top: 0;
+  height: 50px;
+  z-index: $z-fixed;
+  background: $background-card;
+  color: $color-white;
+  transition:
+    left $transition-normal,
+    width $transition-normal;
+  padding-inline: $spacing-sm;
+  &.w0 {
+    left: 0;
+    width: 100%;
+  }
+  &.w250 {
+    left: $sidebar-width-expanded;
+    width: calc(100% - #{$sidebar-width-expanded});
+  }
+  &.w80 {
+    left: $sidebar-width-collapsed;
+    width: calc(100% - #{$sidebar-width-collapsed});
+  }
+  // =========================================================
+  // LEFT
+  // =========================================================
+  &__left {
+    min-width: 0;
+    @include flex(flex-start,
+      center,
+      row,
+      $spacing-sm );
+  }
+  // =========================================================
+  // PAGE NAME
+  // =========================================================
+  &__page-name {
+    @include montserrat(600);
+    color: $text-primary;
+    font-size: $font-size-lg;
+    white-space: nowrap;
+  }
+  // =========================================================
+  // HAMBURGER
+  // DESKTOP = HIDDEN
+  // =========================================================
+  &__mobile-menu-btn {
+    display: none !important;
+    width: 38px;
+    height: 38px;
+    padding: 0;
+    border: 1px solid $border-color;
+    border-radius: $radius-sm;
+    background: $background-card;
+    color: $color-primary;
+    cursor: pointer;
+    align-items: center;
+    justify-content: center;
+    svg {
+      width: 21px;
+      height: 21px;
+    }
+  }
+  // =========================================================
+  // RIGHT
+  // =========================================================
+  &__right {
+    flex-shrink: 0;
+    @include flex(flex-end,
+      center,
+      row,
+      $spacing-sm );
+    >.fa-circle-user {
+      color: $color-primary;
+      font-size: 1.25rem;
+    }
+  }
+  &__user-name {
+    @include montserrat(500);
+    color: $text-secondary;
+    font-size: $font-size-sm;
+  }
+}
+// =============================================================
+// DROPDOWN
+// =============================================================
 .custom-dropdown button {
-    background: transparent;
-    border: none;
-    font-size: 1rem;
-    cursor: pointer;
+  background: transparent;
+  border: none;
+  font-size: $font-size-md;
+  color: $text-primary;
+  cursor: pointer;
 }
-
-/* dropdown menu */
 .custom-dropdown-menu {
-    min-width: 200px;
-    padding: 10px 0;
-    border-radius: 8px;
-    border: none;
-    color: #000;
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+  min-width: 200px;
+  padding: 10px 0;
+  border: 1px solid $border-color;
+  border-radius: $radius-sm;
+  background: $background-card;
+  box-shadow: $shadow-md;
 }
-
-/* dropdown items */
 .custom-item {
-    display: flex;
-    color: #000;
-    align-items: center;
-    gap: 10px;
-    font-size: 0.9rem;
-    padding: 5px 10px;
-    cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: .5rem .75rem;
+  color: $color-black;
+  font-size: $font-size-sm;
+  cursor: pointer;
+  &:hover {
+    background: $background-section;
+  }
+  i {
+    width: 18px;
+    text-align: center;
+    color: $color-black;
+  }
 }
-
-.custom-item:hover {
-    background: #f5f5f5;
-}
-
-/* icons */
-.custom-item i {
-    color: #000;
-    font-size: 0.9rem;
-}
-
-//* align switch and label */
 .custom-switch {
-    display: flex;
-    align-items: center;
-    gap: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 0 !important;
 }
-
-/* base switch */
 .custom-switch .form-check-input {
-    width: 40px;
-    height: 20px;
-    cursor: pointer;
-    border-radius: 20px;
-    border: 1px solid #bbb;
-    background-color: #e5e5e5;
-    transition: all 0.3s ease;
+  width: 40px;
+  height: 20px;
+  margin: 0;
+  cursor: pointer;
+  border-radius: $radius-round;
+  border: 1px solid $border-dark;
+  background-color: $border-light;
 }
-
-/* remove bootstrap shadow */
 .custom-switch .form-check-input:focus {
-    box-shadow: none;
-    border-color: #888;
+  box-shadow: none;
 }
-
-/* checked state */
 .custom-switch .form-check-input:checked {
-    background-color: #4CAF50;
-    border-color: #4CAF50;
+  background-color: $color-primary;
+  border-color: $color-primary;
 }
-
-/* label style */
 .custom-switch .form-check-label {
-    font-size: 0.9rem;
-    color: #000;
-    cursor: pointer;
+  color: $color-black;
+  font-size: $font-size-sm;
+  cursor: pointer;
 }
-
-
-
-// /* remove bootstrap background on hover/click/focus */
-// .custom-dropdown-menu .dropdown-item:hover,
-// .custom-dropdown-menu .dropdown-item:focus,
-// .custom-dropdown-menu .dropdown-item:active,
-// .custom-dropdown-menu .dropdown-item.active {
-//   background-color: transparent !important;
-//   color: #333 !important;   /* ensure text stays visible */
-// }
-
-// /* optional: keep a subtle hover if you want */
-// .custom-dropdown-menu .dropdown-item:hover {
-//   background-color: #f7f7f7 !important;
-// }
-
-// /* remove blue outline when clicked */
-// .custom-dropdown-menu .dropdown-item:focus {
-//   outline: none;
-//   box-shadow: none;
-// }
+.app-header__mobile-menu-btn {
+  display: none !important;
+}
+// =============================================================
+// TABLET + MOBILE
+// =============================================================
+@include respond(tablet) {
+  .app-header__mobile-menu-btn {
+    display: flex !important;
+  }
+  /*
+   * ADDED — fixes the header shifting/shrinking on tablet and
+   * mobile. .w250/.w80 have no breakpoint guard above, so the
+   * header kept applying the desktop sidebar offset even once the
+   * sidebar itself became an overlay drawer that no longer pushes
+   * content. Below this breakpoint the header must always span
+   * full width from the left edge, no matter which sidebarWidth
+   * class happens to be bound at the time.
+   */
+  .app-header,
+  .app-header.w250,
+  .app-header.w80 {
+    left: 0;
+    width: 100%;
+  }
+}
+// =============================================================
+// MOBILE
+// =============================================================
+@include respond(mobile) {
+  .app-header {
+    padding-inline: $spacing-sm;
+  }
+  .app-header__user-name {
+    display: none;
+  }
+}

@@ -1,56 +1,175 @@
-<aside class="app-vsidebar" [ngClass]="sidebarWidth">
+<aside class="app-vsidebar" [ngClass]="sidebarWidth" [class.mobile-open]="mobileMenuOpen">
+
+  <!-- ============================================================
+       SIDEBAR HEADER
+       ============================================================ -->
 
   <header class="app-vsidebar__header">
-    <span *ngIf="sidebarWidth == 'w250'" class="app-vsidebar__header--logo">PG Management</span>
-    <button class="app-vsidebar__header--toggle-btn" (click)="_doToggleSidebar()">
-      <i class="fa-solid" [ngClass]="sidebarWidth == 'w250' ? 'fa-angles-left' : 'fa-angles-right'"></i>
+
+    <!-- Logo -->
+    <span class="app-vsidebar__header--logo">
+      PG Management
+    </span>
+
+    <!-- Desktop collapse / expand -->
+    <button type="button" class="app-vsidebar__header--toggle-btn" (click)="_doToggleSidebar()"
+      aria-label="Toggle sidebar">
+
+      <i class="fa-solid" [ngClass]="
+          sidebarWidth === 'w250'
+            ? 'fa-angles-left'
+            : 'fa-angles-right'
+        ">
+      </i>
+
     </button>
+
+    <!-- Mobile close -->
+    <button type="button" class="app-vsidebar__header--mobile-close" (click)="closeMobileMenu()"
+      aria-label="Close navigation">
+
+      <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+
+        <path d="M6 6L18 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+
+        <path d="M18 6L6 18" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+
+      </svg>
+
+    </button>
+
   </header>
 
+
+  <!-- ============================================================
+       NAVIGATION
+       ============================================================ -->
+
   <nav class="app-vsidebar__nav">
-    <ul class="app-vsidebar__menu-list">
-      <li *ngFor="let item of menus" class="app-vsidebar__menu-item">
 
-        <a (click)="toggleMenu(item)">
-          <div class="app-vsidebar__menu-item--menu-left">
-            <i [class]="item.icon"></i>
-            <span *ngIf="sidebarWidth == 'w250'"> {{ item.label }}</span>
-          </div>
-          <i *ngIf="(item.children || []).length > 0 && sidebarWidth == 'w250'" class="fa-solid"
-            [ngClass]="item.open ? 'fa-chevron-up' : 'fa-chevron-down'">
-          </i>
-        </a>
+    <!-- Scroll container -->
+    <div class="app-vsidebar__nav-scroll">
 
-        <!-- SUBMENU -->
+      <ul class="app-vsidebar__menu-list">
 
-        <ul *ngIf="item.children" class="app-vsidebar__menu-item--submenu"
-          [class.show]="item.open && sidebarWidth == 'w250'">
-          <li *ngFor="let child of item.children">
-            <a (click)="toggleMenu(child)">
-              <div class="app-vsidebar__menu-item--menu-left">
-                <i [class]="child.icon"></i>
-                <span>{{ child.label }}</span>
-              </div>
-              <i *ngIf="child.children && sidebarWidth == 'w250'" class="fa-solid"
-                [ngClass]="child.open ? 'fa-chevron-up' : 'fa-chevron-down'">
-              </i>
-            </a>
-            <ul *ngIf="child.children" class="app-vsidebar__menu-item--childmenu" [class.show]="child.open && sidebarWidth == 'w250'">
-              <li *ngFor="let sub of child.children">
-                <a href="javascript:void(0)">
-                  <div>
-                    <i class="{{ sub.icon }}"></i>
-                    <span>{{ sub.label }}</span>
-                  </div>
-                </a>
-              </li>
-            </ul>
-          </li>
-        </ul>
+        <!-- ======================================================
+             LEVEL 1 MENU
+             ====================================================== -->
 
-      </li>
-    </ul>
+        <li *ngFor="let item of menus" class="app-vsidebar__menu-item" [class.has-children]="hasChildren(item)"
+          [class.is-open]="item.open">
+
+          <!-- Level 1 -->
+          <a href="javascript:void(0)" class="app-vsidebar__menu-link" (click)="toggleMenu(item)">
+
+            <div class="app-vsidebar__menu-item--menu-left">
+
+              <!-- Icon -->
+              <span class="app-vsidebar__menu-icon">
+
+                <i [ngClass]="item.icon">
+                </i>
+
+              </span>
+
+              <!-- Label -->
+              <span class="app-vsidebar__menu-label">
+                {{ item.label }}
+              </span>
+
+            </div>
+
+            <!-- Arrow -->
+            <i *ngIf="hasChildren(item)" class="fa-solid app-vsidebar__menu-arrow" [ngClass]="
+                item.open
+                  ? 'fa-chevron-up'
+                  : 'fa-chevron-down'
+              ">
+            </i>
+
+          </a>
+
+
+          <!-- ====================================================
+               LEVEL 2
+               ==================================================== -->
+
+          <ul *ngIf="hasChildren(item)" class="app-vsidebar__menu-item--submenu" [class.show]="item.open"
+            [class.popup]="sidebarWidth === 'w80'">
+
+            <li *ngFor="let child of item.children" class="app-vsidebar__submenu-item"
+              [class.has-children]="hasChildren(child)" [class.is-open]="child.open">
+
+              <!-- Level 2 link -->
+              <a href="javascript:void(0)" class="app-vsidebar__submenu-link" (click)="toggleMenu(child)">
+
+                <div class="app-vsidebar__menu-item--menu-left">
+
+                  <!-- Icon -->
+                  <span class="app-vsidebar__submenu-icon">
+
+                    <i [ngClass]="child.icon">
+                    </i>
+
+                  </span>
+
+                  <!-- Label -->
+                  <span class="app-vsidebar__submenu-label">
+                    {{ child.label }}
+                  </span>
+
+                </div>
+
+                <!-- Arrow -->
+                <i *ngIf="hasChildren(child)" class="fa-solid app-vsidebar__menu-arrow" [ngClass]="
+                    child.open
+                      ? 'fa-chevron-up'
+                      : 'fa-chevron-down'
+                  ">
+                </i>
+
+              </a>
+
+
+              <!-- ==================================================
+                   LEVEL 3
+                   ================================================== -->
+
+              <ul *ngIf="hasChildren(child)" class="app-vsidebar__menu-item--childmenu" [class.show]="child.open"
+                [class.popup]="sidebarWidth === 'w80'">
+
+                <li *ngFor="let sub of child.children" class="app-vsidebar__childmenu-item">
+
+                  <a href="javascript:void(0)" class="app-vsidebar__childmenu-link" (click)="toggleMenu(sub)">
+
+                    <!-- Icon -->
+                    <span class="app-vsidebar__childmenu-icon">
+
+                      <i [ngClass]="sub.icon">
+                      </i>
+
+                    </span>
+
+                    <!-- Label -->
+                    <span class="app-vsidebar__childmenu-label">
+                      {{ sub.label }}
+                    </span>
+
+                  </a>
+
+                </li>
+
+              </ul>
+
+            </li>
+
+          </ul>
+
+        </li>
+
+      </ul>
+
+    </div>
 
   </nav>
-
 </aside>

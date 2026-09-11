@@ -6,137 +6,257 @@ import { menuItem } from '../Shared/models/data-model';
 })
 export class AppMenusService {
 
-  constructor(private router: Router) { }
+  constructor(private router:Router) { }
 
-  menuItems: any = [
+  menuItems: menuItem[] = [
+
+    // =========================================================
+    // DASHBOARD
+    // =========================================================
+
     {
       label: 'Dashboard',
-      icon: 'dashboard',
-      route: '/layout/dashboard'
+      icon: 'fa-solid fa-chart-line',
+      route: '/layout/dashboard',
+      children: []
     },
+    
+
+    // =========================================================
+    // TENANTS
+    // =========================================================
 
     {
       label: 'Tenants',
-      icon: 'tenants',
-      route: '/layout/tenants'
+      icon: 'fa-solid fa-users',
+      route: '/layout/tenantlist',
+      children: []
     },
+
+
+    // =========================================================
+    // ROOMS & BEDS
+    // =========================================================
 
     {
       label: 'Rooms & Beds',
-      icon: 'rooms',
+      icon: 'fa-solid fa-bed',
+      route: '',
       children: [
+
         {
           label: 'Rooms',
-          icon: 'rooms',
-          route: '/layout/rooms'
+          icon: 'fa-solid fa-door-open',
+          route: '/layout/rooms',
+          children: []
         },
+
         {
           label: 'Beds',
-          icon: 'beds',
-          route: '/layout/beds'
+          icon: 'fa-solid fa-bed',
+          route: '/layout/beds',
+          children: []
         },
+
         {
           label: 'Floors',
-          icon: 'floors',
-          route: '/layout/floors'
+          icon: 'fa-solid fa-building',
+          route: '/layout/floors',
+          children: []
         }
+
       ]
     },
+
+
+    // =========================================================
+    // BOOKING
+    // =========================================================
 
     {
       label: 'Booking',
-      icon: 'booking',
+      icon: 'fa-solid fa-calendar-check',
+      route: '',
       children: [
+
         {
           label: 'All Bookings',
-          icon: 'booking',
-          route: '/layout/booking'
+          icon: 'fa-solid fa-calendar-days',
+          route: '/layout/booking',
+          children: []
         },
+
         {
           label: 'Check-ins',
-          icon: 'checkin',
-          route: '/layout/booking/check-ins'
+          icon: 'fa-solid fa-right-to-bracket',
+          route: '/layout/booking/check-ins',
+          children: []
         },
+
         {
           label: 'Check-outs',
-          icon: 'checkout',
-          route: '/layout/booking/check-outs'
+          icon: 'fa-solid fa-right-from-bracket',
+          route: '/layout/booking/check-outs',
+          children: []
         }
+
       ]
     },
+
+
+    // =========================================================
+    // PAYMENTS
+    // =========================================================
 
     {
       label: 'Payments',
-      icon: 'payments',
+      icon: 'fa-solid fa-money-bill-wave',
+      route: '',
       children: [
+
         {
           label: 'Rent',
-          icon: 'payments',
-          route: '/layout/payments/rent'
+          icon: 'fa-solid fa-money-bill',
+          route: '/layout/payments/rent',
+          children: []
         },
+
         {
           label: 'Advance',
-          icon: 'payments',
-          route: '/layout/payments/advance'
+          icon: 'fa-solid fa-wallet',
+          route: '/layout/payments/advance',
+          children: []
         },
+
         {
           label: 'Payment History',
-          icon: 'history',
-          route: '/layout/payments/history'
+          icon: 'fa-solid fa-clock-rotate-left',
+          route: '/layout/payments/history',
+          children: []
         }
+
       ]
     },
+
+
+    // =========================================================
+    // MESS
+    // =========================================================
 
     {
       label: 'Mess',
-      icon: 'mess',
-      route: '/layout/mess'
+      icon: 'fa-solid fa-utensils',
+      route: '',
+      children: [
+
+        {
+          label: 'Menu',
+          icon: 'fa-solid fa-list',
+          route: '/layout/mess/menu',
+          children: []
+        },
+
+        {
+          label: 'Meal Plans',
+          icon: 'fa-solid fa-bowl-food',
+          route: '/layout/mess/meal-plans',
+          children: []
+        }
+
+      ]
     },
+
+
+    // =========================================================
+    // MAINTENANCE
+    // =========================================================
 
     {
       label: 'Maintenance',
-      icon: 'maintenance',
+      icon: 'fa-solid fa-screwdriver-wrench',
+      route: '',
       children: [
+
         {
           label: 'Complaints',
-          icon: 'maintenance',
-          route: '/layout/maintenance/complaints'
+          icon: 'fa-solid fa-circle-exclamation',
+          route: '/layout/maintenance/complaints',
+          children: []
         },
+
         {
           label: 'Requests',
-          icon: 'maintenance',
-          route: '/layout/maintenance/requests'
+          icon: 'fa-solid fa-list-check',
+          route: '/layout/maintenance/requests',
+          children: []
         }
+
       ]
     },
+
+
+    // =========================================================
+    // VISITORS
+    // =========================================================
 
     {
       label: 'Visitors',
-      icon: 'visitors',
-      route: '/layout/visitors'
+      icon: 'fa-solid fa-user-check',
+      route: '',
+      children: [
+
+        {
+          label: 'Visitor Log',
+          icon: 'fa-solid fa-clipboard-list',
+          route: '/layout/visitors/log',
+          children: []
+        },
+
+        {
+          label: 'Expected Visitors',
+          icon: 'fa-solid fa-user-clock',
+          route: '/layout/visitors/expected',
+          children: []
+        }
+
+      ]
     },
+
+
+    // =========================================================
+    // REPORTS
+    // =========================================================
 
     {
       label: 'Reports',
-      icon: 'reports',
+      icon: 'fa-solid fa-chart-pie',
+      route: '',
       children: [
+
         {
-          label: 'Tenant Reports',
-          icon: 'reports',
-          route: '/layout/reports/tenants'
+          label: 'Tenant Report',
+          icon: 'fa-solid fa-users',
+          route: '/layout/reports/tenants',
+          children: []
         },
+
         {
-          label: 'Payment Reports',
-          icon: 'reports',
-          route: '/layout/reports/payments'
+          label: 'Payment Report',
+          icon: 'fa-solid fa-file-invoice-dollar',
+          route: '/layout/reports/payments',
+          children: []
         },
+
         {
-          label: 'Occupancy Reports',
-          icon: 'reports',
-          route: '/layout/reports/occupancy'
+          label: 'Occupancy Report',
+          icon: 'fa-solid fa-chart-column',
+          route: '/layout/reports/occupancy',
+          children: []
         }
+
       ]
     }
+
   ];
 
   _doNavigate(item: menuItem) {
