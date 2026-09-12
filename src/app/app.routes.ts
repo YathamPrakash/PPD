@@ -13,16 +13,16 @@ export const routes: Routes = [
     },
     {
         path: "login",
-        loadComponent:()=>import('./Pages/auth/login/login.component').then(m=>m.LoginComponent)
+        loadComponent: () => import('./Pages/auth/login/login.component').then(m => m.LoginComponent)
     },
     {
         path: "registration",
         canDeactivate: [canDeactivateGuard],
-        loadComponent:()=>import('./Pages/auth/registration/registration.component').then(m=>m.RegistrationComponent)
+        loadComponent: () => import('./Pages/auth/registration/registration.component').then(m => m.RegistrationComponent)
     },
     {
-        path:"home",
-        loadComponent:()=>import('./Pages/home/home.component').then(m=>m.HomeComponent)
+        path: "home",
+        loadComponent: () => import('./Pages/home/home.component').then(m => m.HomeComponent)
     },
     {
         path: "layout",
@@ -34,18 +34,26 @@ export const routes: Routes = [
                 pathMatch: "full"
             },
             {
-                path:"dashboard",
-                component:DashboardComponent
+                path: "dashboard",
+                component: DashboardComponent
             },
             {
-                path:"tenantlist",
-                loadComponent:()=>import('../app/Pages/tenant-management/tenant-management.component').then(m=>m.TenantManagementComponent)
+                path: "tenantlist",
+                loadComponent: () => import('../app/Pages/tenant-list/tenant-list.component').then(m => m.TenantListComponent)
+            },
+            {
+                path:"add-tenant",
+                loadComponent:()=>import ("../app/Pages/add-tenant/add-tenant.component").then(m=>m.AddTenantComponent)
+            },
+            {
+                path: "tenant-history",
+                loadComponent: () => import('../app/Pages/tenant-history/tenant-history.component').then(m => m.TenantHistoryComponent)
             }
         ]
     },
     {
-        path:"pg-onboarding",
-        loadComponent:()=>import('./Pages/PG/pg-onboarding/pg-onboarding.component').then(m=>m.PgOnboardingComponent)
+        path: "pg-onboarding",
+        loadComponent: () => import('./Pages/PG/pg-onboarding/pg-onboarding.component').then(m => m.PgOnboardingComponent)
     }
 
 ];

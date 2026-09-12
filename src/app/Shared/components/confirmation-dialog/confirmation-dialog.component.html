@@ -1,0 +1,246 @@
+@if (isOpen) {
+  <div
+    class="confirmation-dialog"
+    role="presentation"
+    (click)="onBackdropClick()">
+
+    <div
+      class="confirmation-dialog__backdrop">
+    </div>
+
+    <div
+      class="confirmation-dialog__container"
+      role="dialog"
+      aria-modal="true"
+      [attr.aria-labelledby]="'confirmation-dialog-title'"
+      [attr.aria-describedby]="'confirmation-dialog-message'"
+      (click)="onDialogClick($event)">
+
+      <!-- Dialog -->
+      <div
+        class="confirmation-dialog__content"
+        [class.confirmation-dialog__content--danger]="variant === 'danger'"
+        [class.confirmation-dialog__content--warning]="variant === 'warning'"
+        [class.confirmation-dialog__content--primary]="variant === 'primary'">
+
+        <!-- Header -->
+        <div class="confirmation-dialog__header">
+
+          <!-- Icon -->
+          <div
+            class="confirmation-dialog__icon"
+            [class.confirmation-dialog__icon--danger]="variant === 'danger'"
+            [class.confirmation-dialog__icon--warning]="variant === 'warning'"
+            [class.confirmation-dialog__icon--primary]="variant === 'primary'">
+
+            @if (variant === 'danger') {
+
+              <!-- Warning / Delete Icon -->
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+
+                <path
+                  d="M3 6H21"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round" />
+
+                <path
+                  d="M8 6V4.5C8 3.67 8.67 3 9.5 3H14.5C15.33 3 16 3.67 16 4.5V6"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round" />
+
+                <path
+                  d="M19 6L18.25 19C18.19 20.12 17.26 21 16.14 21H7.86C6.74 21 5.81 20.12 5.75 19L5 6"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round"
+                  stroke-linejoin="round" />
+
+                <path
+                  d="M10 10V17"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round" />
+
+                <path
+                  d="M14 10V17"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round" />
+
+              </svg>
+
+            } @else if (variant === 'warning') {
+
+              <!-- Warning Icon -->
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+
+                <path
+                  d="M10.29 3.86L1.82 18C1.64 18.31 1.55 18.69 1.55 19.08C1.55 20.26 2.5 21.21 3.68 21.21H20.32C21.5 21.21 22.45 20.26 22.45 19.08C22.45 18.69 22.36 18.31 22.18 18L13.71 3.86C13.53 3.55 13.25 3.29 12.92 3.11C11.89 2.55 10.6 2.9 10.04 3.93L10.29 3.86Z"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linejoin="round" />
+
+                <path
+                  d="M12 9V13"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round" />
+
+                <circle
+                  cx="12"
+                  cy="17"
+                  r="1"
+                  fill="currentColor" />
+
+              </svg>
+
+            } @else {
+
+              <!-- Info Icon -->
+              <svg
+                width="24"
+                height="24"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9"
+                  stroke="currentColor"
+                  stroke-width="1.8" />
+
+                <path
+                  d="M12 11V16"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round" />
+
+                <circle
+                  cx="12"
+                  cy="8"
+                  r="1"
+                  fill="currentColor" />
+
+              </svg>
+
+            }
+
+          </div>
+
+
+          <!-- Close -->
+          @if (showCloseButton) {
+            <button
+              type="button"
+              class="confirmation-dialog__close"
+              aria-label="Close dialog"
+              [disabled]="loading"
+              (click)="onCancel()">
+
+              <svg
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+
+                <path
+                  d="M6 6L18 18"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round" />
+
+                <path
+                  d="M18 6L6 18"
+                  stroke="currentColor"
+                  stroke-width="1.8"
+                  stroke-linecap="round" />
+
+              </svg>
+
+            </button>
+          }
+
+        </div>
+
+
+        <!-- Body -->
+        <div class="confirmation-dialog__body">
+
+          <h2
+            id="confirmation-dialog-title"
+            class="confirmation-dialog__title">
+            {{ title }}
+          </h2>
+
+          <p
+            id="confirmation-dialog-message"
+            class="confirmation-dialog__message">
+            {{ message }}
+          </p>
+
+        </div>
+
+
+        <!-- Footer -->
+        <div class="confirmation-dialog__footer">
+
+          <button
+            type="button"
+            class="confirmation-dialog__button confirmation-dialog__button--secondary"
+            [disabled]="loading"
+            (click)="onCancel()">
+
+            {{ cancelText }}
+
+          </button>
+
+
+          <button
+            type="button"
+            class="confirmation-dialog__button"
+            [class.confirmation-dialog__button--danger]="variant === 'danger'"
+            [class.confirmation-dialog__button--warning]="variant === 'warning'"
+            [class.confirmation-dialog__button--primary]="variant === 'primary'"
+            [disabled]="loading"
+            (click)="onConfirm()">
+
+            @if (loading) {
+              <span
+                class="confirmation-dialog__spinner"
+                aria-hidden="true">
+              </span>
+            }
+
+            <span>
+              {{ loading ? 'Please wait...' : confirmText }}
+            </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+}

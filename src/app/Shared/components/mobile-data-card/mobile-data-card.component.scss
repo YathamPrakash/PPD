@@ -1,0 +1,303 @@
+@import '../../../../Styles/variables.scss';
+@import '../../../../Styles/mixins.scss';
+
+.mobile-data-card {
+    width: 100%;
+
+    padding: $spacing-sm;
+
+    background: $background-card;
+
+    border: 1px solid $border-light;
+    border-radius: $radius-lg;
+
+    @include shadow(sm);
+
+    cursor: pointer;
+
+    transition:
+        transform $transition-fast,
+        box-shadow $transition-fast,
+        border-color $transition-fast;
+
+    &:hover {
+        transform: translateY(-1px);
+
+        @include shadow(md);
+
+        border-color: $border-color;
+    }
+
+    &:active {
+        transform: translateY(0);
+    }
+
+    /* =================================
+       HEADER
+    ================================= */
+
+    &__header {
+        @include flex(
+            space-between,
+            flex-start,
+            row,
+            $spacing-sm
+        );
+
+        width: 100%;
+        min-width: 0;
+    }
+
+    &__identity {
+        @include flex(
+            flex-start,
+            center,
+            row,
+            $spacing-sm
+        );
+
+        min-width: 0;
+        flex: 1;
+    }
+
+    /* =================================
+       AVATAR
+    ================================= */
+
+    &__avatar {
+        @include bricolage-grotesque(600);
+        @include flex(center, center);
+
+        flex: 0 0 auto;
+
+        width: 40px;
+        height: 40px;
+
+        color: $color-primary;
+        background: rgba($color-primary, .10);
+
+        border-radius: $radius-round;
+
+        font-size: $font-size-sm;
+        line-height: 1;
+    }
+
+    /* =================================
+       HEADING
+    ================================= */
+
+    &__heading {
+        min-width: 0;
+        flex: 1;
+    }
+
+    &__title {
+        @include bricolage-grotesque(600);
+
+        margin: 0;
+
+        color: $text-primary;
+
+        font-size: $font-size-md;
+        line-height: 1.35;
+
+        @include text-ellipsis;
+    }
+
+    &__subtitle {
+        @include montserrat(400);
+
+        margin: .2rem 0 0;
+
+        color: $text-secondary;
+
+        font-size: $font-size-xs;
+        line-height: 1.4;
+
+        @include text-ellipsis;
+    }
+
+    /* =================================
+       ACTIONS
+    ================================= */
+
+    &__actions {
+        flex: 0 0 auto;
+    }
+
+    /* =================================
+       BODY
+    ================================= */
+
+    &__body {
+        display: grid;
+
+        grid-template-columns:
+            repeat(2, minmax(0, 1fr));
+
+        gap: .75rem $spacing-md;
+
+        margin-top: $spacing-sm;
+        padding-top: $spacing-sm;
+
+        border-top: 1px solid $border-light;
+    }
+
+    /* =================================
+       FIELD
+    ================================= */
+
+    &__field {
+        display: flex;
+        flex-direction: column;
+
+        min-width: 0;
+
+        gap: .25rem;
+
+        &--primary {
+            grid-column: 1 / -1;
+        }
+    }
+
+    /* =================================
+       LABEL
+    ================================= */
+
+    &__label {
+        @include montserrat(500);
+
+        color: $text-muted;
+
+        font-size: $font-size-xs;
+        line-height: 1.3;
+    }
+
+    /* =================================
+       VALUE
+    ================================= */
+
+    &__value {
+        @include montserrat(500);
+
+        min-width: 0;
+
+        color: $text-primary;
+
+        font-size: $font-size-xs;
+        line-height: 1.4;
+
+        @include text-ellipsis;
+
+        &--currency {
+            @include montserrat(600);
+        }
+    }
+
+    /* =================================
+       VIEW
+    ================================= */
+
+    &__view {
+        @include montserrat(600);
+
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+
+        width: 100%;
+
+        margin-top: $spacing-sm;
+        padding: .7rem 0 0;
+
+        color: $color-primary;
+        background: transparent;
+
+        border: none;
+        border-top: 1px solid $border-light;
+
+        font-size: $font-size-xs;
+
+        text-align: left;
+
+        cursor: pointer;
+
+        transition:
+            color $transition-fast;
+
+        &:hover {
+            color: $color-primary-dark;
+        }
+    }
+
+    &__view-arrow {
+        font-size: $font-size-md;
+
+        transition:
+            transform $transition-fast;
+    }
+
+    &__view:hover
+    &__view-arrow {
+        transform: translateX(3px);
+    }
+
+    /* =================================
+       TABLET
+    ================================= */
+
+    @include respond(tablet) {
+
+        padding: $spacing-sm;
+
+        &__body {
+            gap: .7rem $spacing-sm;
+        }
+    }
+
+    /* =================================
+       MOBILE
+    ================================= */
+
+    @include respond(mobile) {
+
+        padding: $spacing-sm;
+
+        border-radius: $radius-lg;
+
+        &:hover {
+            transform: none;
+        }
+
+        &__avatar {
+            width: 40px;
+            height: 40px;
+
+            font-size: $font-size-xs;
+        }
+
+        &__title {
+            font-size: $font-size-sm;
+        }
+
+        &__subtitle {
+            font-size: $font-size-xs;
+        }
+
+        &__body {
+            grid-template-columns:
+                repeat(2, minmax(0, 1fr));
+
+            gap: .7rem $spacing-sm;
+        }
+
+        &__label,
+        &__value {
+            font-size: $font-size-xs;
+        }
+
+        &__view {
+            margin-top: $spacing-sm;
+        }
+    }
+}

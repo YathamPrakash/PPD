@@ -1,0 +1,166 @@
+<div class="tenants-page">
+
+  <!-- =====================================================
+         PAGE HEADER
+    ====================================================== -->
+
+  <app-page-header eyebrow="Property Management" title="Tenants"
+    description="Manage your tenants, rooms, rent and occupancy details." [showAction]="true" actionLabel="Add Tenant"
+    (actionClick)="addTenant()">
+  </app-page-header>
+
+
+  <!-- =====================================================
+         SEARCH & FILTER
+    ====================================================== -->
+
+  <section class="tenants-page__filters">
+
+    <app-search-filter searchPlaceholder="Search tenants by name, mobile, room..." [filters]="filters"
+      [showReset]="true" [showFilterButton]="true" (searchChange)="onSearchChange($event)"
+      (filterChange)="onFilterChange($event)" (reset)="onReset()">
+    </app-search-filter>
+
+  </section>
+
+
+  <!-- =====================================================
+         ERROR STATE
+    ====================================================== -->
+
+  <section *ngIf="error" class="tenants-page__state">
+
+    <app-error-state title="Unable to load tenants" description="We couldn't load the tenant list. Please try again."
+      actionLabel="Try Again" [showAction]="true" (actionClick)="error = false">
+    </app-error-state>
+
+  </section>
+
+
+  <!-- =====================================================
+         LOADING STATE
+    ====================================================== -->
+
+  <section *ngIf="loading && !error" class="tenants-page__table-section">
+
+    <app-loading-skeleton type="table" [rows]="6" [columns]="6" [showContainer]="true">
+    </app-loading-skeleton>
+
+  </section>
+
+
+  <!-- =====================================================
+         CONTENT
+    ====================================================== -->
+
+  <ng-container *ngIf="!loading && !error">
+
+    <!-- =================================================
+             DESKTOP / TABLET TABLE
+        ================================================== -->
+
+    <section class="tenants-page__table-section">
+
+      <div class="tenants-page__section-header">
+
+        <div class="tenants-page__section-heading">
+
+          <h2 class="tenants-page__section-title">
+            Tenant List
+          </h2>
+
+          <span class="tenants-page__count">
+            {{ filteredTenants.length }}
+            {{ filteredTenants.length === 1 ? 'tenant' : 'tenants' }}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <!-- =================================================
+                 EMPTY STATE
+            ================================================== -->
+
+      <div *ngIf="filteredTenants.length === 0" class="tenants-page__empty">
+
+        <app-empty-state title="No tenants found" description="Try changing your search or filter options.">
+        </app-empty-state>
+
+      </div>
+
+
+      <!-- =================================================
+                 DATA TABLE
+            ================================================= -->
+
+      <div *ngIf="filteredTenants.length > 0" class="tenants-page__desktop-table">
+
+        <app-data-table [columns]="columns" [rows]="paginatedTenants" [actions]="actions" [showActions]="true"
+          [loading]="false" [empty]="false" rowKey="id" (rowClick)="onRowClick($event)"
+          (actionClick)="onTableAction($event)">
+        </app-data-table>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================================
+             MOBILE CARDS
+        ================================================== -->
+
+    <section *ngIf="filteredTenants.length > 0" class="tenants-page__mobile-list">
+
+      <div class="tenants-page__mobile-header">
+
+        <div>
+
+          <h2 class="tenants-page__section-title">
+            Tenant List
+          </h2>
+
+          <span class="tenants-page__count">
+            {{ filteredTenants.length }}
+            {{ filteredTenants.length === 1 ? 'tenant' : 'tenants' }}
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="tenants-page__mobile-cards">
+
+        <app-mobile-data-card *ngFor="
+                        let tenant of paginatedTenants;
+                        trackBy: trackTenant
+                    " [row]="tenant" [fields]="mobileFields" [actions]="actions" [showActions]="true"
+          [titleKey]="'name'" [subtitleKey]="'room'" [avatarKey]="'avatar'" [showViewLink]="true"
+          viewLabel="View Details" (rowClick)="onRowClick($event)" (actionClick)="onMobileAction($event)"
+          (viewClick)="onMobileView($event)">
+        </app-mobile-data-card>
+
+      </div>
+
+    </section>
+
+
+    <!-- =================================================
+             PAGINATION
+        ================================================== -->
+
+    <section *ngIf="
+                filteredTenants.length > pageSize
+            " class="tenants-page__pagination">
+
+      <app-pagination [totalItems]="filteredTenants.length" [pageSize]="pageSize" [currentPage]="currentPage"
+        [maxVisiblePages]="5" itemLabel="tenants" (pageChange)="onPageChange($event)">
+      </app-pagination>
+
+    </section>
+
+  </ng-container>
+
+</div>

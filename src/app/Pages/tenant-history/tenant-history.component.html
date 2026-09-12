@@ -1,0 +1,166 @@
+<div class="tenant-history-page">
+
+    <!-- =====================================================
+       PAGE HEADER
+  ====================================================== -->
+
+    <app-page-header eyebrow="Tenant Management" title="Tenant History"
+        description="View and track all tenant activity, changes and updates.">
+    </app-page-header>
+
+
+    <!-- =====================================================
+       SEARCH & FILTER
+  ====================================================== -->
+
+    <section class="tenant-history-page__filters">
+
+        <app-search-filter searchPlaceholder="Search by tenant, mobile, room or action..." [filters]="filters"
+            [showReset]="true" [showFilterButton]="true" (searchChange)="onSearchChange($event)"
+            (filterChange)="onFilterChange($event)" (reset)="onReset()">
+        </app-search-filter>
+
+    </section>
+
+
+    <!-- =====================================================
+       ERROR STATE
+  ====================================================== -->
+
+    <section *ngIf="error" class="tenant-history-page__state">
+
+        <app-error-state title="Unable to load tenant history"
+            description="We couldn't load the tenant history. Please try again." actionLabel="Try Again"
+            [showAction]="true" (actionClick)="error = false">
+        </app-error-state>
+
+    </section>
+
+
+    <!-- =====================================================
+       LOADING STATE
+  ====================================================== -->
+
+    <section *ngIf="loading && !error" class="tenant-history-page__table-section">
+
+        <app-loading-skeleton type="table" [rows]="6" [columns]="7" [showContainer]="true">
+        </app-loading-skeleton>
+
+    </section>
+
+
+    <!-- =====================================================
+       CONTENT
+  ====================================================== -->
+
+    <ng-container *ngIf="!loading && !error">
+
+        <!-- ===================================================
+         DESKTOP / TABLET
+    ==================================================== -->
+
+        <section class="tenant-history-page__table-section">
+
+            <div class="tenant-history-page__section-header">
+
+                <div class="tenant-history-page__section-heading">
+
+                    <div>
+                        <h2 class="tenant-history-page__section-title">
+                            Activity History
+                        </h2>
+
+                        <p class="tenant-history-page__section-description">
+                            {{ filteredHistory.length }}
+                            {{ filteredHistory.length === 1 ? 'activity' : 'activities' }}
+                            recorded
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!-- =================================================
+           EMPTY STATE
+      ================================================== -->
+
+            <div *ngIf="filteredHistory.length === 0" class="tenant-history-page__empty">
+
+                <app-empty-state title="No history found" description="Try changing your search or filter options.">
+                </app-empty-state>
+
+            </div>
+
+
+            <!-- =================================================
+           DATA TABLE
+      ================================================== -->
+
+            <div *ngIf="filteredHistory.length > 0" class="tenant-history-page__desktop-table">
+
+                <app-data-table [columns]="columns" [rows]="paginatedHistory" [actions]="actions" [showActions]="true"
+                    [loading]="false" [empty]="false" rowKey="id" (rowClick)="onRowClick($event)"
+                    (actionClick)="onTableAction($event)">
+                </app-data-table>
+
+            </div>
+
+        </section>
+
+
+        <!-- ===================================================
+         MOBILE
+    ==================================================== -->
+
+        <section *ngIf="filteredHistory.length > 0" class="tenant-history-page__mobile-list">
+
+            <div class="tenant-history-page__mobile-header">
+
+                <div>
+                    <h2 class="tenant-history-page__section-title">
+                        Activity History
+                    </h2>
+
+                    <p class="tenant-history-page__section-description">
+                        {{ filteredHistory.length }}
+                        {{ filteredHistory.length === 1 ? 'activity' : 'activities' }}
+                        recorded
+                    </p>
+                </div>
+
+            </div>
+
+
+            <div class="tenant-history-page__mobile-cards">
+
+                <app-mobile-data-card *ngFor="
+            let history of paginatedHistory;
+            trackBy: trackHistory
+          " [row]="history" [fields]="mobileFields" [actions]="actions" [showActions]="true" [titleKey]="'tenantName'"
+                    [subtitleKey]="'room'" [avatarKey]="'avatar'" [showViewLink]="true" viewLabel="View Details"
+                    (rowClick)="onRowClick($event)" (actionClick)="onMobileAction($event)"
+                    (viewClick)="onMobileView($event)">
+                </app-mobile-data-card>
+
+            </div>
+
+        </section>
+
+
+        <!-- ===================================================
+         PAGINATION
+    ==================================================== -->
+
+        <section *ngIf="filteredHistory.length > pageSize" class="tenant-history-page__pagination">
+
+            <app-pagination [totalItems]="filteredHistory.length" [pageSize]="pageSize" [currentPage]="currentPage"
+                [maxVisiblePages]="5" itemLabel="activities" (pageChange)="onPageChange($event)">
+            </app-pagination>
+
+        </section>
+
+    </ng-container>
+
+</div>

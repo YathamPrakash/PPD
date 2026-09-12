@@ -1,0 +1,879 @@
+@import "../../../../Styles/variables.scss";
+@import "../../../../Styles/mixins.scss";
+
+
+/* =========================================================
+   CHART CARD
+   ========================================================= */
+
+.chart-card {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  background: $background-card;
+
+  border: 1px solid $border-light;
+
+  border-radius: $radius-lg;
+
+  box-shadow: $shadow-sm;
+
+  overflow: visible;
+
+  @include montserrat(400);
+}
+
+
+/* =========================================================
+   HEADER
+   ========================================================= */
+
+.chart-card__header {
+  width: 100%;
+  min-width: 0;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  justify-content: space-between;
+
+  gap: $spacing-sm;
+
+  padding: $spacing-lg;
+
+  border-bottom: 1px solid $border-light;
+
+  background: $background-card;
+}
+
+
+/* =========================================================
+   HEADING
+   ========================================================= */
+
+.chart-card__heading {
+  min-width: 0;
+
+  flex: 1;
+
+  overflow: hidden;
+}
+
+
+.chart-card__title {
+  margin: 0;
+
+  color: $text-primary;
+
+  @include bricolage-grotesque(600);
+
+  font-size: $font-size-lg;
+
+  line-height: 1.35;
+
+  /*
+     * Prevent the title from being pushed underneath
+     * the dropdown/menu.
+     */
+  overflow-wrap: break-word;
+}
+
+
+.chart-card__description {
+  margin: .35rem 0 0;
+
+  color: $text-secondary;
+
+  @include montserrat(400);
+
+  font-size: $font-size-sm;
+
+  line-height: 1.5;
+
+  overflow-wrap: break-word;
+}
+
+
+/* =========================================================
+   HEADER ACTIONS
+   ========================================================= */
+
+.chart-card__actions {
+  flex-shrink: 0;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: .35rem;
+
+  padding-top: .1rem;
+}
+
+
+/* =========================================================
+   PERIOD SELECT
+   ========================================================= */
+
+.chart-card__select {
+  width: 148px;
+
+  min-width: 120px;
+
+  height: 42px;
+
+  padding:
+    0 2rem 0 .9rem;
+
+  border: 1px solid $border-color;
+
+  border-radius: $radius-md;
+
+  outline: none;
+
+  background-color: $background-card;
+
+  color: $text-primary;
+
+  @include montserrat(500);
+
+  font-size: $font-size-sm;
+
+  cursor: pointer;
+
+  transition:
+    border-color $transition-fast,
+    box-shadow $transition-fast,
+    background-color $transition-fast;
+
+  &:hover {
+    border-color: $color-primary;
+
+    background-color: $background-card;
+  }
+
+  &:focus {
+    border-color: $color-primary;
+
+    @include shadow(sm);
+  }
+}
+
+
+/* =========================================================
+   MENU WRAPPER
+   ========================================================= */
+
+.chart-card__menu-wrapper {
+  position: relative;
+
+  flex-shrink: 0;
+}
+
+
+/* =========================================================
+   THREE DOT BUTTON
+   ========================================================= */
+
+.chart-card__menu-button {
+  width: 34px;
+
+  height: 38px;
+
+  @include flex(center, center);
+
+  padding: 0;
+
+  border: 1px solid transparent;
+
+  border-radius: $radius-sm;
+
+  background: transparent;
+
+  color: $text-secondary;
+
+  cursor: pointer;
+
+  transition:
+    background-color $transition-fast,
+    color $transition-fast,
+    border-color $transition-fast;
+
+  &:hover {
+    background: rgba($color-primary, .06);
+
+    color: $color-primary;
+
+    border-color: rgba($color-primary, .08);
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+
+    outline-offset: 2px;
+  }
+
+  i {
+    font-size: 16px;
+  }
+}
+
+
+/* =========================================================
+   MENU
+   ========================================================= */
+
+.chart-card__menu {
+  position: absolute;
+
+  top: calc(100% + $spacing-xs);
+
+  right: 0;
+
+  z-index: $z-dropdown;
+
+  width: 190px;
+
+  padding: $spacing-xs;
+
+  background: $background-card;
+
+  border: 1px solid $border-light;
+
+  border-radius: $radius-md;
+
+  box-shadow: $shadow-md;
+}
+
+
+/* =========================================================
+   MENU ITEM
+   ========================================================= */
+
+.chart-card__menu-item {
+  width: 100%;
+
+  min-height: 42px;
+
+  display: flex;
+
+  align-items: center;
+
+  gap: $spacing-sm;
+
+  padding:
+    0 $spacing-sm;
+
+  border: 0;
+
+  border-radius: $radius-sm;
+
+  background: transparent;
+
+  color: $text-secondary;
+
+  @include montserrat(500);
+
+  font-size: $font-size-xs;
+
+  text-align: left;
+
+  cursor: pointer;
+
+  transition:
+    background-color $transition-fast,
+    color $transition-fast;
+
+  i {
+    width: 18px;
+
+    flex-shrink: 0;
+
+    color: $text-muted;
+
+    font-size: 14px;
+
+    text-align: center;
+
+    transition:
+      color $transition-fast;
+  }
+
+  span {
+    flex: 1;
+  }
+
+  &:hover {
+    background: rgba($color-primary, .06);
+
+    color: $color-primary;
+
+    i {
+      color: $color-primary;
+    }
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+
+    outline-offset: -2px;
+  }
+}
+
+
+/* =========================================================
+   CHART BODY
+   ========================================================= */
+
+.chart-card__body {
+  position: relative;
+
+  width: 100%;
+
+  min-width: 0;
+
+  padding:
+    $spacing-lg $spacing-lg $spacing-md;
+
+  background: $background-card;
+}
+
+
+/* =========================================================
+   CHART AREA
+   ========================================================= */
+
+.chart-card__chart {
+  position: relative;
+
+  width: 100%;
+
+  height: 390px;
+
+  min-width: 0;
+
+  overflow: hidden;
+}
+
+
+.chart-card__chart>canvas {
+  display: block;
+
+  width: 100% !important;
+
+  height: 100% !important;
+
+  max-width: 100%;
+}
+
+
+/* =========================================================
+   FOOTER
+   ========================================================= */
+
+.chart-card__footer {
+  width: 100%;
+
+  padding:
+    $spacing-sm $spacing-lg;
+
+  border-top: 1px solid $border-light;
+
+  background: $background-card;
+
+  color: $text-secondary;
+
+  @include montserrat(400);
+
+  font-size: $font-size-sm;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   LOADING
+   ========================================================= */
+
+.chart-card__loading {
+  width: 100%;
+
+  height: 390px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: flex-end;
+
+  gap: $spacing-sm;
+}
+
+
+.chart-card__skeleton {
+  border-radius: $radius-sm;
+
+  background: linear-gradient(90deg,
+      rgba($text-muted, .08),
+      rgba($text-muted, .16),
+      rgba($text-muted, .08));
+
+  animation:
+    chart-card-skeleton 1.5s ease-in-out infinite;
+}
+
+
+.chart-card__skeleton--large {
+  width: 100%;
+
+  height: 45%;
+}
+
+
+.chart-card__skeleton--medium {
+  width: 78%;
+
+  height: 12%;
+}
+
+
+.chart-card__skeleton--small {
+  width: 55%;
+
+  height: 8%;
+}
+
+
+/* =========================================================
+   EMPTY STATE
+   ========================================================= */
+
+.chart-card__body--empty {
+  min-height: 390px;
+
+  @include flex(center, center);
+}
+
+
+.chart-card__empty {
+  width: 100%;
+
+  min-height: 300px;
+
+  @include flex(center,
+    center,
+    column);
+
+  text-align: center;
+}
+
+
+.chart-card__empty-icon {
+  width: 48px;
+
+  height: 48px;
+
+  margin-bottom: $spacing-sm;
+
+  @include flex(center, center);
+
+  border-radius: $radius-md;
+
+  background: rgba($color-primary, .07);
+
+  color: $color-primary;
+
+  i {
+    font-size: 22px;
+  }
+}
+
+
+.chart-card__empty-title {
+  margin: 0;
+
+  color: $text-primary;
+
+  @include bricolage-grotesque(600);
+
+  font-size: $font-size-sm;
+}
+
+
+.chart-card__empty-message {
+  max-width: 320px;
+
+  margin: .25rem 0 0;
+
+  color: $text-secondary;
+
+  @include montserrat(400);
+
+  font-size: $font-size-xs;
+
+  line-height: 1.5;
+}
+
+
+/* =========================================================
+   FULLSCREEN
+   ========================================================= */
+
+.chart-card--fullscreen {
+  position: fixed;
+
+  inset: 0;
+
+  z-index: 9999;
+
+  width: 100vw;
+
+  height: 100vh;
+
+  margin: 0;
+
+  border-radius: 0;
+
+  background: $background-card;
+
+  box-shadow: none;
+
+  overflow: hidden;
+
+  display: flex;
+
+  flex-direction: column;
+}
+
+
+/* =========================================================
+   FULLSCREEN HEADER
+   ========================================================= */
+
+.chart-card--fullscreen .chart-card__header {
+  flex-shrink: 0;
+
+  padding:
+    $spacing-lg $spacing-xl;
+}
+
+
+/* =========================================================
+   FULLSCREEN BODY
+   ========================================================= */
+
+.chart-card--fullscreen .chart-card__body {
+  flex: 1;
+
+  min-height: 0;
+
+  padding:
+    $spacing-lg $spacing-xl;
+}
+
+
+.chart-card--fullscreen .chart-card__chart {
+  height: 100%;
+
+  min-height: 0;
+
+  overflow: hidden;
+}
+
+
+/* =========================================================
+   FULLSCREEN FOOTER
+   ========================================================= */
+
+.chart-card--fullscreen .chart-card__footer {
+  flex-shrink: 0;
+
+  padding:
+    $spacing-sm $spacing-xl;
+}
+
+
+/* =========================================================
+   FULLSCREEN CLOSE BUTTON
+   ========================================================= */
+
+.chart-card__fullscreen-close {
+  position: absolute;
+
+  top: $spacing-lg;
+
+  right: $spacing-lg;
+
+  z-index: 10001;
+
+  width: 40px;
+
+  height: 40px;
+
+  @include flex(center, center);
+
+  border: 1px solid $border-color;
+
+  border-radius: $radius-md;
+
+  background: $background-card;
+
+  color: $text-secondary;
+
+  cursor: pointer;
+
+  box-shadow: $shadow-sm;
+
+  transition:
+    background-color $transition-fast,
+    color $transition-fast,
+    border-color $transition-fast;
+
+  &:hover {
+    background: rgba($color-primary, .06);
+
+    border-color: $color-primary;
+
+    color: $color-primary;
+  }
+
+  &:focus-visible {
+    outline: 2px solid $color-primary;
+
+    outline-offset: 2px;
+  }
+
+  i {
+    font-size: 16px;
+  }
+}
+
+
+/* =========================================================
+   TABLET
+   ========================================================= */
+
+@media (max-width: $tablet) {
+
+  .chart-card__header {
+    padding: $spacing-md;
+  }
+
+
+  .chart-card__body {
+    padding:
+      $spacing-md $spacing-md $spacing-sm;
+  }
+
+
+  .chart-card__chart {
+    height: 330px;
+  }
+
+
+  .chart-card__select {
+    width: 145px;
+
+    min-width: 120px;
+
+    height: 42px;
+
+    font-size: $font-size-sm;
+  }
+
+
+  .chart-card__footer {
+    padding:
+      $spacing-sm $spacing-md;
+  }
+
+}
+
+
+/* =========================================================
+   MOBILE
+   ========================================================= */
+
+@media (max-width: $mobile) {
+
+  .chart-card {
+    border-radius: $radius-md;
+  }
+
+
+  .chart-card__header {
+    flex-direction: column;
+
+    gap: $spacing-sm;
+
+    padding: $spacing-md;
+  }
+
+
+  .chart-card__heading {
+    width: 100%;
+  }
+
+
+  .chart-card__title {
+    font-size: $font-size-md;
+  }
+
+
+  .chart-card__description {
+    font-size: $font-size-xs;
+  }
+
+
+  .chart-card__actions {
+    width: 100%;
+
+    padding-top: 0;
+
+    gap: $spacing-sm;
+  }
+
+
+  .chart-card__select {
+    flex: 1;
+
+    width: auto;
+
+    min-width: 0;
+
+    height: 42px;
+
+    font-size: $font-size-xs;
+  }
+
+
+  .chart-card__menu-button {
+    width: 42px;
+
+    height: 42px;
+  }
+
+
+  .chart-card__body {
+    padding:
+      $spacing-md $spacing-md $spacing-sm;
+  }
+
+
+  .chart-card__chart {
+    height: 280px;
+  }
+
+
+  .chart-card__loading {
+    height: 280px;
+  }
+
+
+  .chart-card__body--empty {
+    min-height: 280px;
+  }
+
+
+  .chart-card__footer {
+    padding:
+      $spacing-sm $spacing-md;
+
+    font-size: $font-size-xs;
+  }
+
+
+  .chart-card--fullscreen .chart-card__header {
+    padding: $spacing-md;
+  }
+
+
+  .chart-card--fullscreen .chart-card__body {
+    padding: $spacing-md;
+  }
+
+
+  .chart-card--fullscreen .chart-card__footer {
+    padding:
+      $spacing-sm $spacing-md;
+  }
+
+
+  .chart-card__fullscreen-close {
+    top: $spacing-md;
+
+    right: $spacing-md;
+  }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+  .chart-card__header {
+    padding: $spacing-sm;
+  }
+
+
+  .chart-card__body {
+    padding:
+      $spacing-sm $spacing-sm $spacing-xs;
+  }
+
+
+  .chart-card__chart {
+    height: 240px;
+  }
+
+
+  .chart-card__loading {
+    height: 240px;
+  }
+
+
+  .chart-card__select {
+    height: 40px;
+  }
+
+
+  .chart-card__footer {
+    padding: $spacing-sm;
+  }
+
+
+  .chart-card__menu {
+    width: 180px;
+  }
+
+}
+
+
+/* =========================================================
+   SKELETON ANIMATION
+   ========================================================= */
+
+@keyframes chart-card-skeleton {
+
+  0% {
+    opacity: .55;
+  }
+
+  50% {
+    opacity: 1;
+  }
+
+  100% {
+    opacity: .55;
+  }
+
+}

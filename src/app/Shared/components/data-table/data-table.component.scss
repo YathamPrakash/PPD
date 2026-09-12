@@ -1,0 +1,658 @@
+@import "../../../../Styles/mixins.scss";
+@import "../../../../Styles/variables.scss";
+
+// ======================================================
+// DATA TABLE
+// ======================================================
+
+.data-table {
+    width: 100%;
+
+    background: $background-card;
+
+    border: 1px solid $border-light;
+    border-radius: $radius-lg;
+
+    @include shadow(sm);
+
+    overflow: hidden;
+
+
+    // ==================================================
+    // TABLE WRAPPER
+    // ==================================================
+
+    &__wrapper {
+        width: 100%;
+
+        overflow-x: auto;
+
+        scrollbar-width: thin;
+
+        scrollbar-color:
+            rgba($color-primary, .25) transparent;
+
+        &::-webkit-scrollbar {
+            height: 5px;
+        }
+
+        &::-webkit-scrollbar-track {
+            background: transparent;
+        }
+
+        &::-webkit-scrollbar-thumb {
+            background: rgba($color-primary, .25);
+
+            border-radius: $radius-round;
+        }
+
+        &::-webkit-scrollbar-thumb:hover {
+            background: rgba($color-primary, .4);
+        }
+    }
+
+
+    // ==================================================
+    // TABLE
+    // ==================================================
+
+    &__table {
+        width: 100%;
+
+        min-width: 760px;
+
+        border-collapse: collapse;
+        border-spacing: 0;
+
+        table-layout: auto;
+    }
+
+
+    // ==================================================
+    // HEADER
+    // ==================================================
+
+    &__head {
+
+        th {
+            @include montserrat(600);
+
+            height: 48px;
+
+            padding:
+                .75rem $spacing-sm;
+
+            color: $text-secondary;
+
+            background: $background-section;
+
+            border-bottom:
+                1px solid $border-color;
+
+            font-size: $font-size-xs;
+
+            line-height: 1.4;
+
+            white-space: nowrap;
+
+            vertical-align: middle;
+
+
+            &:first-child {
+                padding-left: $spacing-md;
+            }
+
+
+            &:last-child {
+                padding-right: $spacing-md;
+            }
+        }
+    }
+
+
+    // ==================================================
+    // BODY
+    // ==================================================
+
+    &__body {
+
+        td {
+            @include montserrat(400);
+
+            height: 64px;
+
+            padding:
+                .7rem $spacing-sm;
+
+            color: $text-primary;
+
+            background: $background-card;
+
+            border-bottom:
+                1px solid $border-light;
+
+            font-size: $font-size-xs;
+
+            line-height: 1.4;
+
+            vertical-align: middle;
+
+
+            &:first-child {
+                padding-left: $spacing-md;
+            }
+
+
+            &:last-child {
+                padding-right: $spacing-md;
+            }
+        }
+
+
+        tr:last-child td {
+            border-bottom: none;
+        }
+    }
+
+
+    // ==================================================
+    // ROW
+    // ==================================================
+
+    &__row {
+        cursor: pointer;
+
+        transition:
+            background $transition-fast;
+
+
+        &:hover {
+
+            td {
+                background:
+                    rgba($color-primary,
+                        .025);
+            }
+        }
+    }
+
+
+    // ==================================================
+    // NORMAL TEXT
+    // ==================================================
+
+    &__text {
+        display: inline-block;
+
+        max-width: 260px;
+
+        @include text-ellipsis;
+
+        vertical-align: middle;
+    }
+
+
+    // ==================================================
+    // DATE
+    // ==================================================
+
+    &__date {
+        color: $text-secondary;
+
+        white-space: nowrap;
+
+        @include montserrat(400);
+    }
+
+
+    // ==================================================
+    // CURRENCY
+    // ==================================================
+
+    &__currency {
+        @include montserrat(600);
+
+        color: $text-primary;
+
+        white-space: nowrap;
+    }
+
+
+    // ==================================================
+    // ACTION
+    // ==================================================
+
+    &__action {
+        @include flex(flex-end,
+            center);
+
+        position: relative;
+
+        width: 100%;
+
+        min-width: 40px;
+
+        z-index: 20;
+    }
+
+
+    // ==================================================
+    // TENANT CELL
+    // ==================================================
+
+    &__tenant {
+        display: flex;
+
+        align-items: center;
+
+        gap: $spacing-sm;
+
+        min-width: 180px;
+
+        max-width: 100%;
+    }
+
+
+    // ==================================================
+    // TENANT AVATAR
+    // ==================================================
+
+    &__tenant-avatar {
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        width: 40px;
+
+        height: 40px;
+
+        min-width: 40px;
+
+        border-radius: $radius-round;
+
+        background:
+            rgba($color-primary,
+                .10);
+
+        color: $color-primary;
+
+        @include montserrat(600);
+
+        font-size: $font-size-xs;
+
+        line-height: 1;
+
+        user-select: none;
+    }
+
+
+    // ==================================================
+    // TENANT INFORMATION
+    // ==================================================
+
+    &__tenant-info {
+        display: flex;
+
+        flex-direction: column;
+
+        gap: 3px;
+
+        min-width: 0;
+
+        overflow: hidden;
+    }
+
+
+    // ==================================================
+    // TENANT NAME
+    // ==================================================
+
+    &__tenant-name {
+        display: block;
+
+        max-width: 220px;
+
+        color: $text-primary;
+
+        @include montserrat(600);
+
+        font-size: $font-size-sm;
+
+        line-height: 1.35;
+
+        overflow: hidden;
+
+        white-space: nowrap;
+
+        text-overflow: ellipsis;
+    }
+
+
+    // ==================================================
+    // TENANT MOBILE
+    // ==================================================
+
+    &__tenant-mobile {
+        display: block;
+
+        color: $text-muted;
+
+        @include montserrat(400);
+
+        font-size: $font-size-xs;
+
+        line-height: 1.35;
+
+        white-space: nowrap;
+    }
+
+
+    // ==================================================
+    // EMPTY
+    // ==================================================
+
+    &__empty {
+        @include flex(center,
+            center,
+            column,
+            $spacing-sm );
+
+        min-height: 240px;
+
+        padding: $spacing-lg;
+
+        text-align: center;
+    }
+
+
+    &__empty-icon {
+        @include flex(center,
+            center);
+
+        width: 48px;
+
+        height: 48px;
+
+        color: $text-muted;
+
+        background: $background-section;
+
+        border-radius: $radius-md;
+
+
+        svg {
+            width: 24px;
+
+            height: 24px;
+        }
+    }
+
+
+    &__empty-message {
+        @include montserrat(500);
+
+        margin: 0;
+
+        color: $text-secondary;
+
+        font-size: $font-size-sm;
+    }
+
+
+    // ==================================================
+    // LOADING
+    // ==================================================
+
+    &__loading {
+        width: 100%;
+
+        padding:
+            0 $spacing-sm;
+    }
+
+
+    &__skeleton-row {
+        @include flex(flex-start,
+            center,
+            row,
+            $spacing-sm );
+
+        min-height: 64px;
+
+        border-bottom:
+            1px solid $border-light;
+
+
+        &:last-child {
+            border-bottom: none;
+        }
+    }
+
+
+    &__skeleton-cell {
+        flex: 1;
+
+        height: 12px;
+
+        background: $background-section;
+
+        border-radius: $radius-round;
+
+        animation:
+            data-table-skeleton 1.5s ease-in-out infinite;
+    }
+
+
+    // ==================================================
+    // TABLET
+    // ==================================================
+
+    @include respond(tablet) {
+
+        &__table {
+            min-width: 650px;
+        }
+
+
+        &__head {
+
+            th {
+                height: 46px;
+
+                padding-inline: .75rem;
+
+
+                &:first-child {
+                    padding-left: $spacing-sm;
+                }
+
+
+                &:last-child {
+                    padding-right: $spacing-sm;
+                }
+            }
+        }
+
+
+        &__body {
+
+            td {
+                height: 60px;
+
+                padding-inline: .75rem;
+
+
+                &:first-child {
+                    padding-left: $spacing-sm;
+                }
+
+
+                &:last-child {
+                    padding-right: $spacing-sm;
+                }
+            }
+        }
+
+
+        &__text {
+            max-width: 200px;
+        }
+
+
+        &__tenant {
+            min-width: 160px;
+
+            gap: $spacing-xs;
+        }
+
+
+        &__tenant-avatar {
+            width: 36px;
+
+            height: 36px;
+
+            min-width: 36px;
+        }
+
+
+        &__tenant-name {
+            max-width: 170px;
+        }
+    }
+
+
+    // ==================================================
+    // MOBILE
+    // ==================================================
+
+    @include respond(mobile) {
+
+        /*
+         * Mobile pages normally use MobileDataCard.
+         * DataTable remains available as a fallback.
+         */
+
+        &__wrapper {
+            overflow-x: auto;
+        }
+
+
+        &__table {
+            min-width: 620px;
+        }
+
+
+        &__head {
+
+            th {
+                height: 44px;
+
+                padding: .65rem;
+
+                font-size: $font-size-xs;
+
+
+                &:first-child {
+                    padding-left: $spacing-sm;
+                }
+
+
+                &:last-child {
+                    padding-right: $spacing-sm;
+                }
+            }
+        }
+
+
+        &__body {
+
+            td {
+                height: 56px;
+
+                padding: .6rem;
+
+                font-size: $font-size-xs;
+
+
+                &:first-child {
+                    padding-left: $spacing-sm;
+                }
+
+
+                &:last-child {
+                    padding-right: $spacing-sm;
+                }
+            }
+        }
+
+
+        &__tenant {
+            min-width: 150px;
+        }
+
+
+        &__tenant-avatar {
+            width: 34px;
+
+            height: 34px;
+
+            min-width: 34px;
+
+            font-size: $font-size-xs;
+        }
+
+
+        &__tenant-name {
+            max-width: 150px;
+        }
+
+
+        &__empty {
+            min-height: 200px;
+
+            padding: $spacing-md;
+        }
+    }
+}
+
+
+// ======================================================
+// RESPONSIVE COLUMN VISIBILITY
+// ======================================================
+
+@include respond(tablet) {
+
+    .data-table__hide-tablet {
+        display: none !important;
+    }
+}
+
+
+@include respond(mobile) {
+
+    .data-table__hide-mobile {
+        display: none !important;
+    }
+}
+
+
+// ======================================================
+// SKELETON ANIMATION
+// ======================================================
+
+@keyframes data-table-skeleton {
+
+    0% {
+        opacity: .45;
+    }
+
+    50% {
+        opacity: 1;
+    }
+
+    100% {
+        opacity: .45;
+    }
+}

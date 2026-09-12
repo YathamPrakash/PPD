@@ -1,1373 +1,492 @@
-@import "../../../Styles/mixins.scss";
 @import "../../../Styles/variables.scss";
+@import "../../../Styles/mixins.scss";
 
 
-// ======================================================
-// PAGE
-// ======================================================
-
-.app-page {
+.dashboard {
     width: 100%;
-    min-height: 100%;
 
-    background: $background-page;
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: $spacing-lg;
+    padding: 0 $spacing-md;
+
     color: $text-primary;
 
     @include montserrat(400);
-
-    overflow-x: hidden;
-}
-
-.app-page__container {
-    @include container;
-
-    padding-top: $spacing-lg;
-    padding-bottom: $spacing-xl;
-
-    box-sizing: border-box;
 }
 
 
-// ======================================================
-// DASHBOARD HEADER
-// ======================================================
+/* =========================================================
+   HEADER ACTIONS
+   ========================================================= */
 
-.dashboard-header {
+.dashboard__header-actions {
+    flex-shrink: 0;
+
+    @include flex(flex-end,
+        center,
+        row,
+        $spacing-sm );
+}
+
+
+.dashboard__primary-button,
+.dashboard__secondary-button {
+    min-height: 40px;
+
+    @include flex(center,
+        center,
+        row,
+        .5rem);
+
+    padding:
+        0 $spacing-md;
+
+    border-radius: $radius-md;
+
+    @include montserrat(600);
+
+    font-size: $font-size-sm;
+
+    line-height: 1;
+
+    cursor: pointer;
+
+    transition:
+        background-color $transition-fast,
+        border-color $transition-fast,
+        color $transition-fast,
+        box-shadow $transition-fast,
+        transform $transition-fast;
+
+    i {
+        font-size: 14px;
+    }
+}
+
+
+/* =========================================================
+   PRIMARY
+   ========================================================= */
+
+.dashboard__primary-button {
+    border: 1px solid $color-primary;
+
+    background: $color-primary;
+
+    color: $color-white;
+
+    &:hover {
+        background: $color-primary-dark;
+
+        border-color: $color-primary-dark;
+
+        box-shadow: $shadow-sm;
+    }
+
+    &:active {
+        transform: translateY(1px);
+    }
+
+    &:focus-visible {
+        outline: 2px solid $color-primary;
+
+        outline-offset: 2px;
+    }
+}
+
+
+/* =========================================================
+   SECONDARY
+   ========================================================= */
+
+.dashboard__secondary-button {
+    border: 1px solid $border-color;
+
+    background: $color-white;
+
+    color: $text-secondary;
+
+    &:hover {
+        background: $background-page;
+
+        border-color: $color-primary;
+
+        color: $color-primary;
+    }
+
+    &:active {
+        transform: translateY(1px);
+    }
+
+    &:focus-visible {
+        outline: 2px solid $color-primary;
+
+        outline-offset: 2px;
+    }
+}
+
+
+/* =========================================================
+   STATISTICS
+   ========================================================= */
+
+.dashboard__stats {
+    width: 100%;
+
+    min-width: 0;
+
+    display: grid;
+
+    grid-template-columns:
+        repeat(4,
+            minmax(0, 1fr));
+
+    gap: $spacing-md;
+}
+
+
+/* =========================================================
+   ANALYTICS
+   ========================================================= */
+
+.dashboard__analytics {
+    width: 100%;
+
+    min-width: 0;
+
+    display: grid;
+
+    /*
+     * Keep Revenue wider than Occupancy.
+     * This matches the approved dashboard design.
+     */
+
+    grid-template-columns:
+        minmax(0, 1.65fr) minmax(0, 1fr);
+
+    gap: $spacing-lg;
+}
+
+
+.dashboard__revenue-chart,
+.dashboard__occupancy-chart {
+    width: 100%;
+
+    min-width: 0;
+}
+
+
+/* =========================================================
+   RECENT ACTIVITY
+   ========================================================= */
+
+.dashboard__activity {
+    width: 100%;
+
+    min-width: 0;
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: $spacing-sm;
+}
+
+
+.dashboard__section-header {
+    width: 100%;
+
     @include flex(space-between,
         center,
         row,
         $spacing-lg );
-
-    margin-bottom: $spacing-lg;
 }
 
-.dashboard-header__main {
-    @include flex(flex-start,
-        center,
-        row,
-        $spacing-sm );
 
+.dashboard__section-header>div {
     min-width: 0;
 }
 
-.dashboard-header__icon {
-    flex: 0 0 auto;
 
-    width: 48px;
-    height: 48px;
-
-    @include flex(center, center);
-
-    background: rgba($color-warning, .12);
-    border-radius: $radius-md;
-
-    color: $color-warning;
-
-    svg {
-        width: 27px;
-        height: 27px;
-    }
-}
-
-.dashboard-header__eyebrow {
-    display: block;
-
-    margin-bottom: .2rem;
-
-    color: $color-primary;
-
-    @include montserrat(600);
-
-    font-size: $font-size-xs;
-    letter-spacing: .08em;
-}
-
-.dashboard-header__title {
+.dashboard__section-header h2 {
     margin: 0;
+
+    color: $text-primary;
 
     @include bricolage-grotesque(600);
 
-    font-size: $font-size-2xl;
-    line-height: 1.15;
+    font-size: $font-size-lg;
 
-    color: $text-primary;
+    line-height: 1.4;
 }
 
-.dashboard-header__description {
+
+.dashboard__section-header p {
     margin: .25rem 0 0;
 
     color: $text-secondary;
 
+    @include montserrat(400);
+
     font-size: $font-size-sm;
+
+    line-height: 1.5;
 }
 
 
-// ======================================================
-// MONTH SELECTOR
-// ======================================================
+/* =========================================================
+   VIEW ALL
+   ========================================================= */
 
-.dashboard-header__month {
-    @include flex(flex-start,
-        center,
-        row,
-        .5rem);
+.dashboard__view-all {
+    flex-shrink: 0;
 
-    flex: 0 0 auto;
+    padding: .35rem 0;
 
-    min-width: 190px;
-    height: 44px;
-
-    padding: 0 .75rem;
-
-    background: $background-card;
-
-    border: 1px solid $border-color;
-    border-radius: $radius-md;
-
-    transition:
-        border-color $transition-fast,
-        box-shadow $transition-fast;
-
-    &:hover {
-        border-color: $color-primary;
-    }
-
-    &:focus-within {
-        border-color: $color-primary;
-
-        @include shadow(sm);
-    }
-}
-
-.dashboard-header__month-icon {
-    width: 18px;
-    height: 18px;
-
-    flex: 0 0 auto;
-
-    color: $color-primary;
-}
-
-.dashboard-header__month-input {
-    width: 145px;
-    height: 100%;
-
-    padding: 0;
-
-    border: none;
-    outline: none;
+    border: 0;
 
     background: transparent;
 
-    color: $text-primary;
+    color: $color-primary;
 
-    @include montserrat(500);
+    @include montserrat(600);
 
     font-size: $font-size-sm;
+
+    line-height: 1.4;
 
     cursor: pointer;
 
-    &::-webkit-calendar-picker-indicator {
-        cursor: pointer;
-    }
-}
-
-
-// ======================================================
-// SECTIONS
-// ======================================================
-
-.dashboard-section {
-    margin-bottom: $spacing-lg;
-}
-
-.dashboard-section--last {
-    margin-bottom: 0;
-}
-
-.dashboard-section__heading {
-    @include flex(space-between,
-        flex-end,
-        row,
-        $spacing-sm );
-
-    margin-bottom: $spacing-sm;
-}
-
-.dashboard-section__eyebrow {
-    display: block;
-
-    margin-bottom: .15rem;
-
-    color: $text-muted;
-
-    @include montserrat(600);
-
-    font-size: $font-size-xs;
-    letter-spacing: .08em;
-}
-
-.dashboard-section__title {
-    margin: 0;
-
-    @include bricolage-grotesque(600);
-
-    font-size: $font-size-xl;
-    line-height: 1.2;
-
-    color: $text-primary;
-}
-
-.dashboard-section__description {
-    margin: .2rem 0 0;
-
-    color: $text-secondary;
-
-    font-size: $font-size-xs;
-}
-
-
-// ======================================================
-// SECTION LINKS
-// ======================================================
-
-.dashboard-section__link {
-    @include flex(flex-end,
-        center,
-        row,
-        .35rem);
-
-    flex: 0 0 auto;
-
-    color: $color-primary;
-
-    text-decoration: none;
-
-    @include montserrat(600);
-
-    font-size: $font-size-xs;
-
-    white-space: nowrap;
-
-    transition: color $transition-fast;
+    transition:
+        color $transition-fast;
 
     &:hover {
         color: $color-primary-dark;
-
-        svg {
-            transform: translateX(3px);
-        }
     }
 
-    svg {
-        width: 18px;
-        height: 18px;
+    &:focus-visible {
+        outline: 2px solid $color-primary;
 
-        transition: transform $transition-fast;
+        outline-offset: 3px;
+
+        border-radius: $radius-sm;
     }
 }
 
 
-// ======================================================
-// COMMON STATS GRID
-// ======================================================
+/* =========================================================
+   ACTIVITY CARD
+   ========================================================= */
 
-.stats-grid {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
-    gap: $spacing-sm;
-
+.dashboard__activity-card {
     width: 100%;
-}
-
-
-// ======================================================
-// PROPERTY STAT CARD
-// ======================================================
-
-.stat-card {
-    position: relative;
 
     min-width: 0;
-    min-height: 120px;
 
-    padding: $spacing-sm;
+    padding: $spacing-lg;
 
-    @include flex(flex-start,
-        center,
-        row,
-        .75rem);
-
-    background: $background-card;
+    background: $color-white;
 
     border: 1px solid $border-light;
+
     border-radius: $radius-lg;
 
-    box-sizing: border-box;
-
-    @include shadow(sm);
-
-    transition:
-        transform $transition-fast,
-        box-shadow $transition-fast;
-
-    &:hover {
-        transform: translateY(-1px);
-
-        @include shadow(md);
-    }
-}
-
-.stat-card__icon {
-    flex: 0 0 auto;
-
-    width: 58px;
-    height: 58px;
-
-    @include flex(center, center);
-
-    border-radius: $radius-md;
-
-    svg {
-        width: 29px;
-        height: 29px;
-    }
+    box-shadow: $shadow-sm;
 }
 
 
-// ======================================================
-// PROPERTY CARD COLORS
-// ======================================================
+.dashboard__activity-card app-timeline {
+    display: block;
 
-.stat-card--info {
-    .stat-card__icon {
-        background: rgba($color-info, .10);
-        color: $color-info;
-    }
-}
-
-.stat-card--success {
-    .stat-card__icon {
-        background: rgba($color-success, .10);
-        color: $color-success;
-    }
-}
-
-.stat-card--warning {
-    .stat-card__icon {
-        background: rgba($color-warning, .12);
-        color: $color-warning;
-    }
-}
-
-.stat-card__content {
-    min-width: 0;
-}
-
-.stat-card__value {
-    @include bricolage-grotesque(600);
-
-    font-size: $font-size-xl;
-    line-height: 1.1;
-
-    color: $text-primary;
-}
-
-.stat-card__label {
-    margin-top: .25rem;
-
-    color: $text-primary;
-
-    @include montserrat(600);
-
-    font-size: $font-size-xs;
-}
-
-.stat-card__description {
-    margin-top: .25rem;
-
-    color: $text-muted;
-
-    font-size: $font-size-xs;
-
-    @include text-ellipsis;
-}
-
-.stat-card__trend {
-    position: absolute;
-
-    top: $spacing-sm;
-    right: $spacing-sm;
-
-    padding: .25rem .45rem;
-
-    border-radius: $radius-round;
-
-    background: rgba($color-success, .10);
-
-    color: $color-success;
-
-    @include montserrat(600);
-
-    font-size: $font-size-xs;
-}
-
-
-// ======================================================
-// OCCUPANCY CARD
-// ======================================================
-
-.stat-card--occupancy {
-    background: rgba($color-success, .05);
-}
-
-.occupancy-chart {
-    position: relative;
-
-    flex: 0 0 auto;
-
-    width: 74px;
-    height: 74px;
-}
-
-.occupancy-chart svg {
     width: 100%;
-    height: 100%;
-
-    transform: rotate(-90deg);
 }
 
-.occupancy-chart__background {
-    fill: none;
 
-    stroke: $border-light;
-    stroke-width: 9;
-}
+/* =========================================================
+   TABLET
+   ========================================================= */
 
-.occupancy-chart__progress {
-    fill: none;
+@media (max-width: $tablet) {
 
-    stroke: $color-primary;
-    stroke-width: 9;
+    .dashboard {
+        gap: $spacing-md;
 
-    stroke-linecap: round;
-}
-
-.occupancy-chart span {
-    position: absolute;
-
-    inset: 0;
-
-    @include flex(center, center);
-
-    @include bricolage-grotesque(600);
-
-    font-size: $font-size-sm;
-
-    color: $text-primary;
-}
-
-.occupancy-card__content {
-    min-width: 0;
-
-    strong {
-        display: block;
-
-        @include montserrat(600);
-
-        font-size: $font-size-xs;
+        padding: $spacing-md;
     }
 
-    small {
-        display: block;
 
-        margin-top: .25rem;
+    .dashboard__stats {
 
-        color: $text-muted;
-
-        font-size: $font-size-xs;
-    }
-}
-
-.occupancy-card__trend {
-    display: inline-block;
-
-    margin-top: .4rem;
-
-    padding: .25rem .45rem;
-
-    border-radius: $radius-round;
-
-    background: rgba($color-success, .10);
-
-    color: $color-success;
-
-    @include montserrat(600);
-
-    font-size: $font-size-xs;
-}
-
-
-// ======================================================
-// PAYMENT CARDS
-// ======================================================
-
-.payment-card {
-    min-width: 0;
-    min-height: 118px;
-
-    padding: $spacing-sm;
-
-    @include flex(flex-start,
-        center,
-        row,
-        .7rem);
-
-    background: $background-card;
-
-    border: 1px solid $border-color;
-    border-radius: $radius-md;
-
-    box-sizing: border-box;
-}
-
-.payment-card__icon {
-    flex: 0 0 auto;
-
-    width: 48px;
-    height: 48px;
-
-    @include flex(center, center);
-
-    border-radius: $radius-md;
-
-    svg {
-        width: 25px;
-        height: 25px;
-    }
-}
-
-.payment-card__content {
-    min-width: 0;
-}
-
-.payment-card__value {
-    @include bricolage-grotesque(600);
-
-    font-size: $font-size-lg;
-
-    line-height: 1.1;
-
-    white-space: nowrap;
-}
-
-.payment-card__label {
-    margin-top: .2rem;
-
-    @include montserrat(600);
-
-    font-size: $font-size-xs;
-}
-
-.payment-card__description {
-    margin-top: .25rem;
-
-    color: $color-success;
-
-    font-size: $font-size-xs;
-
-    @include text-ellipsis;
-}
-
-.payment-card__description--danger {
-    color: $color-danger;
-}
-
-
-// ======================================================
-// PAYMENT COLORS
-// ======================================================
-
-.payment-card--success {
-    .payment-card__icon {
-        background: rgba($color-success, .10);
-        color: $color-success;
-    }
-}
-
-.payment-card--warning {
-    .payment-card__icon {
-        background: rgba($color-warning, .12);
-        color: $color-warning;
-    }
-}
-
-.payment-card--info {
-    .payment-card__icon {
-        background: rgba($color-info, .10);
-        color: $color-info;
-    }
-}
-
-.payment-card--danger {
-    .payment-card__icon {
-        background: rgba($color-danger, .10);
-        color: $color-danger;
-    }
-}
-
-
-// ======================================================
-// OPERATIONS GRID
-// ======================================================
-
-.operations-grid {
-    display: grid;
-
-    grid-template-columns:
-        minmax(0, 1.6fr) minmax(280px, .8fr);
-
-    gap: $spacing-sm;
-}
-
-
-// ======================================================
-// DASHBOARD PANEL
-// ======================================================
-
-.dashboard-panel {
-    min-width: 0;
-
-    padding: $spacing-sm;
-
-    background: $background-card;
-
-    border: 1px solid $border-light;
-    border-radius: $radius-lg;
-
-    @include shadow(sm);
-
-    box-sizing: border-box;
-}
-
-.dashboard-panel__header {
-    @include flex(space-between,
-        flex-start,
-        row,
-        $spacing-sm );
-
-    margin-bottom: $spacing-sm;
-}
-
-.dashboard-panel__header h3 {
-    margin: 0;
-
-    @include bricolage-grotesque(600);
-
-    font-size: $font-size-lg;
-}
-
-.dashboard-panel__header p {
-    margin: .2rem 0 0;
-
-    color: $text-secondary;
-
-    font-size: $font-size-xs;
-}
-
-.dashboard-panel__link {
-    @include flex(flex-end,
-        center,
-        row,
-        .3rem);
-
-    flex: 0 0 auto;
-
-    color: $color-primary;
-
-    text-decoration: none;
-
-    @include montserrat(600);
-
-    font-size: $font-size-xs;
-
-    svg {
-        width: 17px;
-        height: 17px;
-    }
-}
-
-
-// ======================================================
-// RECENT JOININGS TABLE
-// ======================================================
-
-.joining-table {
-    width: 100%;
-
-    overflow: hidden;
-
-    border: 1px solid $border-light;
-    border-radius: $radius-md;
-}
-
-.joining-table__header,
-.joining-table__row {
-    display: grid;
-
-    grid-template-columns:
-        minmax(145px, 1.5fr) minmax(110px, 1fr) minmax(105px, .9fr) minmax(70px, .7fr) minmax(65px, .65fr);
-
-    align-items: center;
-
-    column-gap: .5rem;
-}
-
-.joining-table__header {
-    min-height: 38px;
-
-    padding: 0 .65rem;
-
-    background: $background-section;
-
-    color: $text-secondary;
-
-    @include montserrat(600);
-
-    font-size: $font-size-xs;
-}
-
-.joining-table__row {
-    min-height: 53px;
-
-    padding: .45rem .65rem;
-
-    border-top: 1px solid $border-light;
-
-    &:hover {
-        background: $background-section;
-    }
-}
-
-.joining-table__tenant {
-    @include flex(flex-start,
-        center,
-        row,
-        .5rem);
-
-    min-width: 0;
-}
-
-.joining-table__avatar {
-    flex: 0 0 auto;
-
-    width: 30px;
-    height: 30px;
-
-    @include flex(center, center);
-
-    border-radius: $radius-round;
-
-    background: rgba($color-primary-light, .15);
-
-    color: $color-primary;
-
-    @include montserrat(600);
-
-    font-size: $font-size-xs;
-}
-
-.joining-table__tenant strong {
-    min-width: 0;
-
-    @include montserrat(600);
-
-    font-size: $font-size-xs;
-
-    @include text-ellipsis;
-}
-
-.joining-table__room {
-
-    strong,
-    span {
-        display: block;
-    }
-
-    strong {
-        @include montserrat(500);
-
-        font-size: $font-size-xs;
-    }
-
-    span {
-        margin-top: .1rem;
-
-        color: $text-muted;
-
-        font-size: $font-size-xs;
-    }
-}
-
-.joining-table__date,
-.joining-table__rent {
-    color: $text-secondary;
-
-    font-size: $font-size-xs;
-
-    white-space: nowrap;
-}
-
-.joining-table__rent {
-    color: $text-primary;
-
-    @include montserrat(600);
-}
-
-
-// ======================================================
-// STATUS BADGE
-// ======================================================
-
-.status-badge {
-    width: fit-content;
-
-    padding: .25rem .5rem;
-
-    border-radius: $radius-round;
-
-    @include montserrat(600);
-
-    font-size: $font-size-xs;
-}
-
-.status-badge--active {
-    background: rgba($color-success, .10);
-    color: $color-success;
-}
-
-.status-badge--new {
-    background: rgba($color-info, .10);
-    color: $color-info;
-}
-
-
-// ======================================================
-// OPERATIONS LIST
-// ======================================================
-
-.operation-list {
-    overflow: hidden;
-
-    border: 1px solid $border-light;
-    border-radius: $radius-md;
-}
-
-.operation-item {
-    @include flex(flex-start,
-        center,
-        row,
-        .65rem);
-
-    min-width: 0;
-    min-height: 62px;
-
-    padding: .55rem;
-
-    color: inherit;
-
-    text-decoration: none;
-
-    border-bottom: 1px solid $border-light;
-
-    &:last-child {
-        border-bottom: none;
-    }
-
-    &:hover {
-        background: $background-section;
-
-        .operation-item__arrow {
-            color: $color-primary;
-
-            transform: translateX(2px);
-        }
-    }
-}
-
-.operation-item__icon {
-    flex: 0 0 auto;
-
-    width: 40px;
-    height: 40px;
-
-    @include flex(center, center);
-
-    border-radius: $radius-md;
-
-    svg {
-        width: 20px;
-        height: 20px;
-    }
-}
-
-.operation-item__icon--warning {
-    background: rgba($color-warning, .12);
-    color: $color-warning;
-}
-
-.operation-item__icon--danger {
-    background: rgba($color-danger, .10);
-    color: $color-danger;
-}
-
-.operation-item__icon--info {
-    background: rgba($color-info, .10);
-    color: $color-info;
-}
-
-.operation-item__icon--success {
-    background: rgba($color-success, .10);
-    color: $color-success;
-}
-
-.operation-item__content {
-    flex: 1;
-
-    min-width: 0;
-}
-
-.operation-item__content strong {
-    display: block;
-
-    @include montserrat(600);
-
-    font-size: $font-size-xs;
-
-    @include text-ellipsis;
-}
-
-.operation-item__content span {
-    display: block;
-
-    margin-top: .15rem;
-
-    color: $text-muted;
-
-    font-size: $font-size-xs;
-
-    @include text-ellipsis;
-}
-
-.operation-item__count {
-    flex: 0 0 auto;
-
-    min-width: 27px;
-    height: 27px;
-
-    padding-inline: .35rem;
-
-    @include flex(center, center);
-
-    border-radius: $radius-round;
-
-    background: $background-section;
-
-    @include montserrat(600);
-
-    font-size: $font-size-xs;
-}
-
-.operation-item__arrow {
-    flex: 0 0 auto;
-
-    width: 17px;
-    height: 17px;
-
-    color: $text-muted;
-
-    transition:
-        transform $transition-fast,
-        color $transition-fast;
-}
-
-
-// ======================================================
-// QUICK ACTIONS
-// ======================================================
-
-.quick-actions {
-    display: grid;
-
-    grid-template-columns:
-        repeat(4, minmax(0, 1fr));
-
-    gap: $spacing-sm;
-}
-
-.quick-action {
-    @include flex(flex-start,
-        center,
-        row,
-        .65rem);
-
-    min-width: 0;
-    min-height: 76px;
-
-    padding: .65rem;
-
-    background: $background-card;
-
-    border: 1px solid $border-color;
-    border-radius: $radius-md;
-
-    color: inherit;
-
-    text-decoration: none;
-
-    transition:
-        transform $transition-fast,
-        border-color $transition-fast,
-        box-shadow $transition-fast;
-
-    &:hover {
-        transform: translateY(-1px);
-
-        border-color: $color-primary;
-
-        @include shadow(sm);
-
-        .quick-action__arrow {
-            color: $color-primary;
-
-            transform: translateX(2px);
-        }
-    }
-}
-
-.quick-action__icon {
-    flex: 0 0 auto;
-
-    width: 42px;
-    height: 42px;
-
-    @include flex(center, center);
-
-    border-radius: $radius-md;
-
-    svg {
-        width: 22px;
-        height: 22px;
-    }
-}
-
-.quick-action--tenant {
-    .quick-action__icon {
-        background: rgba($color-success, .10);
-        color: $color-success;
-    }
-}
-
-.quick-action--room {
-    .quick-action__icon {
-        background: rgba($color-info, .10);
-        color: $color-info;
-    }
-}
-
-.quick-action--payment {
-    .quick-action__icon {
-        background: rgba($color-primary, .10);
-        color: $color-primary;
-    }
-}
-
-.quick-action--maintenance {
-    .quick-action__icon {
-        background: rgba($color-warning, .12);
-        color: $color-warning;
-    }
-}
-
-.quick-action__content {
-    flex: 1;
-
-    min-width: 0;
-}
-
-.quick-action__content strong {
-    display: block;
-
-    @include montserrat(600);
-
-    font-size: $font-size-xs;
-
-    @include text-ellipsis;
-}
-
-.quick-action__content span {
-    display: block;
-
-    margin-top: .2rem;
-
-    color: $text-muted;
-
-    font-size: $font-size-xs;
-
-    @include text-ellipsis;
-}
-
-.quick-action__arrow {
-    flex: 0 0 auto;
-
-    width: 18px;
-    height: 18px;
-
-    color: $text-secondary;
-
-    transition:
-        transform $transition-fast,
-        color $transition-fast;
-}
-
-
-// ======================================================
-// LAPTOP
-// ======================================================
-
-@include respond(laptop) {
-
-    .stats-grid {
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(2,
+                minmax(0, 1fr));
+
     }
 
-    .operations-grid {
-        grid-template-columns: 1fr;
-    }
 
-    .quick-actions {
+    .dashboard__analytics {
+
         grid-template-columns:
-            repeat(2, minmax(0, 1fr));
+            repeat(2,
+                minmax(0, 1fr));
+
+        gap: $spacing-md;
+
     }
+
+
+    .dashboard__activity-card {
+        padding: $spacing-md;
+    }
+
 }
 
 
-// ======================================================
-// TABLET
-// ======================================================
+/* =========================================================
+   MOBILE
+   ========================================================= */
 
-@include respond(tablet) {
+@media (max-width: $mobile) {
 
-    .app-page__container {
-        padding-inline: $spacing-md;
+    .dashboard {
+        gap: $spacing-md;
+
+        padding: $spacing-md;
     }
 
-    .dashboard-header {
-        align-items: flex-start;
 
-        flex-direction: column;
+    .dashboard__header-actions {
+
+        width: 100%;
+
+        display: grid;
+
+        grid-template-columns:
+            repeat(2,
+                minmax(0, 1fr));
 
         gap: $spacing-sm;
+
     }
 
-    .dashboard-header__month {
-        width: 220px;
-    }
 
-    .stats-grid {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
+    .dashboard__primary-button,
+    .dashboard__secondary-button {
 
-    .operations-grid {
-        grid-template-columns: 1fr;
-    }
+        width: 100%;
 
-    .quick-actions {
-        grid-template-columns:
-            repeat(2, minmax(0, 1fr));
-    }
+        min-height: 40px;
 
-    .joining-table__header,
-    .joining-table__row {
-        grid-template-columns:
-            minmax(140px, 1.5fr) minmax(100px, 1fr) minmax(70px, .7fr) minmax(60px, .6fr);
-    }
-
-    .joining-table__date {
-        display: none;
-    }
-}
-
-
-// ======================================================
-// MOBILE
-// ======================================================
-
-@include respond(mobile) {
-
-    .app-page__container {
         padding-inline: $spacing-sm;
-        padding-top: $spacing-sm;
-        padding-bottom: $spacing-lg;
+
+        font-size: $font-size-sm;
+
     }
 
 
-    // ----------------------------------------------
-    // Header
-    // ----------------------------------------------
+    .dashboard__stats {
 
-    .dashboard-header {
-        margin-bottom: $spacing-md;
-    }
-
-    .dashboard-header__main {
-        width: 100%;
-    }
-
-    .dashboard-header__icon {
-        width: 42px;
-        height: 42px;
-
-        svg {
-            width: 23px;
-            height: 23px;
-        }
-    }
-
-    .dashboard-header__title {
-        font-size: $font-size-xl;
-    }
-
-    .dashboard-header__description {
-        font-size: $font-size-xs;
-    }
-
-    .dashboard-header__month {
-        width: 100%;
-        min-width: 0;
-    }
-
-    .dashboard-header__month-input {
-        width: 100%;
-    }
-
-
-    // ----------------------------------------------
-    // Sections
-    // ----------------------------------------------
-
-    .dashboard-section {
-        margin-bottom: $spacing-md;
-    }
-
-    .dashboard-section__heading {
-        flex-direction: column;
-
-        align-items: flex-start;
-
-        gap: .5rem;
-    }
-
-    .dashboard-section__title {
-        font-size: $font-size-lg;
-    }
-
-
-    // ----------------------------------------------
-    // Stats
-    // ----------------------------------------------
-
-    .stats-grid {
         grid-template-columns: 1fr;
 
         gap: $spacing-sm;
-    }
 
-    .stat-card {
-        min-height: 92px;
-
-        padding: .75rem;
-    }
-
-    .stat-card__icon {
-        width: 46px;
-        height: 46px;
-
-        svg {
-            width: 23px;
-            height: 23px;
-        }
-    }
-
-    .stat-card__value {
-        font-size: $font-size-lg;
     }
 
 
-    // ----------------------------------------------
-    // Occupancy
-    // ----------------------------------------------
+    .dashboard__analytics {
 
-    .occupancy-chart {
-        width: 62px;
-        height: 62px;
-    }
-
-
-    // ----------------------------------------------
-    // Operations
-    // ----------------------------------------------
-
-    .operations-grid {
         grid-template-columns: 1fr;
-    }
 
-    .dashboard-panel {
-        padding: .75rem;
-    }
+        gap: $spacing-md;
 
-
-    // ----------------------------------------------
-    // Joining Table
-    // ----------------------------------------------
-
-    .joining-table__header {
-        display: none;
-    }
-
-    .joining-table__row {
-        grid-template-columns:
-            minmax(0, 1fr) auto;
-
-        min-height: 55px;
-
-        padding: .6rem;
-    }
-
-    .joining-table__room,
-    .joining-table__date {
-        display: none;
-    }
-
-    .joining-table__rent {
-        display: block;
     }
 
 
-    // ----------------------------------------------
-    // Quick Actions
-    // ----------------------------------------------
+    .dashboard__section-header {
 
-    .quick-actions {
+        align-items: flex-start;
+
+        gap: $spacing-sm;
+
+    }
+
+
+    .dashboard__section-header h2 {
+
+        font-size: $font-size-md;
+
+    }
+
+
+    .dashboard__section-header p {
+
+        font-size: $font-size-xs;
+
+    }
+
+
+    .dashboard__activity-card {
+
+        padding: $spacing-md;
+
+        border-radius: $radius-md;
+
+    }
+
+}
+
+
+/* =========================================================
+   SMALL MOBILE
+   ========================================================= */
+
+@media (max-width: 420px) {
+
+    .dashboard {
+
+        padding: $spacing-sm;
+
+        gap: $spacing-sm;
+
+    }
+
+
+    .dashboard__header-actions {
+
         grid-template-columns: 1fr;
+
     }
 
-    .quick-action {
-        min-height: 70px;
+
+    .dashboard__primary-button,
+    .dashboard__secondary-button {
+
+        min-height: 40px;
+
     }
+
+
+    .dashboard__section-header {
+
+        gap: $spacing-sm;
+
+    }
+
+
+    .dashboard__view-all {
+
+        font-size: $font-size-xs;
+
+    }
+
+
+    .dashboard__activity-card {
+
+        padding: $spacing-sm;
+
+    }
+
 }

@@ -1,0 +1,246 @@
+@import "../../../Styles/mixins.scss";
+@import "../../../Styles/variables.scss";
+
+.add-tenant-page {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: $spacing-md;
+
+
+  // ============================================================
+  // FORM
+  // ============================================================
+
+  &__form {
+
+    display: flex;
+
+    flex-direction: column;
+
+    gap: $spacing-lg;
+
+    margin-top: $spacing-lg;
+  }
+
+
+  // ============================================================
+  // FORM GRID
+  // ============================================================
+
+  .form-grid {
+
+    display: grid;
+
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+
+    gap: $spacing-lg;
+
+
+    &__full {
+
+      grid-column: 1 / -1;
+    }
+  }
+
+
+  // ============================================================
+  // ACTIONS
+  // ============================================================
+
+  &__actions {
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: flex-end;
+
+    gap: $spacing-md;
+
+    padding-top: $spacing-sm;
+  }
+
+
+  // ============================================================
+  // BUTTON
+  // ============================================================
+
+  &__button {
+
+    min-height: 44px;
+
+    display: inline-flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    gap: $spacing-sm;
+
+    padding:
+      0 $spacing-lg;
+
+    border-radius: $radius-md;
+
+    font-family: inherit;
+
+    font-size: 14px;
+
+    font-weight: 600;
+
+    cursor: pointer;
+
+    transition:
+      opacity 0.2s ease,
+      border-color 0.2s ease,
+      background-color 0.2s ease;
+
+
+    &:disabled {
+
+      opacity: 0.6;
+
+      cursor: not-allowed;
+    }
+
+
+    &--secondary {
+
+      background: $background-card;
+
+      border: 1px solid $border-light;
+
+      color: $text-primary;
+
+
+      &:hover:not(:disabled) {
+
+        border-color: $color-primary;
+      }
+    }
+
+
+    &--primary {
+
+      background: $color-primary;
+
+      border: 1px solid $color-primary;
+
+      color: #ffffff;
+
+
+      &:hover:not(:disabled) {
+
+        opacity: 0.9;
+      }
+    }
+  }
+
+
+  // ============================================================
+  // LOADING SPINNER
+  // ============================================================
+
+  &__spinner {
+
+    width: 14px;
+    height: 14px;
+
+    border: 2px solid rgba(255, 255, 255, 0.35);
+
+    border-top-color: #ffffff;
+
+    border-radius: 50%;
+
+    animation:
+      add-tenant-spin 0.7s linear infinite;
+  }
+}
+
+
+// ================================================================
+// TABLET
+// ================================================================
+
+@include respond(tablet) {
+
+  .add-tenant-page {
+
+    &__form {
+
+      gap: $spacing-md;
+    }
+
+
+    .form-grid {
+
+      gap: $spacing-md;
+    }
+  }
+}
+
+
+// ================================================================
+// MOBILE
+// ================================================================
+
+@include respond(mobile) {
+
+  .add-tenant-page {
+    padding: $spacing-sm;
+
+    &__form {
+      gap: $spacing-md;
+      margin-top: $spacing-md;
+    }
+
+
+    .form-grid {
+
+      grid-template-columns: 1fr;
+      gap: $spacing-md;
+
+
+      &__full {
+
+        grid-column: auto;
+      }
+    }
+
+
+    &__actions {
+
+      flex-direction: column-reverse;
+
+      align-items: stretch;
+
+      gap: $spacing-sm;
+    }
+
+
+    &__button {
+
+      width: 100%;
+    }
+  }
+}
+
+
+// ================================================================
+// SPINNER ANIMATION
+// ================================================================
+
+@keyframes add-tenant-spin {
+
+  from {
+
+    transform: rotate(0deg);
+  }
+
+  to {
+
+    transform: rotate(360deg);
+  }
+}

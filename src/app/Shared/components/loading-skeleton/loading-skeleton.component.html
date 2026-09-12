@@ -1,0 +1,200 @@
+<div class="loading-skeleton" [class.loading-skeleton--container]="showContainer">
+
+
+    <!-- ================================================= -->
+    <!-- TABLE SKELETON -->
+    <!-- ================================================= -->
+
+    <ng-container *ngIf="type === 'table'">
+
+        <div class="skeleton-table">
+
+            <!-- Header -->
+            <div class="skeleton-table__header">
+
+                <div class="skeleton skeleton--header" *ngFor="let column of columnArray">
+                </div>
+
+            </div>
+
+
+            <!-- Rows -->
+            <div class="skeleton-table__row" *ngFor="let row of rowArray">
+
+                <div class="skeleton skeleton--cell" *ngFor="let column of columnArray">
+
+                    <span *ngIf="column === 0" class="skeleton__avatar">
+                    </span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </ng-container>
+
+
+
+    <!-- ================================================= -->
+    <!-- CARD SKELETON -->
+    <!-- ================================================= -->
+
+    <ng-container *ngIf="type === 'card'">
+
+        <div class="skeleton-cards">
+
+            <div class="skeleton-card" *ngFor="let card of cardArray">
+
+                <div class="skeleton-card__header">
+
+                    <span class="skeleton skeleton--avatar"></span>
+
+                    <div class="skeleton-card__heading">
+
+                        <span class="skeleton skeleton--title"></span>
+
+                        <span class="skeleton skeleton--subtitle"></span>
+
+                    </div>
+
+                </div>
+
+
+                <div class="skeleton-card__content">
+
+                    <span class="skeleton skeleton--line"></span>
+
+                    <span class="skeleton skeleton--line skeleton--line-short"></span>
+
+                    <span class="skeleton skeleton--line"></span>
+
+                </div>
+
+
+                <div class="skeleton-card__footer">
+
+                    <span class="skeleton skeleton--button"></span>
+
+                    <span class="skeleton skeleton--button-small"></span>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </ng-container>
+
+
+
+    <!-- ================================================= -->
+    <!-- STAT SKELETON -->
+    <!-- ================================================= -->
+
+    <ng-container *ngIf="type === 'stat'">
+
+        <div class="skeleton-stats">
+
+            <div class="skeleton-stat" *ngFor="let card of cardArray">
+
+                <div class="skeleton-stat__top">
+
+                    <span class="skeleton skeleton--stat-icon"></span>
+
+                    <span class="skeleton skeleton--stat-label"></span>
+
+                </div>
+
+
+                <span class="skeleton skeleton--stat-value"></span>
+
+                <span class="skeleton skeleton--stat-description"></span>
+
+            </div>
+
+        </div>
+
+    </ng-container>
+
+
+
+    <!-- ================================================= -->
+    <!-- TEXT SKELETON -->
+    <!-- ================================================= -->
+
+    <ng-container *ngIf="type === 'text'">
+
+        <div class="skeleton-text">
+
+            <span class="skeleton skeleton--text-title"></span>
+
+            <span class="skeleton skeleton--text-line"></span>
+
+            <span class="skeleton skeleton--text-line"></span>
+
+            <span class="skeleton skeleton--text-line skeleton--text-short"></span>
+
+        </div>
+
+    </ng-container>
+
+
+
+    <!-- ================================================= -->
+    <!-- FORM SKELETON -->
+    <!-- ================================================= -->
+
+    <ng-container *ngIf="type === 'form'">
+
+        <div class="skeleton-form">
+
+            <div class="skeleton-form__field">
+
+                <span class="skeleton skeleton--label"></span>
+
+                <span class="skeleton skeleton--input"></span>
+
+            </div>
+
+
+            <div class="skeleton-form__field">
+
+                <span class="skeleton skeleton--label"></span>
+
+                <span class="skeleton skeleton--input"></span>
+
+            </div>
+
+
+            <div class="skeleton-form__field">
+
+                <span class="skeleton skeleton--label"></span>
+
+                <span class="skeleton skeleton--input"></span>
+
+            </div>
+
+
+            <div class="skeleton-form__field skeleton-form__field--large">
+
+                <span class="skeleton skeleton--label"></span>
+
+                <span class="skeleton skeleton--textarea"></span>
+
+            </div>
+
+
+            <div class="skeleton-form__actions">
+
+                <span class="skeleton skeleton--button"></span>
+
+                <span class="skeleton skeleton--button"></span>
+
+            </div>
+
+        </div>
+
+    </ng-container>
+
+</div>

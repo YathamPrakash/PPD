@@ -1,0 +1,152 @@
+@import '../../../../Styles/variables.scss';
+@import '../../../../Styles/mixins.scss';
+
+.status-badge {
+    @include montserrat(600);
+
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: .4rem;
+
+    min-height: 26px;
+    padding: .3rem .65rem;
+
+    border-radius: $radius-round;
+
+    font-size: $font-size-xs;
+    line-height: 1;
+
+    white-space: nowrap;
+
+    /* --------------------------------
+       DOT
+    -------------------------------- */
+
+    &__dot {
+        flex: 0 0 auto;
+
+        width: 6px;
+        height: 6px;
+
+        border-radius: $radius-round;
+    }
+
+    &__text {
+        line-height: 1.2;
+    }
+
+    /* --------------------------------
+       SUCCESS
+    -------------------------------- */
+
+    &--success {
+        color: $color-success;
+        background: rgba($color-success, .10);
+
+        .status-badge__dot {
+            background: $color-success;
+        }
+    }
+
+    /* --------------------------------
+       WARNING
+    -------------------------------- */
+
+    &--warning {
+        color: $color-warning;
+        background: rgba($color-warning, .12);
+
+        .status-badge__dot {
+            background: $color-warning;
+        }
+    }
+
+    /* --------------------------------
+       DANGER
+    -------------------------------- */
+
+    &--danger {
+        color: $color-danger;
+        background: rgba($color-danger, .10);
+
+        .status-badge__dot {
+            background: $color-danger;
+        }
+    }
+
+    /* --------------------------------
+       INFO
+    -------------------------------- */
+
+    &--info {
+        color: $color-info;
+        background: rgba($color-info, .10);
+
+        .status-badge__dot {
+            background: $color-info;
+        }
+    }
+
+    /* --------------------------------
+       ORANGE
+    -------------------------------- */
+
+    &--orange {
+        color: $color-accent;
+        background: rgba($color-accent, .12);
+
+        .status-badge__dot {
+            background: $color-accent;
+        }
+    }
+
+    /* --------------------------------
+       NEUTRAL
+    -------------------------------- */
+
+    &--neutral {
+        color: $text-secondary;
+        background: rgba($text-secondary, .10);
+
+        .status-badge__dot {
+            background: $text-secondary;
+        }
+    }
+
+    /* --------------------------------
+       TABLET
+    -------------------------------- */
+
+    @include respond(tablet) {
+
+        min-height: 25px;
+        padding: .28rem .6rem;
+
+        font-size: $font-size-xs;
+
+        &__dot {
+            width: 6px;
+            height: 6px;
+        }
+    }
+
+    /* --------------------------------
+       MOBILE
+    -------------------------------- */
+
+    @include respond(mobile) {
+
+        min-height: 24px;
+        padding: .28rem .55rem;
+
+        gap: .35rem;
+
+        font-size: $font-size-xs;
+
+        &__dot {
+            width: 5px;
+            height: 5px;
+        }
+    }
+}

@@ -1,0 +1,94 @@
+<div class="empty-state" role="status">
+
+    <div class="empty-state__icon">
+
+        <ng-container
+            *ngIf="iconTemplate; else defaultIcon"
+            [ngTemplateOutlet]="iconTemplate">
+        </ng-container>
+
+        <ng-template #defaultIcon>
+
+            <svg
+                viewBox="0 0 64 64"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+
+                <rect
+                    x="10"
+                    y="14"
+                    width="44"
+                    height="36"
+                    rx="6" />
+
+                <path
+                    d="M18 42L28 31L36 39L42 33L50 42" />
+
+                <circle
+                    cx="25"
+                    cy="25"
+                    r="3" />
+
+            </svg>
+
+        </ng-template>
+
+    </div>
+
+
+    <div class="empty-state__content">
+
+        <h3 class="empty-state__title">
+            {{ title }}
+        </h3>
+
+
+        <p class="empty-state__description">
+            {{ description }}
+        </p>
+
+
+        <div
+            class="empty-state__actions"
+            *ngIf="showAction || showSecondaryAction">
+
+            <!-- Primary Action -->
+            <button
+                *ngIf="showAction"
+                type="button"
+                class="empty-state__primary-btn"
+                (click)="onActionClick()">
+
+                <svg
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true">
+
+                    <path d="M12 5V19" />
+                    <path d="M5 12H19" />
+
+                </svg>
+
+                <span>
+                    {{ actionLabel }}
+                </span>
+
+            </button>
+
+
+            <!-- Secondary Action -->
+            <button
+                *ngIf="showSecondaryAction"
+                type="button"
+                class="empty-state__secondary-btn"
+                (click)="onSecondaryActionClick()">
+
+                {{ secondaryActionLabel }}
+
+            </button>
+
+        </div>
+
+    </div>
+
+</div>

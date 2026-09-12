@@ -1,0 +1,69 @@
+<section class="page-header">
+
+  <!-- ===================================================
+       PAGE INFORMATION
+       =================================================== -->
+
+  <div class="page-header__content">
+
+    <span
+      *ngIf="eyebrow"
+      class="page-header__eyebrow">
+
+      {{ eyebrow }}
+
+    </span>
+
+
+    <h1 class="page-header__title">
+      {{ title }}
+    </h1>
+
+
+    <p
+      *ngIf="description"
+      class="page-header__description">
+
+      {{ description }}
+
+    </p>
+
+  </div>
+
+
+  <!-- ===================================================
+       PAGE ACTIONS
+       =================================================== -->
+
+  <div class="page-header__action">
+
+    <!--
+      Custom actions supplied by the page.
+    -->
+
+    <ng-content></ng-content>
+
+
+    <!--
+      Existing reusable single-action support.
+    -->
+
+    <button
+      *ngIf="showAction && actionLabel"
+      type="button"
+      class="page-header__action-button"
+      (click)="onActionClick()">
+
+      <span class="page-header__action-icon">
+        +
+      </span>
+
+      <span>
+        {{ actionLabel }}
+      </span>
+
+    </button>
+
+  </div>
+
+</section>

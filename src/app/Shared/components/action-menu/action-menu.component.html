@@ -1,0 +1,72 @@
+<div
+    class="action-menu"
+    [class.is-open]="isOpen">
+
+    <!-- Trigger -->
+
+    <button
+        type="button"
+        class="action-menu__trigger"
+        [attr.aria-label]="ariaLabel"
+        [attr.aria-expanded]="isOpen"
+        aria-haspopup="menu"
+        (click)="toggleMenu($event)">
+
+        <span class="action-menu__dots">
+
+            <span></span>
+            <span></span>
+            <span></span>
+
+        </span>
+
+    </button>
+
+
+    <!-- Dropdown -->
+
+    <div
+        *ngIf="isOpen"
+        class="action-menu__dropdown"
+        role="menu">
+
+        <ng-container
+            *ngFor="let action of actions">
+
+            <!-- Divider -->
+
+            <div
+                *ngIf="action.dividerBefore"
+                class="action-menu__divider">
+            </div>
+
+
+            <!-- Action -->
+
+            <button
+                type="button"
+                class="action-menu__item"
+                [class.action-menu__item--danger]="action.danger"
+                [disabled]="action.disabled"
+                role="menuitem"
+                (click)="onActionClick(action, $event)">
+
+                <span
+                    *ngIf="action.icon"
+                    class="action-menu__item-icon">
+
+                    <i [ngClass]="action.icon"></i>
+
+                </span>
+
+                <span class="action-menu__item-label">
+                    {{ action.label }}
+                </span>
+
+            </button>
+
+        </ng-container>
+
+    </div>
+
+</div>

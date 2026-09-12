@@ -1,0 +1,82 @@
+<div
+    class="error-state"
+    role="alert"
+    aria-live="polite">
+
+    <div class="error-state__icon">
+
+        <!-- Custom SVG -->
+        <ng-container
+            *ngIf="iconTemplate; else defaultErrorIcon"
+            [ngTemplateOutlet]="iconTemplate">
+        </ng-container>
+
+
+        <!-- Default SVG -->
+        <ng-template #defaultErrorIcon>
+
+            <svg
+                viewBox="0 0 64 64"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+
+                <path
+                    d="M32 8L58 54H6L32 8Z" />
+
+                <path
+                    d="M32 24V37" />
+
+                <circle
+                    cx="32"
+                    cy="45"
+                    r="1.5"
+                    fill="currentColor"
+                    stroke="none" />
+
+            </svg>
+
+        </ng-template>
+
+    </div>
+
+
+    <div class="error-state__content">
+
+        <h3 class="error-state__title">
+            {{ title }}
+        </h3>
+
+
+        <p class="error-state__description">
+            {{ description }}
+        </p>
+
+
+        <button
+            *ngIf="showAction"
+            type="button"
+            class="error-state__action"
+            (click)="onActionClick()">
+
+            <svg
+                viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg"
+                aria-hidden="true">
+
+                <path
+                    d="M20 11A8 8 0 1 1 17.65 5.35" />
+
+                <path
+                    d="M20 4V11H13" />
+
+            </svg>
+
+            <span>
+                {{ actionLabel }}
+            </span>
+
+        </button>
+
+    </div>
+
+</div>

@@ -1,0 +1,206 @@
+<div
+    class="form-field"
+    [class.form-field--invalid]="hasError"
+    [class.form-field--disabled]="disabled">
+
+
+    <!-- Label -->
+
+    <label
+        class="form-field__label"
+        [attr.for]="fieldId">
+
+        <span>
+            {{ label }}
+        </span>
+
+        <span
+            *ngIf="required"
+            class="form-field__required"
+            aria-hidden="true">
+
+            *
+
+        </span>
+
+    </label>
+
+
+    <!-- Hint -->
+
+    <p
+        *ngIf="hint && !hasError"
+        class="form-field__hint">
+
+        {{ hint }}
+
+    </p>
+
+
+    <!-- Text / Email / Tel / Number / Password / Date -->
+
+    <input
+        *ngIf="
+            type === 'text' ||
+            type === 'email' ||
+            type === 'tel' ||
+            type === 'number' ||
+            type === 'password' ||
+            type === 'date'
+        "
+
+        class="form-field__control"
+
+        [id]="fieldId"
+
+        [type]="type"
+
+        [formControl]="control"
+
+        [placeholder]="placeholder"
+
+        [disabled]="disabled"
+
+        [attr.min]="min ?? null"
+
+        [attr.max]="max ?? null"
+
+        [attr.step]="step ?? null"
+
+        [attr.maxlength]="maxlength ?? null"
+
+        [attr.autocomplete]="autocomplete"
+
+        [attr.aria-invalid]="hasError"
+
+        [attr.aria-describedby]="
+            hasError
+                ? fieldId + '-error'
+                : hint
+                    ? fieldId + '-hint'
+                    : null
+        ">
+
+
+    <!-- Select -->
+
+    <select
+        *ngIf="type === 'select'"
+
+        class="form-field__control form-field__select"
+
+        [id]="fieldId"
+
+        [formControl]="control"
+
+        [disabled]="disabled"
+
+        [attr.aria-invalid]="hasError"
+
+        [attr.aria-describedby]="
+            hasError
+                ? fieldId + '-error'
+                : hint
+                    ? fieldId + '-hint'
+                    : null
+        ">
+
+        <option
+            value=""
+            disabled>
+
+            {{ placeholder || 'Select an option' }}
+
+        </option>
+
+        <option
+            *ngFor="let option of options"
+            [ngValue]="option.value">
+
+            {{ option.label }}
+
+        </option>
+
+    </select>
+
+
+    <!-- Textarea -->
+
+    <textarea
+        *ngIf="type === 'textarea'"
+
+        class="form-field__control form-field__textarea"
+
+        [id]="fieldId"
+
+        [formControl]="control"
+
+        [placeholder]="placeholder"
+
+        [disabled]="disabled"
+
+        [rows]="rows"
+
+        [attr.maxlength]="maxlength ?? null"
+
+        [attr.aria-invalid]="hasError"
+
+        [attr.aria-describedby]="
+            hasError
+                ? fieldId + '-error'
+                : hint
+                    ? fieldId + '-hint'
+                    : null
+        ">
+    </textarea>
+
+
+    <!-- Hint -->
+
+    <p
+        *ngIf="hint && !hasError"
+        class="form-field__hint"
+        [id]="fieldId + '-hint'">
+
+        {{ hint }}
+
+    </p>
+
+
+    <!-- Error -->
+
+    <p
+        *ngIf="hasError"
+        class="form-field__error"
+        [id]="fieldId + '-error'"
+        role="alert">
+
+        <svg
+            viewBox="0 0 24 24"
+            xmlns="http://www.w3.org/2000/svg"
+            aria-hidden="true">
+
+            <circle
+                cx="12"
+                cy="12"
+                r="9" />
+
+            <path
+                d="M12 7V13" />
+
+            <circle
+                cx="12"
+                cy="17"
+                r=".7"
+                fill="currentColor"
+                stroke="none" />
+
+        </svg>
+
+        <span>
+            {{ errorMessage }}
+        </span>
+
+    </p>
+
+</div>

@@ -1,0 +1,341 @@
+.timeline {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+
+    &__item {
+        position: relative;
+
+        display: grid;
+        grid-template-columns: 40px minmax(0, 1fr);
+
+        column-gap: 0.875rem;
+
+        min-height: 80px;
+
+        &:last-child {
+            min-height: auto;
+        }
+
+        &--clickable {
+            cursor: pointer;
+
+            .timeline__content {
+                border-radius: 0.5rem;
+                transition: background-color 0.2s ease;
+            }
+
+            &:hover {
+                .timeline__content {
+                    background: #f8fafc;
+                }
+            }
+        }
+    }
+
+
+    // --------------------------------------------------
+    // Marker
+    // --------------------------------------------------
+
+    &__marker-wrapper {
+        position: relative;
+
+        display: flex;
+        justify-content: center;
+    }
+
+
+    &__marker {
+        position: relative;
+        z-index: 2;
+
+        width: 36px;
+        height: 36px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        flex-shrink: 0;
+
+        border-radius: 50%;
+
+        font-size: 0.875rem;
+        font-weight: 700;
+
+        &--success {
+            color: #15803d;
+            background: #f0fdf4;
+            border: 1px solid #bbf7d0;
+        }
+
+        &--info {
+            color: #2563eb;
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+        }
+
+        &--warning {
+            color: #b45309;
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+        }
+
+        &--danger {
+            color: #dc2626;
+            background: #fef2f2;
+            border: 1px solid #fecaca;
+        }
+
+        &--default {
+            color: #64748b;
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+        }
+    }
+
+
+    &__default-dot {
+        width: 7px;
+        height: 7px;
+
+        border-radius: 50%;
+
+        background: currentColor;
+    }
+
+
+    &__custom-icon {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        line-height: 1;
+    }
+
+
+    // --------------------------------------------------
+    // Connecting Line
+    // --------------------------------------------------
+
+    &__marker-wrapper::after {
+        content: '';
+
+        position: absolute;
+
+        top: 36px;
+        bottom: 0;
+
+        left: 50%;
+
+        width: 1px;
+
+        transform: translateX(-50%);
+
+        background: #e2e8f0;
+    }
+
+
+    &__item:last-child {
+
+        .timeline__marker-wrapper::after {
+            display: none;
+        }
+    }
+
+
+    &--no-line {
+
+        .timeline__marker-wrapper::after {
+            display: none;
+        }
+    }
+
+
+    // --------------------------------------------------
+    // Content
+    // --------------------------------------------------
+
+    &__content {
+        min-width: 0;
+
+        padding: 0 0 1.5rem;
+    }
+
+
+    &__content-header {
+        display: flex;
+        align-items: flex-start;
+        justify-content: space-between;
+
+        gap: 1rem;
+    }
+
+
+    &__title-wrapper {
+        min-width: 0;
+
+        display: flex;
+        align-items: center;
+
+        flex-wrap: wrap;
+
+        gap: 0.5rem;
+    }
+
+
+    &__title {
+        margin: 0;
+
+        color: #0f172a;
+
+        font-size: 0.9375rem;
+        font-weight: 600;
+        line-height: 1.4;
+    }
+
+
+    &__meta {
+        display: inline-flex;
+        align-items: center;
+
+        padding: 0.2rem 0.45rem;
+
+        color: #475569;
+        background: #f1f5f9;
+
+        border-radius: 0.25rem;
+
+        font-size: 0.6875rem;
+        font-weight: 600;
+    }
+
+
+    // --------------------------------------------------
+    // Date
+    // --------------------------------------------------
+
+    &__date {
+        display: flex;
+        flex-direction: column;
+
+        flex-shrink: 0;
+
+        color: #64748b;
+
+        font-size: 0.75rem;
+        line-height: 1.4;
+
+        text-align: right;
+    }
+
+
+    &__time {
+        margin-top: 0.125rem;
+
+        color: #94a3b8;
+
+        font-size: 0.6875rem;
+    }
+
+
+    // --------------------------------------------------
+    // Description
+    // --------------------------------------------------
+
+    &__description {
+        max-width: 620px;
+
+        margin: 0.4rem 0 0;
+
+        color: #64748b;
+
+        font-size: 0.8125rem;
+        line-height: 1.6;
+    }
+}
+
+
+// --------------------------------------------------
+// Tablet
+// --------------------------------------------------
+
+@media (max-width: 768px) {
+
+    .timeline {
+
+        &__item {
+            grid-template-columns: 36px minmax(0, 1fr);
+
+            column-gap: 0.75rem;
+        }
+
+        &__marker {
+            width: 32px;
+            height: 32px;
+        }
+
+        &__marker-wrapper::after {
+            top: 32px;
+        }
+    }
+}
+
+
+// --------------------------------------------------
+// Mobile
+// --------------------------------------------------
+
+@media (max-width: 576px) {
+
+    .timeline {
+
+        &__item {
+            grid-template-columns: 32px minmax(0, 1fr);
+
+            column-gap: 0.625rem;
+
+            min-height: 90px;
+        }
+
+        &__marker {
+            width: 28px;
+            height: 28px;
+        }
+
+        &__marker-wrapper::after {
+            top: 28px;
+        }
+
+        &__content {
+            padding-bottom: 1.25rem;
+        }
+
+        &__content-header {
+            flex-direction: column;
+            gap: 0.35rem;
+        }
+
+        &__date {
+            flex-direction: row;
+
+            gap: 0.5rem;
+
+            text-align: left;
+        }
+
+        &__time {
+            margin-top: 0;
+        }
+
+        &__title {
+            font-size: 0.875rem;
+        }
+
+        &__description {
+            font-size: 0.75rem;
+        }
+    }
+}

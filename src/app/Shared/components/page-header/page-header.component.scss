@@ -1,0 +1,132 @@
+@import '../../../../Styles/variables.scss';
+@import '../../../../Styles/mixins.scss';
+
+.page-header {
+    @include flex(space-between, flex-end, row, $spacing-lg);
+
+    width: 100%;
+    &__content {
+        min-width: 0;
+        flex: 1;
+    }
+
+    &__eyebrow {
+        @include bricolage-grotesque(500);
+
+        display: block;
+        margin-bottom: .35rem;
+
+        color: $color-primary;
+        font-size: $font-size-sm;
+        line-height: 1.4;
+        letter-spacing: .02em;
+        text-transform: uppercase;
+    }
+
+    &__title {
+        @include bricolage-grotesque(600);
+
+        margin: 0;
+        color: $text-primary;
+        font-size: $font-size-3xl;
+        line-height: 1.2;
+    }
+
+    &__description {
+        @include montserrat(400);
+
+        max-width: 680px;
+        margin: .5rem 0 0;
+
+        color: $text-secondary;
+        font-size: $font-size-sm;
+        line-height: 1.6;
+    }
+
+    &__action {
+        flex: 0 0 auto;
+    }
+
+    &__action-button {
+        @include montserrat(600);
+        @include button(.7rem, 1.15rem, $radius-md);
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: .45rem;
+
+        min-height: 42px;
+
+        color: $color-white;
+        background: $color-primary;
+
+        font-size: $font-size-sm;
+        line-height: 1;
+        white-space: nowrap;
+
+        &:hover {
+            background: $color-primary-dark;
+            transform: translateY(-1px);
+        }
+
+        &:active {
+            transform: translateY(0);
+        }
+
+        &:focus-visible {
+            outline: 2px solid $color-primary-light;
+            outline-offset: 2px;
+        }
+    }
+
+    &__action-icon {
+        @include bricolage-grotesque(500);
+
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+
+        font-size: $font-size-lg;
+        line-height: 1;
+    }
+
+    @include respond(tablet) {
+
+        gap: $spacing-md;
+
+        &__title {
+            font-size: $font-size-2xl;
+        }
+    }
+
+    @include respond(mobile) {
+
+        @include flex(flex-start, stretch, column, $spacing-sm);
+
+        margin-bottom: $spacing-md;
+
+        &__eyebrow {
+            font-size: $font-size-xs;
+        }
+
+        &__title {
+            font-size: $font-size-xl;
+        }
+
+        &__description {
+            margin-top: .4rem;
+            font-size: $font-size-xs;
+            line-height: 1.55;
+        }
+
+        &__action {
+            width: 100%;
+        }
+
+        &__action-button {
+            width: 100%;
+            min-height: 42px;
+        }
+    }
+}

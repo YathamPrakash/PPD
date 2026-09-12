@@ -1,0 +1,296 @@
+@import '../../../../Styles/variables.scss';
+@import '../../../../Styles/mixins.scss';
+
+.pagination {
+    @include flex(
+        space-between,
+        center,
+        row,
+        $spacing-md
+    );
+
+    width: 100%;
+
+    padding: $spacing-sm $spacing-md;
+
+    background: $background-card;
+
+    border-top: 1px solid $border-light;
+
+    /* =================================
+       SUMMARY
+    ================================= */
+
+    &__summary {
+        @include flex(
+            flex-start,
+            center,
+            row,
+            .3rem
+        );
+
+        min-width: 0;
+
+        color: $text-secondary;
+
+        font-size: $font-size-xs;
+
+        white-space: nowrap;
+
+        span {
+            @include montserrat(400);
+        }
+
+        strong {
+            @include montserrat(600);
+
+            color: $text-primary;
+        }
+    }
+
+    /* =================================
+       DESKTOP
+    ================================= */
+
+    &__desktop {
+        @include flex(
+            flex-end,
+            center,
+            row,
+            .3rem
+        );
+    }
+
+    /* =================================
+       PAGINATION BUTTON
+    ================================= */
+
+    &__button {
+        @include flex(center, center);
+
+        flex: 0 0 auto;
+
+        width: 34px;
+        height: 34px;
+
+        padding: 0;
+
+        color: $text-secondary;
+        background: transparent;
+
+        border: 1px solid transparent;
+        border-radius: $radius-sm;
+
+        font-size: $font-size-xs;
+
+        cursor: pointer;
+
+        transition:
+            color $transition-fast,
+            background $transition-fast,
+            border-color $transition-fast;
+
+        svg {
+            width: 16px;
+            height: 16px;
+        }
+
+        &:hover:not(:disabled) {
+            color: $color-primary;
+            background: rgba($color-primary, .06);
+            border-color: $border-light;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $color-primary-light;
+            outline-offset: 1px;
+        }
+
+        &:disabled {
+            color: $text-muted;
+            opacity: .45;
+            cursor: not-allowed;
+        }
+
+        &--number {
+
+            &.is-active {
+                @include montserrat(600);
+
+                color: $color-white;
+                background: $color-primary;
+                border-color: $color-primary;
+
+                &:hover {
+                    color: $color-white;
+                    background: $color-primary-dark;
+                    border-color: $color-primary-dark;
+                }
+            }
+        }
+
+        &--arrow {
+            color: $text-secondary;
+        }
+    }
+
+    /* =================================
+       ELLIPSIS
+    ================================= */
+
+    &__ellipsis {
+        @include flex(center, center);
+
+        width: 24px;
+        height: 34px;
+
+        color: $text-muted;
+
+        font-size: $font-size-xs;
+    }
+
+    /* =================================
+       MOBILE
+    ================================= */
+
+    &__mobile {
+        display: none;
+    }
+
+    &__mobile-button {
+        @include flex(center, center);
+
+        width: 36px;
+        height: 36px;
+
+        padding: 0;
+
+        color: $text-secondary;
+        background: transparent;
+
+        border: 1px solid $border-color;
+        border-radius: $radius-sm;
+
+        cursor: pointer;
+
+        transition:
+            color $transition-fast,
+            background $transition-fast,
+            border-color $transition-fast;
+
+        svg {
+            width: 17px;
+            height: 17px;
+        }
+
+        &:hover:not(:disabled) {
+            color: $color-primary;
+            background: rgba($color-primary, .06);
+            border-color: $color-primary-light;
+        }
+
+        &:focus-visible {
+            outline: 2px solid $color-primary-light;
+            outline-offset: 1px;
+        }
+
+        &:disabled {
+            color: $text-muted;
+            opacity: .45;
+            cursor: not-allowed;
+        }
+    }
+
+    &__mobile-page {
+        @include flex(
+            center,
+            center,
+            row,
+            .3rem
+        );
+
+        min-width: 70px;
+
+        color: $text-secondary;
+
+        font-size: $font-size-xs;
+
+        strong {
+            @include montserrat(600);
+
+            color: $color-primary;
+        }
+    }
+
+    /* =================================
+       TABLET
+    ================================= */
+
+    @include respond(tablet) {
+
+        padding-inline: $spacing-sm;
+
+        &__desktop {
+            gap: .2rem;
+        }
+
+        &__button {
+            width: 32px;
+            height: 32px;
+        }
+    }
+
+    /* =================================
+       MOBILE
+    ================================= */
+
+    @include respond(mobile) {
+
+        @include flex(
+            space-between,
+            center,
+            row,
+            $spacing-sm
+        );
+
+        padding: $spacing-sm;
+
+        &__summary {
+
+            span:nth-child(1),
+            span:nth-child(3),
+            span:nth-child(5) {
+                display: none;
+            }
+
+            strong {
+                font-size: $font-size-xs;
+            }
+
+            &::before {
+                content: 'Showing ';
+
+                @include montserrat(400);
+
+                color: $text-secondary;
+            }
+
+            &::after {
+                content: '';
+            }
+        }
+
+        &__desktop {
+            display: none;
+        }
+
+        &__mobile {
+            @include flex(
+                center,
+                center,
+                row,
+                $spacing-xs
+            );
+        }
+    }
+}

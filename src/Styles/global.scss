@@ -158,3 +158,12 @@ body {
     }
   }
 }
+
+
+/* =========================================================
+   GLOBAL FULLSCREEN SCROLL LOCK
+  ========================================================= */
+
+body.chart-card-fullscreen-open {
+    overflow: hidden;
+}

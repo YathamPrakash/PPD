@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+
 import { menuItem } from '../Shared/models/data-model';
+
 @Injectable({
   providedIn: 'root'
 })
 export class AppMenusService {
 
-  constructor(private router:Router) { }
+  constructor(
+    private router: Router
+  ) {}
 
   menuItems: menuItem[] = [
 
@@ -20,7 +24,7 @@ export class AppMenusService {
       route: '/layout/dashboard',
       children: []
     },
-    
+
 
     // =========================================================
     // TENANTS
@@ -29,8 +33,24 @@ export class AppMenusService {
     {
       label: 'Tenants',
       icon: 'fa-solid fa-users',
-      route: '/layout/tenantlist',
-      children: []
+      route: '',
+      children: [
+
+        {
+          label: 'Tenant List',
+          icon: 'fa-solid fa-list',
+          route: '/layout/tenantlist',
+          children: []
+        },
+
+        {
+          label: 'Tenant History',
+          icon: 'fa-solid fa-clock-rotate-left',
+          route: '/layout/tenant-history',
+          children: []
+        }
+
+      ]
     },
 
 
@@ -47,15 +67,47 @@ export class AppMenusService {
         {
           label: 'Rooms',
           icon: 'fa-solid fa-door-open',
-          route: '/layout/rooms',
-          children: []
+          route: '',
+          children: [
+
+            {
+              label: 'All Rooms',
+              icon: 'fa-solid fa-list',
+              route: '/layout/rooms',
+              children: []
+            },
+
+            {
+              label: 'Add Room',
+              icon: 'fa-solid fa-plus',
+              route: '/layout/rooms/add',
+              children: []
+            }
+
+          ]
         },
 
         {
           label: 'Beds',
           icon: 'fa-solid fa-bed',
-          route: '/layout/beds',
-          children: []
+          route: '',
+          children: [
+
+            {
+              label: 'All Beds',
+              icon: 'fa-solid fa-list',
+              route: '/layout/beds',
+              children: []
+            },
+
+            {
+              label: 'Add Bed',
+              icon: 'fa-solid fa-plus',
+              route: '/layout/beds/add',
+              children: []
+            }
+
+          ]
         },
 
         {
@@ -259,11 +311,27 @@ export class AppMenusService {
 
   ];
 
-  _doNavigate(item: menuItem) {
+
+  // =========================================================
+  // NAVIGATION
+  // =========================================================
+
+  _doNavigate(item: menuItem): void {
+    console.log('Navigating to', item.route);
+
     if (item.route) {
-      this.router.navigate([item.route]);
+
+      this.router.navigate([
+        item.route
+      ]);
+
     } else {
-      console.warn('No route defined for', item.label);
+
+      console.warn(
+        'No route defined for',
+        item.label
+      );
+
     }
   }
 

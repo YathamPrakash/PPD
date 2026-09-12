@@ -1,0 +1,559 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/mixins.scss';
+
+
+.loading-skeleton {
+    width: 100%;
+}
+
+
+/* ================================================= */
+/* BASE SKELETON */
+/* ================================================= */
+
+.skeleton {
+    display: block;
+
+    background: linear-gradient(90deg,
+            $border-light 25%,
+            $background-section 50%,
+            $border-light 75%);
+
+    background-size: 200% 100%;
+
+    animation: skeleton-shimmer 1.5s ease-in-out infinite;
+
+    border-radius: $radius-sm;
+}
+
+
+@keyframes skeleton-shimmer {
+
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
+    }
+}
+
+
+/* ================================================= */
+/* CONTAINER */
+/* ================================================= */
+
+.loading-skeleton--container {
+    padding: $spacing-md;
+
+    background: $background-card;
+
+    border: 1px solid $border-light;
+
+    border-radius: $radius-lg;
+}
+
+
+/* ================================================= */
+/* TABLE */
+/* ================================================= */
+
+.skeleton-table {
+    width: 100%;
+
+    overflow: hidden;
+}
+
+
+.skeleton-table__header,
+.skeleton-table__row {
+    display: grid;
+
+    grid-template-columns:
+        minmax(180px, 2fr) repeat(5, minmax(100px, 1fr));
+
+    align-items: center;
+
+    gap: $spacing-sm;
+
+    min-height: 56px;
+
+    padding: 0 $spacing-sm;
+}
+
+
+.skeleton-table__header {
+    border-bottom: 1px solid $border-light;
+}
+
+
+.skeleton-table__row {
+    min-height: 68px;
+
+    border-bottom: 1px solid $border-light;
+
+    &:last-child {
+        border-bottom: none;
+    }
+}
+
+
+.skeleton--header {
+    width: 60%;
+
+    height: 12px;
+}
+
+
+.skeleton--cell {
+    width: 80%;
+
+    height: 14px;
+}
+
+
+.skeleton-table__row .skeleton--cell:first-child {
+    width: 100%;
+}
+
+
+/* Avatar inside first table cell */
+
+.skeleton__avatar {
+    display: inline-block;
+
+    width: 34px;
+    height: 34px;
+
+    margin-right: $spacing-xs;
+
+    vertical-align: middle;
+
+    background: $border-light;
+
+    border-radius: $radius-round;
+}
+
+
+/* ================================================= */
+/* CARDS */
+/* ================================================= */
+
+.skeleton-cards {
+    @include grid(repeat(3, 1fr),
+        $spacing-md );
+}
+
+
+.skeleton-card {
+    padding: $spacing-md;
+
+    background: $background-card;
+
+    border: 1px solid $border-light;
+
+    border-radius: $radius-lg;
+}
+
+
+.skeleton-card__header {
+    @include flex(flex-start,
+        center,
+        row,
+        $spacing-sm );
+}
+
+
+.skeleton--avatar {
+    width: 44px;
+    height: 44px;
+
+    flex-shrink: 0;
+
+    border-radius: $radius-round;
+}
+
+
+.skeleton-card__heading {
+    flex: 1;
+
+    @include flex(flex-start,
+        flex-start,
+        column,
+        $spacing-xs );
+}
+
+
+.skeleton--title {
+    width: 65%;
+    height: 15px;
+}
+
+
+.skeleton--subtitle {
+    width: 45%;
+    height: 11px;
+}
+
+
+.skeleton-card__content {
+    @include flex(flex-start,
+        stretch,
+        column,
+        $spacing-xs );
+
+    margin-top: $spacing-md;
+}
+
+
+.skeleton--line {
+    width: 100%;
+    height: 12px;
+}
+
+
+.skeleton--line-short {
+    width: 70%;
+}
+
+
+.skeleton-card__footer {
+    @include flex(space-between,
+        center);
+
+    margin-top: $spacing-md;
+}
+
+
+.skeleton--button {
+    width: 100px;
+    height: 38px;
+}
+
+
+.skeleton--button-small {
+    width: 60px;
+    height: 28px;
+}
+
+
+/* ================================================= */
+/* STATS */
+/* ================================================= */
+
+.skeleton-stats {
+    @include grid(repeat(4, 1fr),
+        $spacing-md );
+}
+
+
+.skeleton-stat {
+    min-height: 112px;
+
+    padding: $spacing-md;
+
+    background: $background-card;
+
+    border: 1px solid $border-light;
+
+    border-radius: $radius-lg;
+}
+
+
+.skeleton-stat__top {
+    @include flex(flex-start,
+        center,
+        row,
+        $spacing-sm );
+}
+
+
+.skeleton--stat-icon {
+    width: 36px;
+    height: 36px;
+
+    border-radius: $radius-md;
+}
+
+
+.skeleton--stat-label {
+    width: 90px;
+    height: 12px;
+}
+
+
+.skeleton--stat-value {
+    width: 100px;
+    height: 25px;
+
+    margin-top: $spacing-sm;
+}
+
+
+.skeleton--stat-description {
+    width: 130px;
+    height: 10px;
+
+    margin-top: $spacing-xs;
+}
+
+
+/* ================================================= */
+/* TEXT */
+/* ================================================= */
+
+.skeleton-text {
+    width: 100%;
+    max-width: 600px;
+
+    @include flex(flex-start,
+        stretch,
+        column,
+        $spacing-sm );
+}
+
+
+.skeleton--text-title {
+    width: 40%;
+    height: 22px;
+
+    margin-bottom: $spacing-xs;
+}
+
+
+.skeleton--text-line {
+    width: 100%;
+    height: 13px;
+}
+
+
+.skeleton--text-short {
+    width: 65%;
+}
+
+
+/* ================================================= */
+/* FORM */
+/* ================================================= */
+
+.skeleton-form {
+    width: 100%;
+
+    @include grid(repeat(2, 1fr),
+        $spacing-md );
+}
+
+
+.skeleton-form__field {
+    @include flex(flex-start,
+        stretch,
+        column,
+        $spacing-xs );
+}
+
+
+.skeleton-form__field--large {
+    grid-column: 1 / -1;
+}
+
+
+.skeleton--label {
+    width: 80px;
+    height: 11px;
+}
+
+
+.skeleton--input {
+    width: 100%;
+    height: 44px;
+}
+
+
+.skeleton--textarea {
+    width: 100%;
+    height: 100px;
+}
+
+
+.skeleton-form__actions {
+    grid-column: 1 / -1;
+
+    @include flex(flex-end,
+        center,
+        row,
+        $spacing-sm );
+
+    margin-top: $spacing-sm;
+}
+
+
+/* ================================================= */
+/* TABLET */
+/* ================================================= */
+
+@include respond(tablet) {
+
+    .loading-skeleton--container {
+        padding: $spacing-sm;
+    }
+
+
+    .skeleton-table__header,
+    .skeleton-table__row {
+        grid-template-columns:
+            minmax(160px, 2fr) repeat(4, minmax(90px, 1fr));
+
+        gap: $spacing-xs;
+    }
+
+
+    .skeleton-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .skeleton-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+
+    .skeleton-form {
+        grid-template-columns: 1fr;
+    }
+
+
+    .skeleton-form__field--large {
+        grid-column: auto;
+    }
+
+
+    .skeleton-form__actions {
+        grid-column: auto;
+    }
+}
+
+
+/* ================================================= */
+/* MOBILE */
+/* ================================================= */
+
+@include respond(mobile) {
+
+    .loading-skeleton--container {
+        padding: $spacing-sm;
+
+        border-radius: $radius-md;
+    }
+
+
+    /*
+     * On mobile, table skeleton becomes
+     * a compact card-like skeleton.
+     */
+
+    .skeleton-table__header {
+        display: none;
+    }
+
+
+    .skeleton-table__row {
+        display: grid;
+
+        grid-template-columns: 1fr 80px;
+
+        gap: $spacing-sm;
+
+        min-height: 80px;
+
+        padding: $spacing-sm 0;
+
+        border-bottom: 1px solid $border-light;
+    }
+
+
+    /*
+     * Hide less important columns on mobile.
+     */
+
+    .skeleton-table__row .skeleton--cell:nth-child(n + 3) {
+        display: none;
+    }
+
+
+    .skeleton-table__row .skeleton--cell:first-child {
+        width: 100%;
+    }
+
+
+    .skeleton-table__row .skeleton--cell:nth-child(2) {
+        width: 70%;
+    }
+
+
+    .skeleton-cards {
+        grid-template-columns: 1fr;
+
+        gap: $spacing-sm;
+    }
+
+
+    .skeleton-card {
+        padding: $spacing-sm;
+
+        border-radius: $radius-md;
+    }
+
+
+    .skeleton-stats {
+        grid-template-columns: repeat(2, 1fr);
+
+        gap: $spacing-sm;
+    }
+
+
+    .skeleton-stat {
+        min-height: 100px;
+
+        padding: $spacing-sm;
+
+        border-radius: $radius-md;
+    }
+
+
+    .skeleton--stat-value {
+        width: 80px;
+    }
+
+
+    .skeleton--stat-description {
+        width: 100px;
+    }
+
+
+    .skeleton-form {
+        grid-template-columns: 1fr;
+    }
+
+
+    .skeleton-form__actions {
+        @include flex(stretch,
+            center,
+            column,
+            $spacing-xs );
+
+
+        .skeleton--button {
+            width: 100%;
+        }
+    }
+
+
+    .skeleton--text-title {
+        width: 60%;
+    }
+
+
+    .skeleton--text-short {
+        width: 80%;
+    }
+}

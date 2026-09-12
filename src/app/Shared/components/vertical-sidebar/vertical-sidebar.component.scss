@@ -60,6 +60,39 @@
 
 
     /* ==============================================================
+     BRAND
+     ============================================================== */
+
+    &__brand {
+        min-width: 0;
+
+        display: flex;
+        align-items: center;
+
+        gap: 8px;
+    }
+
+    &__brand-icon {
+        width: 30px;
+        height: 30px;
+        min-width: 30px;
+
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        border-radius: $radius-sm;
+
+        background: rgba($color-white, .12);
+        color: $color-white;
+
+        i {
+            font-size: 13px;
+        }
+    }
+
+
+    /* ==============================================================
      HEADER
      ============================================================== */
 
@@ -82,19 +115,40 @@
 
 
         &--logo {
+            min-width: 0;
+
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+
             @include bricolage-grotesque(600);
 
             font-size: $font-size-lg;
+            line-height: 1;
 
             color: $color-white;
 
             white-space: nowrap;
-
             overflow: hidden;
 
             transition:
                 opacity $transition-normal,
                 width $transition-normal;
+
+            small {
+                display: block;
+
+                margin-top: 4px;
+
+                @include montserrat(400);
+
+                font-size: $font-size-xs;
+                line-height: 1;
+
+                color: rgba($color-white, .65);
+
+                letter-spacing: 0;
+            }
         }
 
 
@@ -181,7 +235,7 @@
             justify-content: center;
         }
 
-        .app-vsidebar__header--logo {
+        .app-vsidebar__brand {
             display: none;
         }
 
@@ -925,8 +979,12 @@
         }
 
 
+        &__brand {
+            display: flex !important;
+        }
+
         &__header--logo {
-            display: block !important;
+            display: flex !important;
 
             width: auto !important;
 
@@ -1009,8 +1067,12 @@
                 justify-content: space-between;
             }
 
+            .app-vsidebar__brand {
+                display: flex !important;
+            }
+
             .app-vsidebar__header--logo {
-                display: block !important;
+                display: flex !important;
             }
 
             .app-vsidebar__menu-link {
@@ -1124,5 +1186,29 @@
 
             max-width: 100%;
         }
+    }
+}
+
+/* ================================================================
+   TS-DRIVEN SUBMENU VISIBILITY
+
+   The component decides what is open (isSubmenuOpen) and renders
+   it with *ngIf. These rules only let a rendered flyout actually
+   show, because the desktop w80 block above sets
+   ".popup { display: none }" at a higher specificity than the
+   plain ".show" rule further up this file.
+
+   .popup is now bound to isFlyout instead of sidebarWidth, so it
+   is never applied on mobile and these rules cannot fire there.
+   ================================================================ */
+
+.app-vsidebar.w80 {
+
+    .app-vsidebar__menu-item--submenu.popup.show {
+        display: block;
+    }
+
+    .app-vsidebar__menu-item--submenu.popup .app-vsidebar__submenu-item>.app-vsidebar__menu-item--childmenu.popup.show {
+        display: block;
     }
 }

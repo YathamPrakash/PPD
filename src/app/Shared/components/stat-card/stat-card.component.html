@@ -1,0 +1,32 @@
+<article class="stat-card" [ngClass]="'stat-card--' + variant">
+
+    <div class="stat-card__top">
+
+        <div class="stat-card__content">
+
+            <span class="stat-card__label">
+                {{ label }}
+            </span>
+
+            <strong class="stat-card__value">
+                {{ value }}
+            </strong>
+
+        </div>
+
+        <div class="stat-card__icon">
+
+            <i *ngIf="icon" [ngClass]="icon">
+            </i>
+
+        </div>
+
+    </div>
+
+    <p *ngIf="description" class="stat-card__description">
+
+        {{ description }}
+
+    </p>
+
+</article>

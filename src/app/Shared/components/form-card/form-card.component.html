@@ -1,0 +1,68 @@
+<div
+    class="form-card"
+    [class.form-card--loading]="loading"
+    [class.form-card--no-footer-border]="!borderedFooter"
+    [ngClass]="cardClass">
+
+
+    <!-- ============================================ -->
+    <!-- HEADER -->
+    <!-- ============================================ -->
+
+    <div
+        class="form-card__header"
+        *ngIf="eyebrow || title || description">
+
+        <span
+            class="form-card__eyebrow"
+            *ngIf="eyebrow">
+
+            {{ eyebrow }}
+
+        </span>
+
+
+        <h2
+            class="form-card__title"
+            *ngIf="title">
+
+            {{ title }}
+
+        </h2>
+
+
+        <p
+            class="form-card__description"
+            *ngIf="description">
+
+            {{ description }}
+
+        </p>
+
+    </div>
+
+
+    <!-- ============================================ -->
+    <!-- CONTENT -->
+    <!-- ============================================ -->
+
+    <div class="form-card__body">
+
+        <ng-content></ng-content>
+
+    </div>
+
+
+    <!-- ============================================ -->
+    <!-- FOOTER -->
+    <!-- ============================================ -->
+
+    <div
+        class="form-card__footer"
+        *ngIf="showFooter">
+
+        <ng-content select="[form-card-footer]"></ng-content>
+
+    </div>
+
+</div>

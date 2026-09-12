@@ -1,0 +1,210 @@
+<nav
+    *ngIf="totalPages > 0"
+    class="pagination"
+    aria-label="Pagination">
+
+
+    <!-- =================================
+         RESULT SUMMARY
+    ================================== -->
+
+    <div class="pagination__summary">
+
+        <span>
+            Showing
+        </span>
+
+        <strong>
+            {{ startItem }}–{{ endItem }}
+        </strong>
+
+        <span>
+            of
+        </span>
+
+        <strong>
+            {{ totalItems }}
+        </strong>
+
+        <span>
+            {{ itemLabel }}
+        </span>
+
+    </div>
+
+
+    <!-- =================================
+         DESKTOP PAGINATION
+    ================================== -->
+
+    <div class="pagination__desktop">
+
+        <!-- Previous -->
+
+        <button
+            type="button"
+            class="pagination__button pagination__button--arrow"
+            [disabled]="currentPage === 1"
+            aria-label="Previous page"
+            (click)="previousPage()">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true">
+
+                <path
+                    d="M15 18L9 12L15 6"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round" />
+
+            </svg>
+
+        </button>
+
+
+        <!-- Page Numbers -->
+
+        <ng-container
+            *ngFor="let page of pageNumbers">
+
+            <!-- Ellipsis -->
+
+            <span
+                *ngIf="page === '...'"
+                class="pagination__ellipsis">
+
+                …
+
+            </span>
+
+
+            <!-- Page -->
+
+            <button
+                *ngIf="page !== '...'"
+                type="button"
+                class="pagination__button pagination__button--number"
+                [class.is-active]="
+                    isCurrentPage(page)
+                "
+                [attr.aria-current]="
+                    isCurrentPage(page)
+                        ? 'page'
+                        : null
+                "
+                [attr.aria-label]="
+                    'Page ' + page
+                "
+                (click)="goToPage(+page)">
+
+                {{ page }}
+
+            </button>
+
+        </ng-container>
+
+
+        <!-- Next -->
+
+        <button
+            type="button"
+            class="pagination__button pagination__button--arrow"
+            [disabled]="currentPage === totalPages"
+            aria-label="Next page"
+            (click)="nextPage()">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true">
+
+                <path
+                    d="M9 18L15 12L9 6"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round" />
+
+            </svg>
+
+        </button>
+
+    </div>
+
+
+    <!-- =================================
+         MOBILE PAGINATION
+    ================================== -->
+
+    <div class="pagination__mobile">
+
+        <button
+            type="button"
+            class="pagination__mobile-button"
+            [disabled]="currentPage === 1"
+            aria-label="Previous page"
+            (click)="previousPage()">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true">
+
+                <path
+                    d="M15 18L9 12L15 6"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round" />
+
+            </svg>
+
+        </button>
+
+
+        <span class="pagination__mobile-page">
+
+            <strong>
+                {{ currentPage }}
+            </strong>
+
+            <span>
+                /
+            </span>
+
+            <span>
+                {{ totalPages }}
+            </span>
+
+        </span>
+
+
+        <button
+            type="button"
+            class="pagination__mobile-button"
+            [disabled]="currentPage === totalPages"
+            aria-label="Next page"
+            (click)="nextPage()">
+
+            <svg
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true">
+
+                <path
+                    d="M9 18L15 12L9 6"
+                    stroke="currentColor"
+                    stroke-width="1.8"
+                    stroke-linecap="round"
+                    stroke-linejoin="round" />
+
+            </svg>
+
+        </button>
+
+    </div>
+
+</nav>

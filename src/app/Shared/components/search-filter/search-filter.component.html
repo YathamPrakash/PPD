@@ -1,0 +1,150 @@
+<section class="search-filter">
+
+    <!--
+        Mobile filter toggle
+    -->
+
+    <div *ngIf="showFilterButton && filters.length" class="search-filter__mobile-header">
+
+        <button type="button" class="search-filter__mobile-toggle" [class.is-active]="filtersOpen"
+            (click)="toggleFilters()">
+
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+
+                <path d="M4 6H20" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+
+                <path d="M7 12H17" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+
+                <path d="M10 18H14" stroke="currentColor" stroke-width="2" stroke-linecap="round" />
+
+            </svg>
+
+            <span>
+                Filters
+            </span>
+
+            <span *ngIf="hasActiveFilters()" class="search-filter__active-dot">
+            </span>
+
+            <i class="fa-solid" [ngClass]="
+                    filtersOpen
+                        ? 'fa-chevron-up'
+                        : 'fa-chevron-down'
+                ">
+            </i>
+
+        </button>
+
+    </div>
+
+
+    <!--
+        Search and filters
+    -->
+
+    <div class="search-filter__body" [class.is-open]="filtersOpen">
+
+
+        <!-- Search -->
+
+        <div class="search-filter__search">
+
+            <span class="search-filter__search-icon">
+
+                <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+
+                    <circle cx="11" cy="11" r="6.5" stroke="currentColor" stroke-width="1.8" />
+
+                    <path d="M16 16L20 20" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                </svg>
+
+            </span>
+
+            <input type="text" class="search-filter__search-input" [placeholder]="searchPlaceholder"
+                [(ngModel)]="searchValue" (ngModelChange)="onSearchChange($event)" />
+
+        </div>
+
+
+        <!-- Dynamic Filters -->
+
+        <div *ngFor="let filter of filters" class="search-filter__field">
+
+
+            <!-- Select -->
+
+            <ng-container *ngIf="filter.type === 'select'">
+
+                <div class="search-filter__select-wrapper">
+
+                    <select class="search-filter__select" [ngModel]="getFilterValue(filter.key)" (ngModelChange)="
+                            onFilterChange(
+                                filter.key,
+                                $event
+                            )
+                        ">
+
+                        <option value="">
+                            {{ filter.placeholder || filter.label }}
+                        </option>
+
+                        <option *ngFor="let option of filter.options" [value]="option.value">
+
+                            {{ option.label }}
+
+                        </option>
+
+                    </select>
+
+                    <i class="fa-solid fa-chevron-down search-filter__select-arrow"></i>
+
+                </div>
+
+            </ng-container>
+
+
+            <!-- Date -->
+
+            <ng-container *ngIf="filter.type === 'date'">
+
+                <div class="search-filter__date-wrapper">
+
+                    <input type="date" class="search-filter__date" [attr.aria-label]="filter.label"
+                        [ngModel]="getFilterValue(filter.key)" (ngModelChange)="
+                            onFilterChange(
+                                filter.key,
+                                $event
+                            )
+                        " />
+
+                </div>
+
+            </ng-container>
+
+        </div>
+
+
+        <!-- Reset -->
+
+        <button *ngIf="showReset" type="button" class="search-filter__reset" [disabled]="!hasActiveFilters()"
+            (click)="onReset()">
+
+            <svg viewBox="0 0 24 24" fill="none" aria-hidden="true">
+
+                <path d="M4 12a8 8 0 1 0 2.34-5.66" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" />
+
+                <path d="M4 5V10H9" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"
+                    stroke-linejoin="round" />
+
+            </svg>
+
+            <span>
+                Reset
+            </span>
+
+        </button>
+
+    </div>
+
+</section>

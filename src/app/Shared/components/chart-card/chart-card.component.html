@@ -1,0 +1,212 @@
+<article class="chart-card" [class.chart-card--fullscreen]="isFullscreen">
+
+
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
+
+  <header class="chart-card__header">
+
+    <div class="chart-card__heading">
+
+      <h2 class="chart-card__title">
+        {{ title }}
+      </h2>
+
+      <p *ngIf="description" class="chart-card__description">
+
+        {{ description }}
+
+      </p>
+
+    </div>
+
+
+    <div *ngIf="actions.length || showMenu" class="chart-card__actions">
+
+
+      <!-- =================================================
+           PERIOD DROPDOWN
+           ================================================= -->
+
+      <select *ngIf="actions.length" class="chart-card__select" [value]="selectedAction"
+        (change)="onActionChange($any($event.target).value)" [attr.aria-label]="title + ' period'">
+
+        <option *ngFor="
+            let action of actions;
+            trackBy: trackByAction
+          " [value]="action.value">
+
+          {{ action.label }}
+
+        </option>
+
+      </select>
+
+
+      <!-- =================================================
+           THREE DOT MENU
+           ================================================= -->
+
+      <div *ngIf="showMenu" class="chart-card__menu-wrapper">
+
+
+        <button type="button" class="chart-card__menu-button" aria-label="Chart actions" aria-haspopup="menu"
+          [attr.aria-expanded]="isMenuOpen" (click)="$event.stopPropagation(); toggleMenu()">
+
+          <i class="fa-solid fa-ellipsis-vertical" aria-hidden="true">
+          </i>
+
+        </button>
+
+
+        <!-- Menu -->
+
+        <div *ngIf="isMenuOpen" class="chart-card__menu" role="menu">
+
+
+          <!-- View Details -->
+
+          <button type="button" class="chart-card__menu-item" role="menuitem" (click)="onMenuAction('view')">
+
+            <i class="fa-solid fa-eye" aria-hidden="true">
+            </i>
+
+            <span>
+              View Details
+            </span>
+
+          </button>
+
+
+          <!-- Export Data -->
+
+          <button type="button" class="chart-card__menu-item" role="menuitem" (click)="onMenuAction('export')">
+
+            <i class="fa-solid fa-download" aria-hidden="true">
+            </i>
+
+            <span>
+              Export Data
+            </span>
+
+          </button>
+
+
+          <!-- Fullscreen -->
+
+          <button type="button" class="chart-card__menu-item" role="menuitem" (click)="onMenuAction('fullscreen')">
+
+            <i class="fa-solid fa-expand" aria-hidden="true">
+            </i>
+
+            <span>
+              View Fullscreen
+            </span>
+
+          </button>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </header>
+
+
+  <!-- =====================================================
+       BODY
+       ===================================================== -->
+
+  <div class="chart-card__body" [class.chart-card__body--empty]="empty">
+
+
+    <!-- ===================================================
+         LOADING
+         =================================================== -->
+
+    <div *ngIf="loading" class="chart-card__loading" aria-label="Loading chart">
+
+      <div class="
+          chart-card__skeleton
+          chart-card__skeleton--large
+        ">
+      </div>
+
+      <div class="
+          chart-card__skeleton
+          chart-card__skeleton--medium
+        ">
+      </div>
+
+      <div class="
+          chart-card__skeleton
+          chart-card__skeleton--small
+        ">
+      </div>
+
+    </div>
+
+
+    <!-- ===================================================
+         EMPTY
+         =================================================== -->
+
+    <div *ngIf="!loading && empty" class="chart-card__empty">
+
+      <div class="chart-card__empty-icon">
+
+        <i class="fa-solid fa-chart-column" aria-hidden="true">
+        </i>
+
+      </div>
+
+      <h3 class="chart-card__empty-title">
+        No chart data
+      </h3>
+
+      <p class="chart-card__empty-message">
+        {{ emptyMessage }}
+      </p>
+
+    </div>
+
+
+    <!-- ===================================================
+         CHART CONTENT
+         =================================================== -->
+
+    <div *ngIf="!loading && !empty" class="chart-card__chart">
+
+      <ng-content></ng-content>
+
+    </div>
+
+  </div>
+
+
+  <!-- =====================================================
+       FOOTER
+       ===================================================== -->
+
+  <footer *ngIf="footer" class="chart-card__footer">
+
+    {{ footer }}
+
+  </footer>
+
+
+  <!-- =====================================================
+       FULLSCREEN CLOSE
+       ===================================================== -->
+
+  <button *ngIf="isFullscreen" type="button" class="chart-card__fullscreen-close" aria-label="Close fullscreen"
+    (click)="closeFullscreen()">
+
+    <i class="fa-solid fa-xmark" aria-hidden="true">
+    </i>
+
+  </button>
+
+</article>

@@ -1,0 +1,376 @@
+<div class="add-tenant-page">
+
+    <!-- ========================================================
+         PAGE HEADER
+    ========================================================= -->
+
+    <app-page-header
+        eyebrow="TENANTS"
+        title="Add Tenant"
+        description="Add a new tenant and assign a room and bed.">
+    </app-page-header>
+
+
+    <!-- ========================================================
+         FORM
+    ========================================================= -->
+
+    <form
+        class="add-tenant-page__form"
+        [formGroup]="tenantForm"
+        (ngSubmit)="onSubmit()"
+        novalidate>
+
+
+        <!-- ====================================================
+             PERSONAL INFORMATION
+        ===================================================== -->
+
+        <app-form-card
+            eyebrow="TENANT DETAILS"
+            title="Personal Information"
+            description="Enter the tenant's basic personal and contact information.">
+
+            <div class="form-grid">
+
+                <app-form-field
+                    label="First Name"
+                    id="first-name"
+                    type="text"
+                    placeholder="Enter first name"
+                    autocomplete="given-name"
+                    [control]="getControl('firstName')"
+                    [required]="true">
+                </app-form-field>
+
+
+                <app-form-field
+                    label="Last Name"
+                    id="last-name"
+                    type="text"
+                    placeholder="Enter last name"
+                    autocomplete="family-name"
+                    [control]="getControl('lastName')"
+                    [required]="true">
+                </app-form-field>
+
+
+                <app-form-field
+                    label="Phone Number"
+                    id="phone"
+                    type="tel"
+                    placeholder="Enter 10-digit mobile number"
+                    autocomplete="tel"
+                    [maxlength]="10"
+                    [control]="getControl('phone')"
+                    [required]="true">
+                </app-form-field>
+
+
+                <app-form-field
+                    label="Email Address"
+                    id="email"
+                    type="email"
+                    placeholder="Enter email address"
+                    autocomplete="email"
+                    [control]="getControl('email')">
+                </app-form-field>
+
+
+                <app-form-field
+                    label="Date of Birth"
+                    id="date-of-birth"
+                    type="date"
+                    [control]="getControl('dateOfBirth')">
+                </app-form-field>
+
+
+                <app-form-field
+                    label="Gender"
+                    id="gender"
+                    type="select"
+                    placeholder="Select gender"
+                    [options]="genderOptions"
+                    [control]="getControl('gender')">
+                </app-form-field>
+
+            </div>
+
+        </app-form-card>
+
+
+        <!-- ====================================================
+             EMERGENCY CONTACT
+        ===================================================== -->
+
+        <app-form-card
+            eyebrow="EMERGENCY"
+            title="Emergency Contact"
+            description="Add a person we can contact in case of an emergency.">
+
+            <div class="form-grid">
+
+                <app-form-field
+                    label="Contact Name"
+                    id="emergency-contact-name"
+                    type="text"
+                    placeholder="Enter contact name"
+                    autocomplete="name"
+                    [control]="getControl('emergencyContactName')"
+                    [required]="true">
+                </app-form-field>
+
+
+                <app-form-field
+                    label="Contact Phone"
+                    id="emergency-contact-phone"
+                    type="tel"
+                    placeholder="Enter 10-digit mobile number"
+                    autocomplete="tel"
+                    [maxlength]="10"
+                    [control]="getControl('emergencyContactPhone')"
+                    [required]="true">
+                </app-form-field>
+
+
+                <app-form-field
+                    label="Relationship"
+                    id="emergency-contact-relation"
+                    type="select"
+                    placeholder="Select relationship"
+                    [options]="emergencyRelationOptions"
+                    [control]="getControl('emergencyContactRelation')">
+                </app-form-field>
+
+            </div>
+
+        </app-form-card>
+
+
+        <!-- ====================================================
+             STAY INFORMATION
+        ===================================================== -->
+
+        <app-form-card
+            eyebrow="STAY"
+            title="Stay Information"
+            description="Set the tenant's stay dates and room assignment.">
+
+            <div class="form-grid">
+
+                <app-form-field
+                    label="Joining Date"
+                    id="joining-date"
+                    type="date"
+                    [control]="getControl('joiningDate')"
+                    [required]="true">
+                </app-form-field>
+
+
+                <app-form-field
+                    label="Expected Vacating Date"
+                    id="expected-vacating-date"
+                    type="date"
+                    [control]="getControl('expectedVacatingDate')">
+                </app-form-field>
+
+
+                <app-form-field
+                    label="Room"
+                    id="room"
+                    type="select"
+                    placeholder="Select room"
+                    hint="Only rooms with available beds are shown."
+                    [options]="roomOptions"
+                    [control]="getControl('room')"
+                    [required]="true">
+                </app-form-field>
+
+
+                <app-form-field
+                    label="Bed"
+                    id="bed"
+                    type="select"
+                    [placeholder]="
+                        bedOptions.length
+                            ? 'Select bed'
+                            : 'Select room first'
+                    "
+                    [options]="bedOptions"
+                    [control]="getControl('bed')"
+                    [disabled]="bedOptions.length === 0"
+                    [required]="true">
+                </app-form-field>
+
+            </div>
+
+        </app-form-card>
+
+
+        <!-- ====================================================
+             PAYMENT INFORMATION
+        ===================================================== -->
+
+        <app-form-card
+            eyebrow="PAYMENT"
+            title="Payment Information"
+            description="Enter the tenant's rent and payment details.">
+
+            <div class="form-grid">
+
+                <app-form-field
+                    label="Monthly Rent"
+                    id="monthly-rent"
+                    type="number"
+                    placeholder="Enter monthly rent"
+                    [min]="0"
+                    [step]="1"
+                    [control]="getControl('monthlyRent')"
+                    [required]="true">
+                </app-form-field>
+
+
+                <app-form-field
+                    label="Security Deposit"
+                    id="security-deposit"
+                    type="number"
+                    placeholder="Enter security deposit"
+                    [min]="0"
+                    [step]="1"
+                    [control]="getControl('securityDeposit')">
+                </app-form-field>
+
+
+                <app-form-field
+                    label="Payment Due Date"
+                    id="payment-due-date"
+                    type="date"
+                    [control]="getControl('paymentDueDate')"
+                    [required]="true">
+                </app-form-field>
+
+
+                <app-form-field
+                    label="Payment Method"
+                    id="payment-method"
+                    type="select"
+                    placeholder="Select payment method"
+                    [options]="paymentMethodOptions"
+                    [control]="getControl('paymentMethod')"
+                    [required]="true">
+                </app-form-field>
+
+            </div>
+
+        </app-form-card>
+
+
+        <!-- ====================================================
+             ADDITIONAL INFORMATION
+        ===================================================== -->
+
+        <app-form-card
+            eyebrow="ADDITIONAL"
+            title="Additional Information"
+            description="Add the tenant's address and any additional notes.">
+
+            <div class="form-grid">
+
+                <div class="form-grid__full">
+
+                    <app-form-field
+                        label="Address"
+                        id="address"
+                        type="textarea"
+                        placeholder="Enter full address"
+                        [rows]="3"
+                        [control]="getControl('address')">
+                    </app-form-field>
+
+                </div>
+
+
+                <app-form-field
+                    label="City"
+                    id="city"
+                    type="text"
+                    placeholder="Enter city"
+                    [control]="getControl('city')">
+                </app-form-field>
+
+
+                <app-form-field
+                    label="State"
+                    id="state"
+                    type="text"
+                    placeholder="Enter state"
+                    [control]="getControl('state')">
+                </app-form-field>
+
+
+                <app-form-field
+                    label="PIN Code"
+                    id="pincode"
+                    type="text"
+                    placeholder="Enter 6-digit PIN code"
+                    [maxlength]="6"
+                    [control]="getControl('pincode')">
+                </app-form-field>
+
+
+                <div class="form-grid__full">
+
+                    <app-form-field
+                        label="Notes"
+                        id="notes"
+                        type="textarea"
+                        placeholder="Add any additional notes"
+                        [rows]="4"
+                        [control]="getControl('notes')">
+                    </app-form-field>
+
+                </div>
+
+            </div>
+
+        </app-form-card>
+
+
+        <!-- ====================================================
+             FORM ACTIONS
+        ===================================================== -->
+
+        <div class="add-tenant-page__actions">
+
+            <button
+                type="button"
+                class="add-tenant-page__button add-tenant-page__button--secondary"
+                [disabled]="saving"
+                (click)="onCancel()">
+
+                Cancel
+
+            </button>
+
+
+            <button
+                type="submit"
+                class="add-tenant-page__button add-tenant-page__button--primary"
+                [disabled]="saving">
+
+                <span
+                    *ngIf="saving"
+                    class="add-tenant-page__spinner">
+                </span>
+
+                <span>
+                    {{ saving ? 'Saving...' : 'Save Tenant' }}
+                </span>
+
+            </button>
+
+        </div>
+
+    </form>
+
+</div>

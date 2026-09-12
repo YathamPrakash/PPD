@@ -1,0 +1,197 @@
+@import '../../../Styles/variables';
+@import '../../../Styles/mixins';
+
+// ======================================================
+// TENANT HISTORY PAGE
+// ======================================================
+
+.tenant-history-page {
+    width: 100%;
+    min-height: 100%;
+    padding: $spacing-lg;
+
+    // ====================================================
+    // FILTERS
+    // ====================================================
+
+    &__filters {
+        margin-top: $spacing-lg;
+        margin-bottom: $spacing-md;
+    }
+
+    // ====================================================
+    // TABLE SECTION
+    // ====================================================
+
+    &__table-section {
+        width: 100%;
+        background: $background-card;
+        border: 1px solid $border-color;
+        box-shadow: $shadow-sm;
+        overflow: hidden;
+    }
+
+    // ====================================================
+    // SECTION HEADER
+    // ====================================================
+
+    &__section-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: $spacing-md $spacing-lg;
+        border-bottom: 1px solid $border-light;
+        background: $background-card;
+    }
+
+    &__section-heading {
+        display: flex;
+        align-items: center;
+        min-width: 0;
+    }
+
+    &__section-title {
+        margin: 0;
+        color: $text-primary;
+        @include bricolage-grotesque(600);
+        font-size: $font-size-lg;
+        line-height: 1.35;
+    }
+
+    &__section-description {
+        margin: $spacing-xs 0 0;
+        color: $text-muted;
+        @include montserrat(400);
+        font-size: $font-size-sm;
+        line-height: 1.5;
+    }
+
+    // ====================================================
+    // DESKTOP TABLE
+    // ====================================================
+
+    &__desktop-table {
+        width: 100%;
+        overflow-x: auto;
+    }
+
+    // ====================================================
+    // EMPTY STATE
+    // ====================================================
+
+    &__empty {
+        padding: $spacing-xl $spacing-lg;
+    }
+
+    // ====================================================
+    // ERROR / LOADING STATE
+    // ====================================================
+
+    &__state {
+        width: 100%;
+        margin-top: $spacing-lg;
+    }
+
+    // ====================================================
+    // MOBILE
+    // ====================================================
+
+    &__mobile-list {
+        display: none;
+    }
+
+    &__mobile-header {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        margin-bottom: $spacing-md;
+    }
+
+    &__mobile-cards {
+        display: flex;
+        flex-direction: column;
+        gap: $spacing-md;
+    }
+
+    // ====================================================
+    // PAGINATION
+    // ====================================================
+
+ &__pagination {
+     width: 100%;
+     display: block;
+ }
+}
+
+// ======================================================
+// TABLET
+// ======================================================
+
+@include respond(tablet) {
+    .tenant-history-page {
+        padding: $spacing-md;
+
+        &__filters {
+            margin-top: $spacing-md;
+            margin-bottom: $spacing-md;
+        }
+
+        &__section-header {
+            padding: $spacing-md;
+        }
+
+        &__pagination {
+            justify-content: center;
+        }
+    }
+}
+
+// ======================================================
+// MOBILE
+// ======================================================
+
+@include respond(mobile) {
+    .tenant-history-page {
+        padding: $spacing-sm;
+
+        &__filters {
+            margin-top: $spacing-md;
+            margin-bottom: $spacing-md;
+        }
+
+        // Hide desktop table
+        &__desktop-table {
+            display: none;
+        }
+
+        // Show mobile cards
+        &__mobile-list {
+            display: block;
+            width: 100%;
+        }
+
+        &__mobile-header {
+            padding: 0 $spacing-xs;
+        }
+
+        &__section-title {
+            font-size: $font-size-md;
+        }
+
+        &__section-description {
+            font-size: $font-size-xs;
+        }
+
+        &__section-header {
+            padding: $spacing-sm;
+        }
+
+        &__empty {
+            padding: $spacing-lg $spacing-sm;
+        }
+
+        &__pagination {
+            margin-top: $spacing-md;
+        }
+    }
+}

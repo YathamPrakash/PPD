@@ -1,0 +1,219 @@
+@import '../../../../Styles/variables.scss';
+@import '../../../../Styles/mixins.scss';
+
+.stat-card {
+    width: 100%;
+    min-width: 0;
+    min-height: 112px;
+
+    padding: $spacing-md;
+
+    background: $background-card;
+    border: 1px solid $border-light;
+    border-radius: $radius-lg;
+
+    @include shadow(sm);
+
+    transition:
+        transform $transition-fast,
+        box-shadow $transition-fast,
+        border-color $transition-fast;
+
+    &:hover {
+        transform: translateY(-2px);
+        @include shadow(md);
+    }
+
+    &__top {
+        @include flex(space-between, flex-start, row, $spacing-sm);
+
+        min-width: 0;
+    }
+
+    &__content {
+        display: flex;
+        flex-direction: column;
+
+        min-width: 0;
+        flex: 1;
+    }
+
+    &__label {
+        @include montserrat(500);
+
+        margin-bottom: .35rem;
+
+        color: $text-secondary;
+        font-size: $font-size-xs;
+        line-height: 1.4;
+
+        @include text-ellipsis;
+    }
+
+    &__value {
+        @include bricolage-grotesque(600);
+
+        color: $text-primary;
+        font-size: $font-size-2xl;
+        line-height: 1.2;
+
+        word-break: break-word;
+    }
+
+    &__description {
+        @include montserrat(400);
+
+        margin: .65rem 0 0;
+
+        color: $text-muted;
+        font-size: $font-size-xs;
+        line-height: 1.4;
+
+        @include text-ellipsis;
+    }
+
+    &__icon {
+        @include flex(center, center);
+
+        flex: 0 0 auto;
+
+        width: 42px;
+        height: 42px;
+
+        border-radius: $radius-md;
+
+        font-size: $font-size-lg;
+
+        transition:
+            transform $transition-fast,
+            background $transition-fast;
+
+        i {
+            line-height: 1;
+        }
+    }
+
+    /* --------------------------------
+       GREEN
+    -------------------------------- */
+
+    &--green {
+
+        .stat-card__icon {
+            color: $color-success;
+            background: rgba($color-success, .10);
+        }
+    }
+
+    /* --------------------------------
+       BLUE
+    -------------------------------- */
+
+    &--blue {
+
+        .stat-card__icon {
+            color: $color-info;
+            background: rgba($color-info, .10);
+        }
+    }
+
+    /* --------------------------------
+       ORANGE
+    -------------------------------- */
+
+    &--orange {
+
+        .stat-card__icon {
+            color: $color-warning;
+            background: rgba($color-warning, .12);
+        }
+    }
+
+    /* --------------------------------
+       TEAL
+    -------------------------------- */
+
+    &--teal {
+
+        .stat-card__icon {
+            color: $color-primary;
+            background: rgba($color-primary, .10);
+        }
+    }
+
+    /* --------------------------------
+       RED
+    -------------------------------- */
+
+    &--red {
+
+        .stat-card__icon {
+            color: $color-danger;
+            background: rgba($color-danger, .10);
+        }
+    }
+
+    /* --------------------------------
+       TABLET
+    -------------------------------- */
+
+    @include respond(tablet) {
+
+        min-height: 108px;
+
+        padding: $spacing-sm;
+
+        &__value {
+            font-size: $font-size-xl;
+        }
+
+        &__icon {
+            width: 40px;
+            height: 40px;
+        }
+    }
+
+    /* --------------------------------
+       MOBILE
+    -------------------------------- */
+
+    @include respond(mobile) {
+
+        min-height: 100px;
+
+        padding: $spacing-sm;
+
+        border-radius: $radius-md;
+
+        &:hover {
+            transform: none;
+        }
+
+        &__top {
+            gap: $spacing-xs;
+        }
+
+        &__label {
+            margin-bottom: .3rem;
+            font-size: $font-size-xs;
+        }
+
+        &__value {
+            font-size: $font-size-xl;
+        }
+
+        &__description {
+            margin-top: .5rem;
+            font-size: $font-size-xs;
+        }
+
+        &__icon {
+            width: 36px;
+            height: 36px;
+
+            border-radius: $radius-sm;
+
+            font-size: $font-size-md;
+        }
+    }
+}

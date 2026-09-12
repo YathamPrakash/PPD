@@ -1,0 +1,197 @@
+<article
+    class="mobile-data-card"
+    (click)="onRowClick()">
+
+
+    <!-- =================================
+         HEADER
+    ================================== -->
+
+    <div class="mobile-data-card__header">
+
+        <div class="mobile-data-card__identity">
+
+            <!-- Avatar -->
+
+            <div
+                *ngIf="getAvatarText()"
+                class="mobile-data-card__avatar">
+
+                {{ getAvatarText() }}
+
+            </div>
+
+
+            <!-- Title / Subtitle -->
+
+            <div class="mobile-data-card__heading">
+
+                <h3
+                    *ngIf="titleKey"
+                    class="mobile-data-card__title">
+
+                    {{ row[titleKey] }}
+
+                </h3>
+
+                <p
+                    *ngIf="subtitleKey"
+                    class="mobile-data-card__subtitle">
+
+                    {{ row[subtitleKey] }}
+
+                </p>
+
+            </div>
+
+        </div>
+
+
+        <!-- Action Menu -->
+
+        <div
+            *ngIf="showActions"
+            class="mobile-data-card__actions"
+            (click)="$event.stopPropagation()">
+
+            <app-action-menu
+                [actions]="actions"
+                [ariaLabel]="
+                    'Actions for ' +
+                    (titleKey ? row[titleKey] : 'item')
+                "
+                (actionClick)="onActionClick($event)">
+            </app-action-menu>
+
+        </div>
+
+    </div>
+
+
+    <!-- =================================
+         DATA
+    ================================== -->
+
+    <div
+        *ngIf="fields.length"
+        class="mobile-data-card__body">
+
+        <ng-container
+            *ngFor="let field of fields">
+
+            <div
+                *ngIf="shouldShowField(field)"
+                class="mobile-data-card__field"
+                [class.mobile-data-card__field--primary]="
+                    field.primary
+                ">
+
+
+                <span class="mobile-data-card__label">
+                    {{ field.label }}
+                </span>
+
+
+                <!-- Status -->
+
+                <ng-container
+                    *ngIf="
+                        field.type === 'status'
+                    ">
+
+                    <app-status-badge
+                        [status]="getValue(field)">
+                    </app-status-badge>
+
+                </ng-container>
+
+
+                <!-- Date -->
+
+                <ng-container
+                    *ngIf="
+                        field.type === 'date'
+                    ">
+
+                    <span class="mobile-data-card__value">
+
+                        {{
+                            getValue(field)
+                            | date: 'dd MMM yyyy'
+                        }}
+
+                    </span>
+
+                </ng-container>
+
+
+                <!-- Currency -->
+
+                <ng-container
+                    *ngIf="
+                        field.type === 'currency'
+                    ">
+
+                    <span
+                        class="
+                            mobile-data-card__value
+                            mobile-data-card__value--currency
+                        ">
+
+                        {{
+                            getValue(field)
+                            | currency:
+                                'INR':
+                                'symbol':
+                                '1.0-0'
+                        }}
+
+                    </span>
+
+                </ng-container>
+
+
+                <!-- Normal text -->
+
+                <ng-container
+                    *ngIf="
+                        !field.type ||
+                        field.type === 'text'
+                    ">
+
+                    <span class="mobile-data-card__value">
+
+                        {{ getValue(field) }}
+
+                    </span>
+
+                </ng-container>
+
+            </div>
+
+        </ng-container>
+
+    </div>
+
+
+    <!-- =================================
+         VIEW LINK
+    ================================== -->
+
+    <button
+        *ngIf="showViewLink"
+        type="button"
+        class="mobile-data-card__view"
+        (click)="onViewClick($event)">
+
+        <span>
+            {{ viewLabel }}
+        </span>
+
+        <span class="mobile-data-card__view-arrow">
+            →
+        </span>
+
+    </button>
+
+</article>

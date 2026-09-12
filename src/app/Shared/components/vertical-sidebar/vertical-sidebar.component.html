@@ -7,9 +7,18 @@
   <header class="app-vsidebar__header">
 
     <!-- Logo -->
-    <span class="app-vsidebar__header--logo">
-      PG Management
-    </span>
+    <div class="app-vsidebar__brand">
+
+      <span class="app-vsidebar__brand-icon" aria-hidden="true">
+        <i class="fa-solid fa-house"></i>
+      </span>
+
+      <span class="app-vsidebar__header--logo">
+        StayNest
+        <small>PG Management</small>
+      </span>
+
+    </div>
 
     <!-- Desktop collapse / expand -->
     <button type="button" class="app-vsidebar__header--toggle-btn" (click)="_doToggleSidebar()"
@@ -54,21 +63,25 @@
 
         <!-- ======================================================
              LEVEL 1 MENU
+
+             mouseenter / mouseleave only do anything when
+             submenuMode is 'flyout'. The component checks that
+             before touching any state, so these are inert on
+             mobile and in the expanded desktop sidebar.
              ====================================================== -->
 
         <li *ngFor="let item of menus" class="app-vsidebar__menu-item" [class.has-children]="hasChildren(item)"
-          [class.is-open]="item.open">
+          [class.is-open]="isSubmenuOpen(item)" (mouseenter)="onItemEnter(item)" (mouseleave)="onItemLeave(item)">
 
           <!-- Level 1 -->
-          <a href="javascript:void(0)" class="app-vsidebar__menu-link" (click)="toggleMenu(item)">
+          <a href="javascript:void(0)" class="app-vsidebar__menu-link" (click)="toggleMenu(item, $event)">
 
             <div class="app-vsidebar__menu-item--menu-left">
 
               <!-- Icon -->
               <span class="app-vsidebar__menu-icon">
 
-                <i [ngClass]="item.icon">
-                </i>
+                <i [ngClass]="item.icon"></i>
 
               </span>
 
@@ -81,7 +94,7 @@
 
             <!-- Arrow -->
             <i *ngIf="hasChildren(item)" class="fa-solid app-vsidebar__menu-arrow" [ngClass]="
-                item.open
+                isSubmenuOpen(item)
                   ? 'fa-chevron-up'
                   : 'fa-chevron-down'
               ">
@@ -92,24 +105,32 @@
 
           <!-- ====================================================
                LEVEL 2
+
+               *ngIf keeps this out of the DOM entirely unless the
+               component says it is open, so no CSS rule can hide
+               it while it is meant to be showing.
+
+               .show is still bound for the existing stylesheet.
+               .popup now follows isFlyout, not sidebarWidth, so
+               it is never applied on mobile.
                ==================================================== -->
 
-          <ul *ngIf="hasChildren(item)" class="app-vsidebar__menu-item--submenu" [class.show]="item.open"
-            [class.popup]="sidebarWidth === 'w80'">
+          <ul *ngIf="isSubmenuOpen(item)" class="app-vsidebar__menu-item--submenu" [class.show]="true"
+            [class.popup]="isFlyout">
 
             <li *ngFor="let child of item.children" class="app-vsidebar__submenu-item"
-              [class.has-children]="hasChildren(child)" [class.is-open]="child.open">
+              [class.has-children]="hasChildren(child)" [class.is-open]="isSubmenuOpen(child)"
+              (mouseenter)="onItemEnter(child)" (mouseleave)="onItemLeave(child)">
 
               <!-- Level 2 link -->
-              <a href="javascript:void(0)" class="app-vsidebar__submenu-link" (click)="toggleMenu(child)">
+              <a href="javascript:void(0)" class="app-vsidebar__submenu-link" (click)="toggleMenu(child, $event)">
 
                 <div class="app-vsidebar__menu-item--menu-left">
 
                   <!-- Icon -->
                   <span class="app-vsidebar__submenu-icon">
 
-                    <i [ngClass]="child.icon">
-                    </i>
+                    <i [ngClass]="child.icon"></i>
 
                   </span>
 
@@ -122,7 +143,7 @@
 
                 <!-- Arrow -->
                 <i *ngIf="hasChildren(child)" class="fa-solid app-vsidebar__menu-arrow" [ngClass]="
-                    child.open
+                    isSubmenuOpen(child)
                       ? 'fa-chevron-up'
                       : 'fa-chevron-down'
                   ">
@@ -135,18 +156,17 @@
                    LEVEL 3
                    ================================================== -->
 
-              <ul *ngIf="hasChildren(child)" class="app-vsidebar__menu-item--childmenu" [class.show]="child.open"
-                [class.popup]="sidebarWidth === 'w80'">
+              <ul *ngIf="isSubmenuOpen(child)" class="app-vsidebar__menu-item--childmenu" [class.show]="true"
+                [class.popup]="isFlyout">
 
                 <li *ngFor="let sub of child.children" class="app-vsidebar__childmenu-item">
 
-                  <a href="javascript:void(0)" class="app-vsidebar__childmenu-link" (click)="toggleMenu(sub)">
+                  <a href="javascript:void(0)" class="app-vsidebar__childmenu-link" (click)="toggleMenu(sub, $event)">
 
                     <!-- Icon -->
                     <span class="app-vsidebar__childmenu-icon">
 
-                      <i [ngClass]="sub.icon">
-                      </i>
+                      <i [ngClass]="sub.icon"></i>
 
                     </span>
 

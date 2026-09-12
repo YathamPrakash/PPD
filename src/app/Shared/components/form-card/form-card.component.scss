@@ -1,0 +1,201 @@
+@import '../../../../styles/variables.scss';
+@import '../../../../styles/mixins.scss';
+
+
+/* ================================================= */
+/* CARD */
+/* ================================================= */
+
+.form-card {
+    width: 100%;
+
+    background: $background-card;
+
+    border: 1px solid $border-light;
+
+    border-radius: $radius-lg;
+
+    overflow: hidden;
+}
+
+
+/* ================================================= */
+/* HEADER */
+/* ================================================= */
+
+.form-card__header {
+    padding: $spacing-lg $spacing-lg $spacing-md;
+
+    border-bottom: 1px solid $border-light;
+}
+
+
+.form-card__eyebrow {
+    display: block;
+
+    margin-bottom: $spacing-xs;
+
+    @include montserrat(700);
+
+    font-size: $font-size-xs;
+
+    line-height: 1.3;
+
+    letter-spacing: .08em;
+
+    text-transform: uppercase;
+
+    color: $color-primary;
+}
+
+
+.form-card__title {
+    margin: 0;
+
+    @include bricolage-grotesque(600);
+
+    font-size: $font-size-2xl;
+
+    line-height: 1.3;
+
+    color: $text-primary;
+}
+
+
+.form-card__description {
+    max-width: 700px;
+
+    margin: $spacing-xs 0 0;
+
+    @include montserrat(400);
+
+    font-size: $font-size-sm;
+
+    line-height: 1.6;
+
+    color: $text-secondary;
+}
+
+
+/* ================================================= */
+/* BODY */
+/* ================================================= */
+
+.form-card__body {
+    padding: $spacing-lg;
+}
+
+
+/* ================================================= */
+/* FOOTER */
+/* ================================================= */
+
+.form-card__footer {
+    @include flex(
+        flex-end,
+        center,
+        row,
+        $spacing-sm
+    );
+
+    padding: $spacing-md $spacing-lg;
+
+    background: $background-section;
+
+    border-top: 1px solid $border-light;
+}
+
+
+.form-card--no-footer-border {
+
+    .form-card__footer {
+        border-top: none;
+    }
+}
+
+
+/* ================================================= */
+/* LOADING */
+/* ================================================= */
+
+.form-card--loading {
+    pointer-events: none;
+
+    opacity: .7;
+}
+
+
+/* ================================================= */
+/* TABLET */
+/* ================================================= */
+
+@include respond(tablet) {
+
+    .form-card {
+        border-radius: $radius-md;
+    }
+
+
+    .form-card__header {
+        padding: $spacing-md;
+    }
+
+
+    .form-card__body {
+        padding: $spacing-md;
+    }
+
+
+    .form-card__footer {
+        padding: $spacing-sm $spacing-md;
+    }
+
+
+    .form-card__title {
+        font-size: $font-size-xl;
+    }
+}
+
+
+/* ================================================= */
+/* MOBILE */
+/* ================================================= */
+
+@include respond(mobile) {
+
+    .form-card {
+        border-radius: $radius-md;
+    }
+
+
+    .form-card__header {
+        padding: $spacing-md $spacing-sm;
+    }
+
+
+    .form-card__body {
+        padding: $spacing-md $spacing-sm;
+    }
+
+
+    .form-card__footer {
+        @include flex(
+            stretch,
+            stretch,
+            column,
+            $spacing-xs
+        );
+
+        padding: $spacing-md $spacing-sm;
+    }
+
+
+    .form-card__title {
+        font-size: $font-size-lg;
+    }
+
+
+    .form-card__description {
+        font-size: $font-size-xs;
+    }
+}
