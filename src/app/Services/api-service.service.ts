@@ -6,8 +6,8 @@ import { Observable } from 'rxjs';
 })
 export class ApiServiceService {
 
+  //private baseUrl = "http://localhost:5000"
   private baseUrl = "http://localhost:5000"
-
   constructor(private http: HttpClient) { }
 
   get<T>(endPoint: string): Observable<T> {

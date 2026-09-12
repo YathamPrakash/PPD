@@ -89,6 +89,7 @@ export class RegistrationComponent implements CanComponentDeactivate  {
         role: this.registrationForm.get('role')?.value,
       };
       console.log(this.registrationForm.value);
+      // auth/register
       this.apiService.post('auth/register', payload).pipe(
         finalize(() => {
           console.log('Registration request completed.');
